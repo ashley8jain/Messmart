@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.ashleyjain.messmart.LoginActivity"
+    android:background="#4da747">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/messmart_logo" />
+    <LinearLayout
+        android:id="@+id/EditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#11ffffff"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:baselineAligned="true">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone"
+            android:hint="Phone"
+            android:text="7503759051"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@android:drawable/sym_action_call" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:text="p"
+            android:ems="10"
+            android:hint="OTP or Password"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@android:drawable/ic_lock_lock" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Login"
+        android:layout_marginTop="20dp"
+        android:id="@+id/loginbutton"
+        android:background="@drawable/buttonshape"
+        android:layout_below="@+id/EditTextLayout"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don&apos;t have an account? Sign Up!"
+        android:id="@+id/signup"
+        android:textColor="#99ffffff"
+        android:layout_below="@+id/loginbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="_________________________  or  _________________________"
+        android:id="@+id/or"
+        android:layout_below="@+id/signup"
+        android:layout_centerHorizontal="true"
+        android:textColor="#80ffffff" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="SIGN IN WITH FACEBOOK"
+        android:id="@+id/fblogin"
+        android:background="@drawable/buttonshape"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/or"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="12dp"
+        android:drawableLeft="@drawable/facebook_icon"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="SIGN IN WITH GOOGLE"
+        android:id="@+id/gplogin"
+        android:background="@drawable/buttonshape"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/fblogin"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="12dp"
+        android:drawableLeft="@drawable/google_icon"/>
+
+</RelativeLayout>
