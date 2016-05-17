@@ -4,31 +4,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 public class StartActivity extends AppCompatActivity {
 
     protected Drawer drawer = null;
     AccountHeader headerResult= null;
+    public static Boolean login=false;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(login){
+            Intent re = new Intent(StartActivity.this,StartActivity.class);
+            startActivity(re);
+            finish();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,9 +48,10 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.material_drawer_switch:
-                drawer.openDrawer();
-                return true;
+//            case R.id.material_drawer_switch:
+//                drawer.openDrawer();
+//                return true;
+
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -57,17 +65,31 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("MesSmart");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer();
+            }
+        });
+
+        ViewpagerFragment fragment = new ViewpagerFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_not,fragment,fragment.toString())
+                .addToBackStack(fragment.toString())
+                .commit();
 
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("jain mess").withEmail("kade@kdd.com"),
+                        new ProfileDrawerItem().withName(login?"Jain Mess":"Guest User").withEmail(login?"Logged in":"Not Signed in"),
                         new ProfileSettingDrawerItem()
-                                .withName("Log Out")
+                                .withName(login?"Logout":"Login")
                                 .withIdentifier(1)
                 )
                 .withHeaderBackground(R.drawable.slider1)
@@ -92,8 +114,18 @@ public class StartActivity extends AppCompatActivity {
                         if (profile != null && profile instanceof IDrawerItem) {
                             switch ((int) profile.getIdentifier()) {
                                 case 1:
-                                    Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                                    finish();
+                                    if(!login) {
+                                        Intent login = new Intent(StartActivity.this, LoginActivity.class);
+                                        startActivity(login);
+                                        break;
+                                    }
+                                    else{
+                                        login = false;
+                                        Intent re = new Intent(StartActivity.this,StartActivity.class);
+                                        startActivity(re);
+                                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }
                                     break;
                                 default:
                                     break;
@@ -104,17 +136,6 @@ public class StartActivity extends AppCompatActivity {
                 })
                 .build();
 
-        OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
-                if (drawerItem instanceof Nameable) {
-                    Log.i("material-drawer", "DrawerItem: " + ((Nameable) drawerItem).getName() + " - toggleChecked: " + isChecked);
-                } else {
-                    Log.i("material-drawer", "toggleChecked: " + isChecked);
-                }
-            }
-        };
-
         //buttons handling in drawer
         final DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
@@ -124,13 +145,13 @@ public class StartActivity extends AppCompatActivity {
                 .withHasStableIds(true)
                 .addDrawerItems(
                         new SectionDrawerItem().withName("Menu"),
-                        new PrimaryDrawerItem().withName("Cart").withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Mess").withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Pricing").withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Login").withIdentifier(4),
+                        new PrimaryDrawerItem().withName("Cart").withIdentifier(4).withIcon(R.drawable.shopping_cart),
+                        new PrimaryDrawerItem().withName("Mess").withIdentifier(4).withIcon(R.drawable.bell_service),
+                        new PrimaryDrawerItem().withName("Pricing").withIdentifier(4).withIcon(R.drawable.coins),
+                        new PrimaryDrawerItem().withName(login?"Logout":"Login").withIdentifier(4).withIcon(login?R.drawable.logout:R.drawable.login),
                         new SectionDrawerItem().withName("Help"),
-                        new PrimaryDrawerItem().withName("About us"),
-                        new PrimaryDrawerItem().withName("Contact us")
+                        new PrimaryDrawerItem().withName("About us").withIcon(R.drawable.info),
+                        new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.online_support)
                 );
 
         builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -138,15 +159,24 @@ public class StartActivity extends AppCompatActivity {
                                                   public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                                                       switch (position) {
                                                           case 5:
-                                                              Intent login = new Intent(StartActivity.this,LoginActivity.class);
-                                                              startActivity(login);
-                                                              finish();
-                                                              break;
+                                                              if(!login) {
+                                                                  Intent login = new Intent(StartActivity.this, LoginActivity.class);
+                                                                  startActivity(login);
+                                                                  break;
+                                                              }
+                                                              else{
+                                                                  login = false;
+                                                                  Intent re = new Intent(StartActivity.this,StartActivity.class);
+                                                                  startActivity(re);
+                                                                  Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                                                                  finish();
+                                                              }
                                                       }
                                                       return false;
                                                   }
                                               });
 
         drawer = builder.build();
+
     }
 }

@@ -14,133 +14,21 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:contentInsetLeft="0dp"
+            android:contentInsetStart="0dp"
             android:background="@color/colorPrimary"
-            android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextColor="@android:color/white"/>
+
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fragment_not">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/how"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="________  HOW IT WORKS  ________"
-                    android:textColor="@color/md_blue_grey_400"
-                    android:id="@+id/how"
-                    android:gravity="center_horizontal" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#80f2f2bf">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView2"
-                        android:src="@drawable/hww4_t" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="You Book A Meal"
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/textView"
-                        android:gravity="center_horizontal" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="You visit messmart.com and find the best mess"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:id="@+id/textView2"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#80ffffc0">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-                        android:id="@+id/imageView3"
-                        android:src="@drawable/hww3_t" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Chef Cooks"
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/textView3"
-                        android:gravity="center_horizontal" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Our Awesome Chef cooks delicacy from her home kitchen for you"
-                        android:id="@+id/textView4"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:gravity="center_horizontal"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#80e1e1b0">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView4"
-                        android:layout_marginTop="50dp"
-                        android:src="@drawable/hww1_t" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Daily Home Delivery"
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/textView5"
-                        android:gravity="center_horizontal" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="We do lightning daily delivery in the slot you have selected"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:id="@+id/textView6"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-
-            </LinearLayout>
-
         </FrameLayout>
-    </ScrollView>
+
 
     </LinearLayout>
 

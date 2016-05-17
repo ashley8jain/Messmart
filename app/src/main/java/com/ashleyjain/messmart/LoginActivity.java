@@ -104,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String message = jsonResponse.getString("ec");
                                     System.out.println("Message: " + message);
                                     dialog.dismiss();
+                                    finish();
+                                    StartActivity.login = true;
                                 } catch (JSONException e) {
                                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
                                     dialog.dismiss();
