@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -59,7 +61,7 @@ public class StartActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("MesSmart");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
@@ -124,11 +126,9 @@ public class StartActivity extends AppCompatActivity {
                 .withHasStableIds(true)
                 .addDrawerItems(
                         new SectionDrawerItem().withName("Menu"),
-                        new PrimaryDrawerItem().withName("Cart").withIdentifier(4),
                         new PrimaryDrawerItem().withName("Mess").withIdentifier(4),
                         new PrimaryDrawerItem().withName("Pricing").withIdentifier(4),
                         new PrimaryDrawerItem().withName("Login").withIdentifier(4),
-                        new SectionDrawerItem().withName("Help"),
                         new PrimaryDrawerItem().withName("About us"),
                         new PrimaryDrawerItem().withName("Contact us")
                 );
@@ -136,11 +136,22 @@ public class StartActivity extends AppCompatActivity {
         builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                                                   @Override
                                                   public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
+                                                      Intent login;
                                                       switch (position) {
-                                                          case 5:
-                                                              Intent login = new Intent(StartActivity.this,LoginActivity.class);
+                                                          case 4:
+                                                              login = new Intent(StartActivity.this,LoginActivity.class);
                                                               startActivity(login);
                                                               finish();
+                                                              break;
+
+                                                          case 5:
+                                                              login = new Intent(StartActivity.this,AboutusActivity.class);
+                                                              startActivity(login);
+                                                              break;
+
+                                                          case 6:
+                                                              login = new Intent(StartActivity.this,ContactusActivity.class);
+                                                              startActivity(login);
                                                               break;
                                                       }
                                                       return false;
@@ -148,5 +159,27 @@ public class StartActivity extends AppCompatActivity {
                                               });
 
         drawer = builder.build();
+
+        ImageView imgFacebook = (ImageView)findViewById(R.id.imageViewFacebook);
+        imgFacebook.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("http://www.fb.com"));
+                startActivity(intent);
+            }
+        });
+
+        ImageView imgGoogle = (ImageView)findViewById(R.id.imageViewGoogle);
+        imgGoogle.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://plus.google.com/"));
+                startActivity(intent);
+            }
+        });
     }
 }
