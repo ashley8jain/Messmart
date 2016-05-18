@@ -126,9 +126,9 @@ public class StartActivity extends AppCompatActivity {
                 .withHasStableIds(true)
                 .addDrawerItems(
                         new SectionDrawerItem().withName("Menu"),
-                        new PrimaryDrawerItem().withName("Mess").withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Pricing").withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Login").withIdentifier(4),
+                        new PrimaryDrawerItem().withName("Mess"),
+                        new PrimaryDrawerItem().withName("Pricing"),
+                        new PrimaryDrawerItem().withName("Login"),
                         new PrimaryDrawerItem().withName("About us"),
                         new PrimaryDrawerItem().withName("Contact us")
                 );
@@ -138,10 +138,13 @@ public class StartActivity extends AppCompatActivity {
                                                   public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                                                       Intent login;
                                                       switch (position) {
+                                                          case 2:
+                                                              login = new Intent(StartActivity.this,ChoosefoodActivity.class);
+                                                              startActivity(login);
+                                                              break;
                                                           case 4:
                                                               login = new Intent(StartActivity.this,LoginActivity.class);
                                                               startActivity(login);
-                                                              finish();
                                                               break;
 
                                                           case 5:

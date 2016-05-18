@@ -29,7 +29,8 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".AboutusActivity" />
-        <activity android:name=".ContactusActivity"></activity>
+        <activity android:name=".ContactusActivity" />
+        <activity android:name=".ChoosefoodActivity"></activity>
     </application>
 
 </manifest>
