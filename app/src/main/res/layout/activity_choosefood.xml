@@ -54,37 +54,72 @@
                         android:layout_height="match_parent"
                         android:background="#80f2f2bf">
 
-
-                        <TextView
+                        <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Conatct Us"
+                            android:id="@+id/buttontoday"
+                            android:text="Today"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:id="@+id/textView"
-                            android:gravity="center_horizontal" />
+                            android:gravity="center_horizontal"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Here, you have to get content from api using post request.Here, you have to get content from api using post request.
-                            Here, you have to get content from api using post request.Here, you have to get content from api using post request.Here, you have to get content from api using post request
-                            Here, you have to get content from api using post request.Here, you have to get content from api using post request.Here, you have to get content from api using post request
-                            Here, you have to get content from api using post request.Here, you have to get content from api using post request.Here, you have to get content from api using post request
-                            Here, you have to get content from api using post request.Here, you have to get content from api using post request.Here, you have to get content from api using post request
-                            Here, you have to get content from api using post request.Here, you have to get content from api using post request."
-                            android:paddingLeft="90dp"
-                            android:paddingRight="90dp"
-                            android:id="@+id/textView2"
-                            android:gravity="center_horizontal" />
-                        <TextView
+                        <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow"
+                            android:text="Tomorrow"
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow2"
                             android:text=""
-                            android:id="@+id/textView8"
-                            android:gravity="center_horizontal" />
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow3"
+                            android:text=""
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow4"
+                            android:text=""
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow5"
+                            android:text=""
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow6"
+                            android:text=""
+                            android:gravity="center_horizontal"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/buttontomorrow7"
+                            android:text="something"
+                            android:gravity="center_horizontal"/>
+
+                        <!--<CalendarView
+                        android:id="@+id/calendar"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />-->
+
+
                     </LinearLayout>
 
                 </LinearLayout>

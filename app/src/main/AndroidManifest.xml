@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -30,7 +31,10 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".AboutusActivity" />
         <activity android:name=".ContactusActivity" />
-        <activity android:name=".ChoosefoodActivity"></activity>
+        <activity android:name=".ChoosefoodActivity" />
+        <activity
+            android:name=".MessjoinActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

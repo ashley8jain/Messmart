@@ -142,6 +142,10 @@ public class StartActivity extends AppCompatActivity {
                                                               login = new Intent(StartActivity.this,ChoosefoodActivity.class);
                                                               startActivity(login);
                                                               break;
+                                                          case 3:
+                                                              login = new Intent(StartActivity.this,MessjoinActivity.class);
+                                                              startActivity(login);
+                                                              break;
                                                           case 4:
                                                               login = new Intent(StartActivity.this,LoginActivity.class);
                                                               startActivity(login);
