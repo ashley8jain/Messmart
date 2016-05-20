@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String mbnb = mobileno.getText().toString();
                 final String pwd = pass.getText().toString();
 
-                String url = "http://www.messmart.com/index.php/ajaxactions";
+                String url = StartActivity.login+"index.php/ajaxactions";
 
                 StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //response JSON from url
                                 try {
                                     JSONObject jsonResponse = new JSONObject(response);
-                                    String message = jsonResponse.getString("ec");
+                                    String message = jsonResponse.getString("name");
                                     System.out.println("Message: " + message);
                                     dialog.dismiss();
                                     finish();
