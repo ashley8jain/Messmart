@@ -26,9 +26,7 @@
             android:background="#80f2f2bf"
             android:src="@drawable/messmart_logo" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -64,7 +62,9 @@
                             android:layout_marginBottom="5dp"
                             android:id="@+id/textView"
                             android:gravity="center_horizontal" />
-
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -78,6 +78,11 @@
                             android:paddingRight="90dp"
                             android:id="@+id/textView2"
                             android:gravity="center_horizontal" />
+                        <!--<WebView-->
+                        <!--android:layout_width="300dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/webView"-->
+                        <!--android:layout_gravity="center_horizontal" />-->
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -85,14 +90,16 @@
                             android:text=""
                             android:id="@+id/textView8"
                             android:gravity="center_horizontal" />
+                        </ScrollView>
                     </LinearLayout>
 
                 </LinearLayout>
 
              </FrameLayout>
 
-        </ScrollView>
+
 
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+
