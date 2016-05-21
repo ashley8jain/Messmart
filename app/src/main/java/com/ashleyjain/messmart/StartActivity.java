@@ -51,7 +51,7 @@ public class StartActivity extends AppCompatActivity {
     private Context context;
     String aboutus,contactus;
 
-    public static String host = "http://192.168.0.102/mess/";
+    public static String host = "http://www.messmart.com/";
 
 
     @Override

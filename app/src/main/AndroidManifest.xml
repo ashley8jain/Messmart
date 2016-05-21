@@ -31,7 +31,6 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".MessListingPage" />
-        <activity android:name=".PICTEST"></activity>
     </application>
 
 </manifest>

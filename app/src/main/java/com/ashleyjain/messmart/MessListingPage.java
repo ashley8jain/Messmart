@@ -1,13 +1,16 @@
 package com.ashleyjain.messmart;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MessListingPage extends AppCompatActivity {
+public class MessListingPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,16 @@ public class MessListingPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Mess listing");
 
-        MessList fragment = new MessList();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        MessListTabLayout fragment = new MessListTabLayout();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_messli,fragment,fragment.toString())
                 .addToBackStack(fragment.toString())
@@ -42,5 +54,10 @@ public class MessListingPage extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
     }
 }
