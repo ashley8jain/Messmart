@@ -31,8 +31,6 @@
                 android:value="com.ashleyjain.messmart.LoginActivity" />
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".AboutusActivity" />
-        <activity android:name=".ContactusActivity" />
         <activity android:name=".ChoosefoodActivity" />
         <activity
             android:name=".MessjoinActivity"

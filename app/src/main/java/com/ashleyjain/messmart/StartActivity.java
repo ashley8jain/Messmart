@@ -3,7 +3,6 @@ package com.ashleyjain.messmart;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -305,26 +303,6 @@ public class StartActivity extends AppCompatActivity {
 
         drawer = builder.build();
 
-        ImageView imgFacebook = (ImageView)findViewById(R.id.imageViewFacebook);
-        imgFacebook.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("http://www.fb.com"));
-                startActivity(intent);
-            }
-        });
 
-        ImageView imgGoogle = (ImageView)findViewById(R.id.imageViewGoogle);
-        imgGoogle.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://plus.google.com/"));
-                startActivity(intent);
-            }
-        });
     }
 }
