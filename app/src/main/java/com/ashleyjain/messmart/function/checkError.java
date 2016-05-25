@@ -1,8 +1,10 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.function;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+
+import com.ashleyjain.messmart.R;
 
 /**
  * Created by ashleyjain on 27/03/16.

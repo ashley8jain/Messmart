@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.ashleyjain.messmart.Object.OrderObject;
+import com.ashleyjain.messmart.R;
 
 import java.util.List;
 

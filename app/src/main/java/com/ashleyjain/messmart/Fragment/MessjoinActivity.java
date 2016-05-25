@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +16,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.ashleyjain.messmart.adapter.CustomSwipeAdapter;
+import com.ashleyjain.messmart.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ashleyjain.messmart.Object.MessObject;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

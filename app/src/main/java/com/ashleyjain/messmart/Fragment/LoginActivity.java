@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.StringRequestCookies;
+import com.ashleyjain.messmart.function.checkError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -109,6 +113,9 @@ public class LoginActivity extends Fragment {
                                     }
                                     else if(ec == -1){
                                         Toast.makeText(getActivity(),"Incorrect password", Toast.LENGTH_LONG).show();
+                                    }
+                                    else if(ec == -3){
+                                        Toast.makeText(getActivity(),"OTP is incorrect", Toast.LENGTH_LONG).show();
                                     }
                                     System.out.println("Message: " + ec);
                                 dialog.dismiss();

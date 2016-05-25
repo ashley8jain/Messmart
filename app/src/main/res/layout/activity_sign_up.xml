@@ -7,7 +7,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.ashleyjain.messmart.LoginActivity"
+    tools:context=".Fragment.LoginActivity"
     android:background="#ffffff">
 
     <EditText

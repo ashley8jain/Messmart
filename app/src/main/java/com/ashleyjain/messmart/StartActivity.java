@@ -17,6 +17,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.ashleyjain.messmart.Fragment.AboutusActivity;
+import com.ashleyjain.messmart.Fragment.ContactusActivity;
+import com.ashleyjain.messmart.Fragment.LoginActivity;
+import com.ashleyjain.messmart.Fragment.OrderFragment;
+import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
+import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -39,7 +45,7 @@ public class StartActivity extends AppCompatActivity {
     protected Drawer drawer = null;
     AccountHeader headerResult= null;
     public static Boolean isLogin=false;
-
+    String loginname;
     private Context context;
     String aboutus,contactus;
 
@@ -102,6 +108,11 @@ public class StartActivity extends AppCompatActivity {
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             aboutus = dataobject.getString("aboutus_content");
                             contactus = dataobject.getString("contact");
+                            //System.out.println()
+                            if(isLogin){
+                                loginname = dataobject.getJSONObject("drawer").getString("loginname");
+                                System.out.println("loginname: "+loginname);
+                            }
                             System.out.println("Message: " + message);
                             dialog.dismiss();
                         } catch (JSONException e) {
@@ -141,12 +152,13 @@ public class StartActivity extends AppCompatActivity {
                 .replace(R.id.fragment_not,fragment,fragment.toString())
                 .addToBackStack(fragment.toString())
                 .commit();
+        System.out.println("loginname2: "+loginname);
 
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(isLogin?"Jain Mess":"Guest User").withEmail(isLogin?"Logged in":"Not Signed in"),
+                        new ProfileDrawerItem().withName(isLogin?loginname:"Guest User").withEmail(isLogin?"Logged in":"Not Signed in"),
                         new ProfileSettingDrawerItem()
                                 .withName(isLogin?"Logout":"Login")
                                 .withIdentifier(1)

@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.ashleyjain.messmart.adapter.PagerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 

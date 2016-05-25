@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Object;
 
 /**
  * Created by ashleyjain on 19/05/16.

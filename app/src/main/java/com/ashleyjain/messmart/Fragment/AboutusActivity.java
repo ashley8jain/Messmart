@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ashleyjain.messmart.R;
 
 public class AboutusActivity extends Fragment {
 

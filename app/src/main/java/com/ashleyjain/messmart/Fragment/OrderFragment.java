@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ashleyjain.messmart.adapter.OrderListPagerAdapter;
+import com.ashleyjain.messmart.R;
 
 
 public class OrderFragment extends Fragment {

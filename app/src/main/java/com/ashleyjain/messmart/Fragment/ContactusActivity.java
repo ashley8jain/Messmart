@@ -1,10 +1,12 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ashleyjain.messmart.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.createAccount">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Create Account"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:id="@+id/textView22"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/EditTextLayout"
+        android:layout_alignStart="@+id/EditTextLayout" />
+
+    <LinearLayout
+        android:id="@+id/EditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#d3e9d9"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_below="@id/textView22"
+        android:paddingBottom="10dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:hint="Name"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/collaborator" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address"
+            android:hint="Address"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/marker" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choosepassword"
+            android:hint="Choose Password"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/password" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create account"
+        android:textColor="#ffffff"
+        android:layout_margin="16dp"
+        android:background="@drawable/buttonshape"
+        android:id="@+id/createb"
+        android:layout_below="@+id/EditTextLayout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:layout_marginTop="10dp"
+        android:id="@+id/already"
+        android:layout_below="@+id/createb"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

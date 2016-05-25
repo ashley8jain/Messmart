@@ -1,10 +1,14 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment.List;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ashleyjain.messmart.Object.MessObject;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.adapter.messObjectAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

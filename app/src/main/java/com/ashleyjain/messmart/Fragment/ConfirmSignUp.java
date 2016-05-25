@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,11 +50,12 @@ public class ConfirmSignUp extends Fragment {
 
         ph = (EditText) view.findViewById(R.id.mob);
         ph.setText(phone);
-        phone = ph.getText().toString();
+
         resend = (Button) view.findViewById(R.id.resend);
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phone = ph.getText().toString();
                 final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
                 String url = StartActivity.host+"index.php/ajaxactions";
 
@@ -124,6 +128,15 @@ public class ConfirmSignUp extends Fragment {
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
                                         Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
+                                        createAccount fragment = new createAccount();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("PHONE",phone);
+                                        bundle.putString("OTP",confirmpass);
+                                        fragment.setArguments(bundle);
+                                        getActivity().getSupportFragmentManager().beginTransaction()
+                                                .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                .addToBackStack(fragment.toString())
+                                                .commit();
                                     }
                                     System.out.println("Message: " + ec);
                                     dialog.dismiss();

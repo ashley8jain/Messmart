@@ -5,7 +5,7 @@
     android:padding="5dp"
     android:paddingTop="20dp"
     android:background="#ffffff"
-    tools:context="com.ashleyjain.messmart.MessList">
+    tools:context=".Fragment.List.MessList">
 
     <ListView
         android:layout_width="match_parent"

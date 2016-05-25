@@ -1,16 +1,18 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.ashleyjain.messmart.Fragment.List.OrderList;
+
 /**
- * Created by ashleyjain on 21/05/16.
+ * Created by ashleyjain on 24/05/16.
  */
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class OrderListPagerAdapter extends FragmentStatePagerAdapter{
 
     int NumOfTabs;
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public OrderListPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.NumOfTabs = NumOfTabs;
     }
@@ -18,11 +20,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if(position == 0) {
-            MessList frag = new MessList();
+            OrderList frag = new OrderList();
             return frag;
         }
         if(position == 1){
-            MessList frag1 = new MessList();
+            OrderList frag1 = new OrderList();
             return frag1;
         }
         return null;
