@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +54,7 @@ public class SignUpActivity extends Fragment {
                 final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
                 String url = StartActivity.host+"index.php/ajaxactions";
                 final String phone = newmobile.getText().toString();
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -109,7 +107,7 @@ public class SignUpActivity extends Fragment {
                 };
 
                 // add it to the RequestQueue
-                Volley.newRequestQueue(getActivity()).add(postRequest);
+                StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
 

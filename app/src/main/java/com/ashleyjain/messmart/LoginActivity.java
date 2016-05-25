@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -83,7 +82,7 @@ public class LoginActivity extends Fragment {
 
                 String url = StartActivity.host+"index.php/ajaxactions";
 
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -139,6 +138,7 @@ public class LoginActivity extends Fragment {
             }
         });
     }
+
 
 
 }

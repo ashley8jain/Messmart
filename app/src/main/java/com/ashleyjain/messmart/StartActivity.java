@@ -3,7 +3,9 @@ package com.ashleyjain.messmart;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,9 +13,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -41,7 +43,18 @@ public class StartActivity extends AppCompatActivity {
     private Context context;
     String aboutus,contactus;
 
-    public static String host = "http://192.168.0.104/mess/";
+    public static String host = "http://www.messmart.com/";
+
+    private static final String SET_COOKIE_KEY = "set-cookie";
+    private static final String COOKIE_KEY = "cookie";
+    private static final String SESSION_COOKIE = "PHPSESSID";
+    private static StartActivity _instance;
+    private RequestQueue _requestQueue;
+    private SharedPreferences _preferences;
+
+    public static StartActivity get() {
+        return _instance;
+    }
 
     @Override
     protected void onRestart() {
@@ -58,6 +71,9 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
+        _instance = this;
+        _preferences = PreferenceManager.getDefaultSharedPreferences(this);  //for saving cookies
+        _requestQueue = Volley.newRequestQueue(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
         setSupportActionBar(toolbar);
@@ -71,10 +87,10 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        final ProgressDialog dialog = ProgressDialog.show(context, "", "Authenticating...", true);
+        final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
         String url = host+"index.php/ajaxactions";
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -118,9 +134,7 @@ public class StartActivity extends AppCompatActivity {
         };
 
         // add it to the RequestQueue
-        Volley.newRequestQueue(context).add(postRequest);
-
-
+        getRequestQueue().add(postRequest);
 
         ViewpagerFragment fragment = new ViewpagerFragment();
         getSupportFragmentManager().beginTransaction()
@@ -209,6 +223,7 @@ public class StartActivity extends AppCompatActivity {
             public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                 Intent login;
                 switch (position) {
+
                     case 3:
                         MessListTabLayout fragment = new MessListTabLayout();
                         getSupportFragmentManager().beginTransaction()
@@ -266,7 +281,46 @@ public class StartActivity extends AppCompatActivity {
 
         drawer = builder.build();
 
+    }
+    //checking session cookie
+    public final void checkSessionCookie(Map<String, String> headers) {
+        if (headers.containsKey(SET_COOKIE_KEY)
+                && headers.get(SET_COOKIE_KEY).startsWith(SESSION_COOKIE)) {
+            String cookie = headers.get(SET_COOKIE_KEY);
+            if (cookie.length() > 0) {
+                String[] splitCookie = cookie.split(";");
+                String[] splitSessionId = splitCookie[0].split("=");
+                cookie = splitSessionId[1];
+                SharedPreferences.Editor prefEditor = _preferences.edit();
+                prefEditor.putString(SESSION_COOKIE, cookie);
+                prefEditor.commit();
+            }
+        }
+    }
 
+    /**
+     * Adds session cookie to headers if exists.
+     * @param headers
+     */
+    public final void addSessionCookie(Map<String, String> headers) {
+        String sessionId = _preferences.getString(SESSION_COOKIE, "");
+        if (sessionId.length() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(SESSION_COOKIE);
+            builder.append("=");
+            builder.append(sessionId);
+            if (headers.containsKey(COOKIE_KEY)) {
+                builder.append("; ");
+                builder.append(headers.get(COOKIE_KEY));
+            }
+            headers.put(COOKIE_KEY, builder.toString());
+        }
+    }
+
+
+    //Volley request queue
+    public RequestQueue getRequestQueue() {
+        return _requestQueue;
     }
 
 }
