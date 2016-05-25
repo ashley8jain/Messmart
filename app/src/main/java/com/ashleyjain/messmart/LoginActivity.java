@@ -1,22 +1,21 @@
 package com.ashleyjain.messmart;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -28,66 +27,57 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Fragment {
 
     EditText mobileno,pass;
-    Button login,fb,gp;
-    TextView signup;
+    Button login;
+    TextView signup,joinus,forgetpass;
 
-    private static final String SET_COOKIE_KEY = "set-cookie";
-    private static final String COOKIE_KEY = "cookie";
-    private static final String SESSION_COOKIE = "PHPSESSID";
-    private static LoginActivity _instance;
-    private RequestQueue _requestQueue;
-    private SharedPreferences _preferences;
-
-    public static LoginActivity get() {
-        return _instance;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_login, container, false);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        _instance = this;
-        _preferences = PreferenceManager.getDefaultSharedPreferences(this);  //for saving cookies
-        _requestQueue = Volley.newRequestQueue(this);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        final Context context = LoginActivity.this;
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
 
-        Typeface font = Typeface.createFromAsset(getAssets(),"YuppySC-Regular.ttf");
-
-        mobileno = (EditText) findViewById(R.id.phone);
+        mobileno = (EditText) view.findViewById(R.id.phone);
         mobileno.setTypeface(font);
         mobileno.addTextChangedListener(new checkError(mobileno));
 
-        pass = (EditText) findViewById(R.id.password);
+        pass = (EditText) view.findViewById(R.id.confirmotp);
         pass.setTypeface(font);
         pass.addTextChangedListener(new checkError(pass));
 
-        login = (Button) findViewById(R.id.loginbutton);
-        login.setTypeface(font);
+        login = (Button) view.findViewById(R.id.loginbutton);
 
-        signup = (TextView) findViewById(R.id.signup);
-        signup.setTypeface(font);
+        signup = (TextView) view.findViewById(R.id.signup);
+        signup.setText(Html.fromHtml("Don't have an account? "+"<font color=#039be5>"+"Sign Up"+"</font><br><br>"));
 
-        fb = (Button) findViewById(R.id.fblogin);
-        fb.setTypeface(font);
-        gp = (Button) findViewById(R.id.gplogin);
-        gp.setTypeface(font);
+        joinus = (TextView) view.findViewById(R.id.joinus);
+        joinus.setText(Html.fromHtml("Are you a mess? "+"<font color=#039be5>"+"Join us"+"</font><br><br>"));
+
+        forgetpass = (TextView) view.findViewById(R.id.forgot);
+        forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,SignUpActivity.class);
-                startActivity(intent);
+                SignUpActivity signupfragment = new SignUpActivity();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
+                        .addToBackStack(signupfragment.toString())
+                        .commit();
             }
         });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog dialog = ProgressDialog.show(context, "", "Authenticating...", true);
+                final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Logging in.....", true);
                 final String mbnb = mobileno.getText().toString();
                 final String pwd = pass.getText().toString();
 
@@ -101,23 +91,30 @@ public class LoginActivity extends AppCompatActivity {
                                 //response JSON from url
                                 try {
                                     JSONObject jsonResponse = new JSONObject(response);
-                                    String message = jsonResponse.getString("name");
-                                    System.out.println("Message: " + message);
-                                    dialog.dismiss();
-                                    finish();
-                                    StartActivity.isLogin = true;
+                                    Integer ec = jsonResponse.getInt("ec");
+                                    if(ec == 1){
+                                        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
+                                        Intent re = new Intent(getContext(),StartActivity.class);
+                                        startActivity(re);
+                                        StartActivity.isLogin = true;
+                                        getActivity().finish();
+                                    }
+                                    else if(ec == -1){
+                                        Toast.makeText(getActivity(),"Incorrect password", Toast.LENGTH_LONG).show();
+                                    }
+                                    System.out.println("Message: " + ec);
+                                dialog.dismiss();
                                 } catch (JSONException e) {
-                                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                                     dialog.dismiss();
                                 }
-
                             }
                         },
                         new Response.ErrorListener() {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
                             }
                         }
@@ -138,48 +135,10 @@ public class LoginActivity extends AppCompatActivity {
                 };
 
                 // add it to the RequestQueue
-                Volley.newRequestQueue(context).add(postRequest);
+                Volley.newRequestQueue(getActivity()).add(postRequest);
             }
         });
     }
 
-    //checking session cookie
-    public final void checkSessionCookie(Map<String, String> headers) {
-        if (headers.containsKey(SET_COOKIE_KEY)
-                && headers.get(SET_COOKIE_KEY).startsWith(SESSION_COOKIE)) {
-            String cookie = headers.get(SET_COOKIE_KEY);
-            if (cookie.length() > 0) {
-                String[] splitCookie = cookie.split(";");
-                String[] splitSessionId = splitCookie[0].split("=");
-                cookie = splitSessionId[1];
-                SharedPreferences.Editor prefEditor = _preferences.edit();
-                prefEditor.putString(SESSION_COOKIE, cookie);
-                prefEditor.commit();
-            }
-        }
-    }
 
-    /**
-     * Adds session cookie to headers if exists.
-     * @param headers
-     */
-    public final void addSessionCookie(Map<String, String> headers) {
-        String sessionId = _preferences.getString(SESSION_COOKIE, "");
-        if (sessionId.length() > 0) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(SESSION_COOKIE);
-            builder.append("=");
-            builder.append(sessionId);
-            if (headers.containsKey(COOKIE_KEY)) {
-                builder.append("; ");
-                builder.append(headers.get(COOKIE_KEY));
-            }
-            headers.put(COOKIE_KEY, builder.toString());
-        }
-    }
-
-    //Volley request queue
-    public RequestQueue getRequestQueue() {
-        return _requestQueue;
-    }
 }

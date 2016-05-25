@@ -1,11 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
-    android:paddingTop="20dp"
-    android:background="#ffffff"
-    tools:context="com.ashleyjain.messmart.MessList">
+    tools:context="com.ashleyjain.messmart.OrderList">
 
     <ListView
         android:layout_width="match_parent"
@@ -13,4 +10,4 @@
         android:id="@android:id/list">
     </ListView>
 
-</RelativeLayout>
+</FrameLayout>
