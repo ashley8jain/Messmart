@@ -1,10 +1,12 @@
 package com.ashleyjain.messmart;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,9 +15,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MessjoinActivity extends AppCompatActivity {
+public class MessjoinActivity extends android.support.v4.app.Fragment {
     EditText name;
     EditText mobile;
     EditText emailid;
@@ -32,19 +32,22 @@ public class MessjoinActivity extends AppCompatActivity {
     EditText editTextelse;
     Button buttonSubmit;
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_messjoin, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messjoin);
-
-        name = (EditText) findViewById(R.id.EditTextName);
-        mobile = (EditText) findViewById(R.id.EditTextMobile);
-        emailid = (EditText) findViewById(R.id.EditTextEmailid);
-        address = (EditText) findViewById(R.id.EditTextAddress);
-        password = (EditText) findViewById(R.id.EditTextPassword);
-        editTextelse = (EditText) findViewById(R.id.EditTextElse);
-        buttonSubmit = (Button) findViewById(R.id.ButtonSubmit);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        name = (EditText) view.findViewById(R.id.EditTextName);
+        mobile = (EditText) view.findViewById(R.id.EditTextMobile);
+        emailid = (EditText) view.findViewById(R.id.EditTextEmailid);
+        address = (EditText) view.findViewById(R.id.EditTextAddress);
+        password = (EditText) view.findViewById(R.id.EditTextPassword);
+        editTextelse = (EditText) view.findViewById(R.id.EditTextElse);
+        buttonSubmit = (Button) view.findViewById(R.id.ButtonSubmit);
 
 
         name.addTextChangedListener(new TextWatcher() {
@@ -151,8 +154,9 @@ public class MessjoinActivity extends AppCompatActivity {
                         || password.getText().length() == 0
                         || !mobile.getText().toString().matches("\\d{10}")
                         || !emailid.getText().toString().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$"))) {
+
                     final String url = "http://192.168.0.102/mess/index.php/ajaxactions";
-                    StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -174,18 +178,18 @@ public class MessjoinActivity extends AppCompatActivity {
 
                                                     try {
                                                         if(ec_val_str.equals("1")){
-                                                            Toast.makeText(MessjoinActivity.this, "You have successfully registered with us.", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(getActivity(), "You have successfully registered with us.", Toast.LENGTH_LONG).show();
                                                         }
                                                         else{
                                                             JSONObject jsonResponse = new JSONObject(response);
                                                             JSONObject data = jsonResponse.getJSONObject("data");
                                                             JSONObject ec = data.getJSONObject("ec");
                                                             String message = ec.getString(ec_val_str);
-                                                            Toast.makeText(MessjoinActivity.this, message, Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                                                         }
 
                                                     } catch (JSONException e) {
-                                                        Toast.makeText(MessjoinActivity.this,"Error :"+e.getMessage(),Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getActivity(),"Error :"+e.getMessage(),Toast.LENGTH_LONG).show();
 
                                                     }
 
@@ -194,7 +198,7 @@ public class MessjoinActivity extends AppCompatActivity {
                                             }, new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(MessjoinActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                                         }
                                     }) {
                                         @Override
@@ -206,14 +210,15 @@ public class MessjoinActivity extends AppCompatActivity {
                                         }
                                     };
 
-                                    Volley.newRequestQueue(MessjoinActivity.this).add(postRequest);
+                                    // add it to the RequestQueue
+                                    StartActivity.get().getRequestQueue().add(postRequest);
 
 
                                 }
                             }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(MessjoinActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                         }
                     }) {
                         @Override
@@ -232,7 +237,8 @@ public class MessjoinActivity extends AppCompatActivity {
                         }
                     };
 
-                    Volley.newRequestQueue(MessjoinActivity.this).add(postRequest);
+                    // add it to the RequestQueue
+                    StartActivity.get().getRequestQueue().add(postRequest);
 
                 } else {
                     if (name.getText().length() == 0) {
@@ -260,7 +266,6 @@ public class MessjoinActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
+
 }

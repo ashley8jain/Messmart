@@ -1,191 +1,137 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.ashleyjain.messmart.LoginActivity"
+    android:background="#ffffff">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Mess Join Us"
+        android:id="@+id/textView"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_lout_email"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical">
+        android:layout_below="@id/textView"
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        <ImageView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView5"
-            android:background="#80f2f2bf"
-            android:src="@drawable/messmart_logo" />
+            android:hint="Name"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextName"/>
 
-        <ScrollView
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layouemail"
+        android:layout_below="@id/input_lout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextMobile"/>
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/fragment_not">
+    </android.support.design.widget.TextInputLayout>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/how"
-                        >
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/iut_layout_email"
+        android:layout_width="match_parent"
+        android:layout_below="@id/input_layouemail"
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Id"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextEmailid"/>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
+    </android.support.design.widget.TextInputLayout>
 
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#80f2f2bf"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_il"
+        android:layout_width="match_parent"
+        android:layout_below="@id/iut_layout_email"
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextAddress"/>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="Mess Join Us"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:id="@+id/textView"
-                                android:gravity="center_horizontal" />
+    </android.support.design.widget.TextInputLayout>
 
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/input_lout_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inutaout_email"
+        android:layout_width="match_parent"
+        android:layout_below="@id/input_layout_il"
+        android:layout_height="wrap_content">
 
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Name"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextName"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Choose a Password"
+            android:password="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextPassword"/>
 
-                            </android.support.design.widget.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/input_layouemail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email"
+        android:layout_below="@id/inutaout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Mobile Number"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextMobile"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Anything else ?"
+            android:minLines="3"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/EditTextElse"/>
 
-                            </android.support.design.widget.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/iut_layout_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Email Id"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextEmailid"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/input_layout_il"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Address"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextAddress"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/inutaout_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Choose a Password"
-                                    android:password="true"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextPassword"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:id="@+id/input_layout_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Anything else ?"
-                                    android:minLines="3"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:id="@+id/EditTextElse"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <Button
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/ButtonSubmit"
-                                android:text="Submit"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="70dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:background="@drawable/buttonshape"
+        android:layout_below="@id/input_layout_email"
+        android:layout_height="wrap_content"
+        android:id="@+id/ButtonSubmit"
+        android:text="Submit"
+        android:textColor="#ffffff"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="70dp"/>
 
 
+</RelativeLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="90dp"
-                                android:paddingRight="90dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:id="@+id/textView2"/>
-                        </LinearLayout>
 
-                    </LinearLayout>
-
-                </FrameLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>

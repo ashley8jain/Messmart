@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,6 +57,16 @@ public class LoginActivity extends Fragment {
 
         joinus = (TextView) view.findViewById(R.id.joinus);
         joinus.setText(Html.fromHtml("Are you a mess? "+"<font color=#039be5>"+"Join us"+"</font><br><br>"));
+        joinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessjoinActivity messFragment = new MessjoinActivity();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
+                        .addToBackStack(messFragment.toString())
+                        .commit();
+            }
+        });
 
         forgetpass = (TextView) view.findViewById(R.id.forgot);
         forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));
@@ -134,7 +143,7 @@ public class LoginActivity extends Fragment {
                 };
 
                 // add it to the RequestQueue
-                Volley.newRequestQueue(getActivity()).add(postRequest);
+                StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
     }
