@@ -12,19 +12,21 @@ import com.ashleyjain.messmart.Fragment.List.MessList;
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
     int NumOfTabs;
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    String pd;
+    public PagerAdapter(FragmentManager fm, int NumOfTabs,String particularday) {
         super(fm);
         this.NumOfTabs = NumOfTabs;
+        pd = particularday;
     }
 
     @Override
     public Fragment getItem(int position) {
         if(position == 0) {
-            MessList frag = new MessList();
+            MessList frag = new MessList("l",pd);
             return frag;
         }
         if(position == 1){
-            MessList frag1 = new MessList();
+            MessList frag1 = new MessList("d",pd);
             return frag1;
         }
         return null;

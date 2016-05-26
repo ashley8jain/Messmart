@@ -34,6 +34,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,13 +44,14 @@ import java.util.Map;
 public class StartActivity extends AppCompatActivity {
 
     protected Drawer drawer = null;
-    AccountHeader headerResult= null;
-    public static Boolean isLogin=false;
+    AccountHeader headerResult = null;
+    public static Boolean isLogin = false;
     String loginname;
     private Context context;
     String aboutus,contactus;
+    JSONArray days,days2;
 
-    public static String host = "http://www.messmart.com/";
+    public static String host = "http://192.168.0.104/mess/";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -108,6 +110,9 @@ public class StartActivity extends AppCompatActivity {
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             aboutus = dataobject.getString("aboutus_content");
                             contactus = dataobject.getString("contact");
+                            JSONObject days7 = dataobject.getJSONObject("7days");
+                            days = days7.getJSONArray("textl");
+                            days2 = days7.getJSONArray("timel");
                             //System.out.println()
                             if(isLogin){
                                 loginname = dataobject.getJSONObject("drawer").getString("loginname");
@@ -238,6 +243,10 @@ public class StartActivity extends AppCompatActivity {
 
                     case 3:
                         MessListTabLayout fragment = new MessListTabLayout();
+                        Bundle bundle3 = new Bundle();
+                        fragment.setArguments(bundle3);
+                        bundle3.putString("days",days.toString());
+                        bundle3.putString("days2",days2.toString());
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, fragment, fragment.toString())
                                 .addToBackStack(fragment.toString())

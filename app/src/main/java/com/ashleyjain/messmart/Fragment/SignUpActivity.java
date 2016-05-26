@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.function.StringRequestCookies;
@@ -112,7 +111,7 @@ public class SignUpActivity extends Fragment {
                 };
 
                 // add it to the RequestQueue
-                Volley.newRequestQueue(getActivity()).add(postRequest);
+                StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
 
