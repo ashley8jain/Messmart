@@ -27,7 +27,9 @@
             android:layout_centerHorizontal="true"
             android:text="order for may 18"
             android:gravity="center_horizontal" />
-    <LinearLayout
+
+        </LinearLayout>
+        <LinearLayout
         android:orientation="vertical"
         android:layout_below="@id/date"
         android:layout_width="match_parent"

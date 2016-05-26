@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/confirmotp"
             android:inputType="textPassword"
-            android:text="pp"
+            android:text="oo"
             android:ems="10"
             android:hint="OTP or Password"
             android:drawablePadding="10dp"

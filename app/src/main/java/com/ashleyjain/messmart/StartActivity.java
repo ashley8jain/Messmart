@@ -29,10 +29,8 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -163,55 +161,9 @@ public class StartActivity extends AppCompatActivity {
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(isLogin?loginname:"Guest User").withEmail(isLogin?"Logged in":"Not Signed in"),
-                        new ProfileSettingDrawerItem()
-                                .withName(isLogin?"Logout":"Login")
-                                .withIdentifier(1)
+                        new ProfileDrawerItem().withName(isLogin?loginname:"Guest User").withEmail(isLogin?"Logged in":"Not Signed in")
                 )
                 .withHeaderBackground(R.drawable.slider1)
-                .withProfileImagesClickable(true)
-                .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
-
-                    @Override
-                    public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onProfileImageLongClick(View view, IProfile profile, boolean current) {
-                        return false;
-                    }
-                })
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-
-                        if (profile != null && profile instanceof IDrawerItem) {
-                            switch ((int) profile.getIdentifier()) {
-                                case 1:
-                                    if(!isLogin) {
-                                        LoginActivity loginfragment = new LoginActivity();
-                                        getSupportFragmentManager().beginTransaction()
-                                                .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
-                                                .addToBackStack(loginfragment.toString())
-                                                .commit();
-                                    }
-                                    else{
-                                        isLogin = false;
-                                        Intent re = new Intent(StartActivity.this,StartActivity.class);
-                                        startActivity(re);
-                                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                                        finish();
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        return false;
-                    }
-                })
                 .build();
 
         //buttons handling in drawer
@@ -230,9 +182,11 @@ public class StartActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName("About us").withIcon(R.drawable.info),
                         new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.online_support)
                 );
-       // if(isLogin)
+        if(isLogin)
             builder.addDrawerItems(
-              new PrimaryDrawerItem().withName("Orders")
+              new PrimaryDrawerItem().withName("Orders"),
+                    new PrimaryDrawerItem().withName("Profile"),
+                    new PrimaryDrawerItem().withName("Setting")
             );
 
         builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -295,6 +249,13 @@ public class StartActivity extends AppCompatActivity {
                                 .commit();
                         getSupportActionBar().setTitle("Orders");
                         break;
+                    case 9:
+                        //
+                        break;
+                    case 10:
+                        //
+                        break;
+
                 }
                 return false;
             }

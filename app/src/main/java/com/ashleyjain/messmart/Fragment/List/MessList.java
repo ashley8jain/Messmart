@@ -140,11 +140,7 @@ public class MessList extends ListFragment {
         StartActivity.get().getRequestQueue().add(postRequest);
 
 //        messId = new int[2];
-//        messTitle = new String[2];
-//        messDescription = new String[2];
-//        messPic = new String[2];
-//        messPrice = new int[2];
-//        messIsVeg = new boolean[2];
+
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mess_list, container, false);
