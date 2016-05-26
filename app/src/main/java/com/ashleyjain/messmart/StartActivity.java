@@ -48,6 +48,7 @@ public class StartActivity extends AppCompatActivity {
     private Context context;
     String aboutus,contactus;
     JSONArray days,days2;
+    public static String loginid;
 
     public static String host = "http://192.168.0.104/mess/";
 
@@ -114,6 +115,7 @@ public class StartActivity extends AppCompatActivity {
                             //System.out.println()
                             if(isLogin){
                                 loginname = dataobject.getJSONObject("drawer").getString("loginname");
+                                loginid = dataobject.getJSONObject("drawer").getString("loginid");
                                 System.out.println("loginname: "+loginname);
                             }
                             System.out.println("Message: " + message);

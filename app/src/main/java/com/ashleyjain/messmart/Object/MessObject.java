@@ -4,15 +4,72 @@ package com.ashleyjain.messmart.Object;
  * Created by ashleyjain on 19/05/16.
  */
 public class MessObject {
-    private int id;
-    private String title;
+    private int dishId,id;
+
+    public String getLord() {
+        return lord;
+    }
+
+    public void setLord(String lord) {
+        this.lord = lord;
+    }
+
+    public int getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(int dishId) {
+        this.dishId = dishId;
+    }
+
+    private String lord,title;
     private String description;
     private int price;
     private boolean isVeg;
     private String pic;
     private String name;
 
-    public MessObject(int id, String title, String description, int price, boolean isVeg, String pic,String name) {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTiming() {
+        return timing;
+    }
+
+    public void setTiming(String timing) {
+        this.timing = timing;
+    }
+
+    private String address;
+    private String timing;
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public int getBook() {
+        return book;
+    }
+
+    public void setBook(int book) {
+        this.book = book;
+    }
+
+    private String datetime;
+    private int book;
+
+    public MessObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book) {
+        this.dishId = dishId;
+        this.lord = lord;
         this.id = id;
         this.title = title;
         this.description = description;
@@ -20,6 +77,10 @@ public class MessObject {
         this.isVeg = isVeg;
         this.pic = pic;
         this.name = name;
+        this.address = address;
+        this.timing = timing;
+        this.datetime = datetime;
+        this.book = book;
     }
 
 

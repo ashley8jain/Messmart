@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,22 +31,15 @@ import java.util.Map;
 public class MessList extends ListFragment {
 
     String lord,pd;
+    TextView emp;
 
-//    private int[] messId = {12,43,32,12,32,123,432};
-//    private String[] messTitle = {"Puri with gobhi ki Sabji","cow-dunk with chana masala","rajma chawal","chole bhuri","dal roti","chicken egg","icecream scoop"};
-//    private String[] messDescription = {"We also make puri sabji with alu ke pranthe.","Puri Sabji. It is very sweet. We also make puri sabji with alu ke prant","defcesrcfresf","fercfercfedcf","frefcerwcfesfced","frecfserfecds","fcewcesd"};
-//    private int[] messPrice = {321,987,321,432,543,234,543};
-//    private boolean[] messIsVeg = {true,false,true,true,true,false,true};
-//    private String[] messPic = {"photo/food1.jpg","photo/food2.jpg","photo/food3.jpg","photo/food4.jpg","photo/food5.jpg","photo/food6.jpg","photo/food7.jpg"};
-//    private String[] messName = {"vinay","akash","rohit","vaibhav","deepika","ads","fewfs"};
-
-    private int[] messId;
-    private String[] messTitle;
+    private int[] messDishId,messId;
+    private String[] messTitle,messLord;
     private String[] messDescription;
-    private int[] messPrice;
+    private int[] messPrice,messBook;
     private boolean[] messIsVeg;
     private String[] messPic;
-    private String[] messName;
+    private String[] messName,messAddress,messTime,messDatetime;
 
     private List<MessObject> messObjectList;
     messObjectAdapter adapter;
@@ -55,9 +49,11 @@ public class MessList extends ListFragment {
         this.pd = pd;
     }
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        emp = (TextView) view.findViewById(android.R.id.empty);
     }
 
     @Override
@@ -76,9 +72,12 @@ public class MessList extends ListFragment {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
+                            emp.setText(dataobject.getString("isbookingclosed"));
                             JSONArray foodarray = dataobject.getJSONArray("foodlist");
                             System.out.println(foodarray);
                             Integer len = foodarray.length();
+                            messDishId=new int[len];
+                            messLord=new String[len];
                             messId = new int[len];
                             messTitle = new String[len];
                             messDescription = new String[len];
@@ -86,15 +85,25 @@ public class MessList extends ListFragment {
                             messIsVeg = new boolean[len];
                             messPic = new String[len];
                             messName = new String[len];
+                            messAddress = new String[len];
+                            messTime = new String[len];
+                            messDatetime = new String[len];
+                            messBook = new int[len];
                             for(int i=0;i<len;i++){
                                 JSONObject fooditem = foodarray.getJSONObject(i);
-                                messId[i] = fooditem.getInt("id");
+                                messDishId[i]=fooditem.getInt("dishid");
+                                messLord[i]=fooditem.getString("lord");
+                                messId[i] = fooditem.getInt("mid");
                                 messTitle[i] = fooditem.getString("title");
                                 messDescription[i] = fooditem.getString("descp");
                                 messPrice[i] = fooditem.getInt("price");
                                 messIsVeg[i] = fooditem.getString("isveg")=="n"?false:true;
                                 messPic[i] = fooditem.getString("pic");
                                 messName[i] = fooditem.getString("name");
+                                messAddress[i] = fooditem.getString("address");
+                                messTime[i] = fooditem.getString("timing");
+                                messDatetime[i]=fooditem.getString("datetime");
+                                messBook[i]=fooditem.getInt("isbooked");
                             }
 
                             dialog.dismiss();
@@ -104,7 +113,7 @@ public class MessList extends ListFragment {
                         }
                         messObjectList = new ArrayList<MessObject>();
                         for(int i = 0;i<messId.length;i++){
-                            MessObject items = new MessObject(messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i]);
+                            MessObject items = new MessObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i]);
                             messObjectList.add(items);
                         }
                         System.out.println(messObjectList.size());

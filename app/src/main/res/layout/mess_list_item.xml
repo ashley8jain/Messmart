@@ -92,7 +92,7 @@
                 android:textColor="#ffffff"
                 android:padding="5dp"
                 android:text="BOOK"
-                android:id="@+id/button" />
+                android:id="@+id/bookbutton" />
 
         </LinearLayout>
 
