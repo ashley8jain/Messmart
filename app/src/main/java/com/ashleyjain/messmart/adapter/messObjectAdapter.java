@@ -74,7 +74,7 @@ public class messObjectAdapter extends BaseAdapter {
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
-        Button book = (Button) convertView.findViewById(R.id.bookbutton);
+        final Button book = (Button) convertView.findViewById(R.id.bookbutton);
 
         final MessObject row = messList.get(position);
 
@@ -106,11 +106,11 @@ public class messObjectAdapter extends BaseAdapter {
                                                     jsonResponse = new JSONObject(response);
                                                     Integer ec = jsonResponse.getInt("ec");
                                                     dialog2.dismiss();
-                                                    if(ec==-5){
-                                                        Toast.makeText(context, "Insufficient arguments", Toast.LENGTH_LONG).show();
-                                                    }
-                                                    else if(ec==1){
+                                                    if(ec==1){
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    }
+                                                    else{
+                                                        Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
                                                     }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -164,11 +164,12 @@ public class messObjectAdapter extends BaseAdapter {
                                                     jsonResponse = new JSONObject(response);
                                                     Integer ec = jsonResponse.getInt("ec");
                                                     dialog2.dismiss();
-                                                    if(ec==-5){
-                                                        Toast.makeText(context, "Insufficient arguments", Toast.LENGTH_LONG).show();
-                                                    }
-                                                    else if(ec==1){
+                                                    if(ec==1){
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                        book.setText("booked");
+                                                    }
+                                                    else{
+                                                        Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
                                                     }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -234,11 +235,12 @@ public class messObjectAdapter extends BaseAdapter {
                                                 jsonResponse = new JSONObject(response);
                                                 Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
-                                                if(ec==-5){
-                                                    Toast.makeText(context, "Insufficient arguments", Toast.LENGTH_LONG).show();
-                                                }
-                                                else if(ec==1){
+                                                if(ec==1){
                                                     Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
+                                                    book.setText("Cancelled");
+                                                }
+                                                else{
+                                                    Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();

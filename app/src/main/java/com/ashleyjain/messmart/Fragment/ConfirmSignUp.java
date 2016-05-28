@@ -71,6 +71,9 @@ public class ConfirmSignUp extends Fragment {
                                     if(ec == 1){
                                         Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
                                     }
+                                    else{
+                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                    }
                                     System.out.println("Message: " + ec);
                                     dialog.dismiss();
                                 } catch (JSONException e) {

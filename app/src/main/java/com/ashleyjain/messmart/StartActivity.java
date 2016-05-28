@@ -1,11 +1,16 @@
 package com.ashleyjain.messmart;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -48,9 +53,10 @@ public class StartActivity extends AppCompatActivity {
     private Context context;
     String aboutus,contactus;
     JSONArray days,days2;
+    public static JSONObject errorcode;
     public static String loginid;
 
-    public static String host = "http://192.168.0.104/mess/";
+    public static String host = "http://www.messmart.com/";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -66,11 +72,9 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if(isLogin){
             Intent re = new Intent(StartActivity.this,StartActivity.class);
             startActivity(re);
             finish();
-        }
     }
 
     @Override
@@ -94,178 +98,208 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
-        String url = host+"index.php/ajaxactions";
+        if (!isNetworkConnected(context)) {
+            //when wifi is not connected
+            AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
+            alertbuilder.setTitle("No Network Connection");
+            alertbuilder.setCancelable(true);
+            alertbuilder.setPositiveButton("Go to wifi settings", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+            AlertDialog alertDialog = alertbuilder.create();
+            alertDialog.show();
+        } else {
+            final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
+            String url = host+"index.php/ajaxactions";
 
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Response", response);
-                        //response JSON from url
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            String message = jsonResponse.getString("data");
-                            JSONObject dataobject = jsonResponse.getJSONObject("data");
-                            aboutus = dataobject.getString("aboutus_content");
-                            contactus = dataobject.getString("contact");
-                            JSONObject days7 = dataobject.getJSONObject("7days");
-                            days = days7.getJSONArray("textl");
-                            days2 = days7.getJSONArray("timel");
-                            //System.out.println()
-                            if(isLogin){
-                                loginname = dataobject.getJSONObject("drawer").getString("loginname");
-                                loginid = dataobject.getJSONObject("drawer").getString("loginid");
-                                System.out.println("loginname: "+loginname);
+            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("Response", response);
+                            //response JSON from url
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                String message = jsonResponse.getString("data");
+                                JSONObject dataobject = jsonResponse.getJSONObject("data");
+                                errorcode= dataobject.getJSONObject("ec");
+                                aboutus = dataobject.getString("aboutus_content");
+                                contactus = dataobject.getString("contact");
+                                JSONObject days7 = dataobject.getJSONObject("7days");
+                                days = days7.getJSONArray("textl");
+                                days2 = days7.getJSONArray("timel");
+                                //System.out.println()
+                                if(isLogin){
+                                    loginname = dataobject.getJSONObject("drawer").getString("loginname");
+                                    loginid = dataobject.getJSONObject("drawer").getString("loginid");
+                                    System.out.println("loginname: "+loginname);
+                                }
+                                System.out.println("Message: " + message);
+                                dialog.dismiss();
+                            } catch (JSONException e) {
+                                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
                             }
-                            System.out.println("Message: " + message);
-                            dialog.dismiss();
-                        } catch (JSONException e) {
-                            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }
-
                     }
-                },
-                new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
-                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Log.d("debug", "posting param");
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    // the POST parameters:
+                    params.put("action", "getinit");
+                    System.out.println(params);
+                    return params;
                 }
+            };
 
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Log.d("debug", "posting param");
-                Map<String, String> params = new HashMap<String, String>();
+            // add it to the RequestQueue
+            getRequestQueue().add(postRequest);
 
-                // the POST parameters:
-                params.put("action", "getinit");
-                System.out.println(params);
-                return params;
-            }
-        };
+            ViewpagerFragment fragment = new ViewpagerFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_not,fragment,fragment.toString())
+                    .commit();
+            System.out.println("loginname2: "+loginname);
 
-        // add it to the RequestQueue
-        getRequestQueue().add(postRequest);
+            //profile section in drawer layout
+            headerResult = new AccountHeaderBuilder()
+                    .withActivity(this)
+                    .addProfiles(
+                            new ProfileDrawerItem().withName(isLogin?loginname:"Guest User").withEmail(isLogin?"Logged in":"Not Signed in")
+                    )
+                    .withHeaderBackground(R.drawable.slider1)
+                    .build();
 
-        ViewpagerFragment fragment = new ViewpagerFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_not,fragment,fragment.toString())
-                .addToBackStack(fragment.toString())
-                .commit();
-        System.out.println("loginname2: "+loginname);
-
-        //profile section in drawer layout
-        headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .addProfiles(
-                        new ProfileDrawerItem().withName(isLogin?loginname:"Guest User").withEmail(isLogin?"Logged in":"Not Signed in")
-                )
-                .withHeaderBackground(R.drawable.slider1)
-                .build();
-
-        //buttons handling in drawer
-        final DrawerBuilder builder = new DrawerBuilder()
-                .withActivity(this)
-                .withDisplayBelowStatusBar(true)
-                .withActionBarDrawerToggle(true)
-                .withAccountHeader(headerResult)
-                .withHasStableIds(true)
-                .addDrawerItems(
-                        new SectionDrawerItem().withName("Menu"),
-                        new PrimaryDrawerItem().withName("Cart").withIdentifier(4).withIcon(R.drawable.shopping_cart),
-                        new PrimaryDrawerItem().withName("Mess").withIdentifier(4).withIcon(R.drawable.bell_service),
-                        new PrimaryDrawerItem().withName("Pricing").withIdentifier(4).withIcon(R.drawable.coins),
-                        new PrimaryDrawerItem().withName(isLogin ? "Logout" : "Login").withIdentifier(4).withIcon(isLogin ? R.drawable.logout : R.drawable.login),
-                        new PrimaryDrawerItem().withName("About us").withIcon(R.drawable.info),
-                        new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.online_support)
+            //buttons handling in drawer
+            final DrawerBuilder builder = new DrawerBuilder()
+                    .withActivity(this)
+                    .withDisplayBelowStatusBar(true)
+                    .withActionBarDrawerToggle(true)
+                    .withAccountHeader(headerResult)
+                    .withHasStableIds(true)
+                    .addDrawerItems(
+                            new SectionDrawerItem().withName("Menu"),
+                            new PrimaryDrawerItem().withName("Cart").withIdentifier(4).withIcon(R.drawable.shopping_cart),
+                            new PrimaryDrawerItem().withName("Mess").withIdentifier(4).withIcon(R.drawable.bell_service),
+                            new PrimaryDrawerItem().withName("Pricing").withIdentifier(4).withIcon(R.drawable.coins),
+                            new PrimaryDrawerItem().withName(isLogin ? "Logout" : "Login").withIdentifier(4).withIcon(isLogin ? R.drawable.logout : R.drawable.login),
+                            new PrimaryDrawerItem().withName("About us").withIcon(R.drawable.info),
+                            new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.online_support)
+                    );
+            if(isLogin)
+                builder.addDrawerItems(
+                        new PrimaryDrawerItem().withName("Orders"),
+                        new PrimaryDrawerItem().withName("Profile"),
+                        new PrimaryDrawerItem().withName("Setting")
                 );
-        if(isLogin)
-            builder.addDrawerItems(
-              new PrimaryDrawerItem().withName("Orders"),
-                    new PrimaryDrawerItem().withName("Profile"),
-                    new PrimaryDrawerItem().withName("Setting")
-            );
 
-        builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-            @Override
-            public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
-                Intent login;
-                switch (position) {
+            builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
+                    Intent login;
+                    switch (position) {
 
-                    case 3:
-                        MessListTabLayout fragment = new MessListTabLayout();
-                        Bundle bundle3 = new Bundle();
-                        fragment.setArguments(bundle3);
-                        bundle3.putString("days",days.toString());
-                        bundle3.putString("days2",days2.toString());
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, fragment, fragment.toString())
-                                .addToBackStack(fragment.toString())
-                                .commit();
-                        break;
-                    case 5:
-                        if (!isLogin) {
-                            LoginActivity loginfragment = new LoginActivity();
+                        case 3:
+                            MessListTabLayout fragment = new MessListTabLayout();
+                            Bundle bundle3 = new Bundle();
+                            fragment.setArguments(bundle3);
+                            bundle3.putString("days",days.toString());
+                            bundle3.putString("days2",days2.toString());
                             getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
-                                    .addToBackStack(loginfragment.toString())
+                                    .replace(R.id.fragment_not, fragment, fragment.toString())
+                                    .addToBackStack(fragment.toString())
                                     .commit();
                             break;
-                        } else {
-                            isLogin = false;
-                            Intent re = new Intent(StartActivity.this, StartActivity.class);
-                            startActivity(re);
-                            Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    case 6:
-                        AboutusActivity aboutfragment = new AboutusActivity();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("aboutus", aboutus);
-                        aboutfragment.setArguments(bundle);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, aboutfragment, aboutfragment.toString())
-                                .addToBackStack(aboutfragment.toString())
-                                .commit();
-                        break;
-                    case 7:
-                        ContactusActivity contactfragment = new ContactusActivity();
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putString("contactus", contactus);
-                        contactfragment.setArguments(bundle2);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
-                                .addToBackStack(contactfragment.toString())
-                                .commit();
-                        break;
-                    case 8:
-                        OrderFragment ofragment = new OrderFragment();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, ofragment, ofragment.toString())
-                                .addToBackStack(ofragment.toString())
-                                .commit();
-                        getSupportActionBar().setTitle("Orders");
-                        break;
-                    case 9:
-                        //
-                        break;
-                    case 10:
-                        //
-                        break;
+                        case 5:
+                            if (!isLogin) {
+                                LoginActivity loginfragment = new LoginActivity();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
+                                        .addToBackStack(loginfragment.toString())
+                                        .commit();
+                                break;
+                            } else {
+                                isLogin = false;
+                                Intent re = new Intent(StartActivity.this, StartActivity.class);
+                                startActivity(re);
+                                Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                        case 6:
+                            AboutusActivity aboutfragment = new AboutusActivity();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("aboutus", aboutus);
+                            aboutfragment.setArguments(bundle);
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_not, aboutfragment, aboutfragment.toString())
+                                    .addToBackStack(aboutfragment.toString())
+                                    .commit();
+                            break;
+                        case 7:
+                            ContactusActivity contactfragment = new ContactusActivity();
+                            Bundle bundle2 = new Bundle();
+                            bundle2.putString("contactus", contactus);
+                            contactfragment.setArguments(bundle2);
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
+                                    .addToBackStack(contactfragment.toString())
+                                    .commit();
+                            break;
+                        case 8:
+                            OrderFragment ofragment = new OrderFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_not, ofragment, ofragment.toString())
+                                    .addToBackStack(ofragment.toString())
+                                    .commit();
+                            getSupportActionBar().setTitle("Orders");
+                            break;
+                        case 9:
+                            //
+                            break;
+                        case 10:
+                            //
+                            break;
 
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
 
-        drawer = builder.build();
+            drawer = builder.build();
+        }
+
+
+
 
     }
+
+    //Check if there is network connection or not
+    public static boolean isNetworkConnected(Context con) {
+        ConnectivityManager connMgr = (ConnectivityManager) con.getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected())
+            return true;
+        else
+            return false;
+    }
+
     //checking session cookie
     public final void checkSessionCookie(Map<String, String> headers) {
         if (headers.containsKey(SET_COOKIE_KEY)
@@ -300,7 +334,6 @@ public class StartActivity extends AppCompatActivity {
             headers.put(COOKIE_KEY, builder.toString());
         }
     }
-
 
     //Volley request queue
     public RequestQueue getRequestQueue() {

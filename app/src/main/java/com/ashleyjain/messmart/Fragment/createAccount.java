@@ -81,7 +81,9 @@ public class createAccount extends Fragment {
                                         StartActivity.isLogin = true;
                                         getActivity().finish();
                                     }
-                                    System.out.println("Message: " + ec);
+                                    else{
+                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                    }
                                     dialog.dismiss();
                                 } catch (JSONException e) {
                                     Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();

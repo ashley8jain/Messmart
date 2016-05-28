@@ -111,11 +111,8 @@ public class LoginActivity extends Fragment {
                                         StartActivity.isLogin = true;
                                         getActivity().finish();
                                     }
-                                    else if(ec == -1){
-                                        Toast.makeText(getActivity(),"Incorrect password", Toast.LENGTH_LONG).show();
-                                    }
-                                    else if(ec == -3){
-                                        Toast.makeText(getActivity(),"OTP is incorrect", Toast.LENGTH_LONG).show();
+                                    else{
+                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
                                     }
                                     System.out.println("Message: " + ec);
                                 dialog.dismiss();

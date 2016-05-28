@@ -1,5 +1,6 @@
 package com.ashleyjain.messmart.Fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -21,7 +22,6 @@ import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -181,14 +181,16 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
 
                                                     try {
                                                         if(ec_val_str.equals("1")){
-                                                            Toast.makeText(getActivity(), "You have successfully registered with us.", Toast.LENGTH_LONG).show();
+                                                            AlertDialog.Builder alertbuilder = new AlertDialog.Builder(getActivity());
+                                                            alertbuilder.setTitle("Submitted Succesfully");
+                                                            alertbuilder.setMessage("Thanks for submitting forms,we will get back to you within one business day!");
+                                                            alertbuilder.setCancelable(true);
+                                                            alertbuilder.setPositiveButton("OK", null);
+                                                            AlertDialog alertDialog = alertbuilder.create();
+                                                            alertDialog.show();
                                                         }
                                                         else{
-                                                            JSONObject jsonResponse = new JSONObject(response);
-                                                            JSONObject data = jsonResponse.getJSONObject("data");
-                                                            JSONObject ec = data.getJSONObject("ec");
-                                                            String message = ec.getString(ec_val_str);
-                                                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(getActivity(),StartActivity.errorcode.getString(ec_val_str), Toast.LENGTH_LONG).show();
                                                         }
 
                                                     } catch (JSONException e) {

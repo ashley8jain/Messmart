@@ -2,16 +2,20 @@ package com.ashleyjain.messmart.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ashleyjain.messmart.Object.OrderObject;
 import com.ashleyjain.messmart.R;
 
 import java.util.List;
+
+import static com.ashleyjain.messmart.R.id.dinnerlinear;
 
 /**
  * Created by ashleyjain on 24/05/16.
@@ -50,6 +54,8 @@ public class orderObjectAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.order_list_item, null);
         }
 
+        LinearLayout lunchempty = (LinearLayout) convertView.findViewById(R.id.lunchlinear);
+        LinearLayout dinnerempty = (LinearLayout) convertView.findViewById(dinnerlinear);
         TextView dateTitle = (TextView) convertView.findViewById(R.id.date);
         TextView loid = (TextView) convertView.findViewById(R.id.oid);
         TextView doid = (TextView) convertView.findViewById(R.id.oid2);
@@ -65,6 +71,7 @@ public class orderObjectAdapter extends BaseAdapter {
 
         OrderObject row = orderList.get(position);
 
+        lunchempty.setBackgroundColor(Color.parseColor("#ffffff"));
         dateTitle.setText(row.getDate());
         loid.setText(""+row.getlOIDid());
         doid.setText(""+row.getdOIDid());
