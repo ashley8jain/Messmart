@@ -39,6 +39,7 @@ public class messObjectAdapter extends BaseAdapter {
 
     Context context;
     List<MessObject> messList;
+    public static int uid;
 
     public messObjectAdapter(Context context, List<MessObject> messList) {
         this.context = context;
@@ -80,22 +81,22 @@ public class messObjectAdapter extends BaseAdapter {
         final MessObject row = messList.get(position);
 
 
-        book.setText(row.getBook()==1?"cancel":"book");
+        book.setText(row.getBook() == 1 ? "cancel" : "book");
         final AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(row.getBook()==0){
-                    if(StartActivity.isLogin){
+                if (row.getBook() == 0) {
+                    if (StartActivity.isLogin) {
 
                         alertbuilder.setTitle("Booking");
-                        alertbuilder.setMessage("Mess:"+row.getName()+"\n Address:"+row.getAddress()+"\n Timing:"+row.getTiming());
+                        alertbuilder.setMessage("Mess:" + row.getName() + "\n Address:" + row.getAddress() + "\n Timing:" + row.getTiming());
                         alertbuilder.setCancelable(true);
-                        alertbuilder.setNegativeButton("Arrive on mess",new DialogInterface.OnClickListener(){
+                        alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                                String url = StartActivity.host+"index.php/ajaxactions";
+                                String url = StartActivity.host + "index.php/ajaxactions";
 
                                 StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                                         new Response.Listener<String>() {
@@ -107,11 +108,10 @@ public class messObjectAdapter extends BaseAdapter {
                                                     jsonResponse = new JSONObject(response);
                                                     Integer ec = jsonResponse.getInt("ec");
                                                     dialog2.dismiss();
-                                                    if(ec==1){
+                                                    if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
-                                                    }
-                                                    else{
-                                                        Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -134,13 +134,13 @@ public class messObjectAdapter extends BaseAdapter {
                                         Map<String, String> params = new HashMap<String, String>();
 
                                         // the POST parameters:
-                                        params.put("lord",row.getLord());
-                                        params.put("dishid",""+row.getDishId());
-                                        params.put("mid", row.getId()+"");
-                                        params.put("dishid",row.getDishId()+"");
-                                        params.put("booktype","m");
+                                        params.put("lord", row.getLord());
+                                        params.put("dishid", "" + row.getDishId());
+                                        params.put("mid", row.getId() + "");
+                                        params.put("dishid", row.getDishId() + "");
+                                        params.put("booktype", "m");
                                         params.put("action", "bookmeal");
-                                        params.put("datetime",row.getDatetime());
+                                        params.put("datetime", row.getDatetime());
                                         System.out.println(params);
                                         return params;
                                     }
@@ -153,7 +153,7 @@ public class messObjectAdapter extends BaseAdapter {
                         alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                                String url = StartActivity.host+"index.php/ajaxactions";
+                                String url = StartActivity.host + "index.php/ajaxactions";
 
                                 StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                                         new Response.Listener<String>() {
@@ -165,12 +165,11 @@ public class messObjectAdapter extends BaseAdapter {
                                                     jsonResponse = new JSONObject(response);
                                                     Integer ec = jsonResponse.getInt("ec");
                                                     dialog2.dismiss();
-                                                    if(ec==1){
+                                                    if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
                                                         book.setText("booked");
-                                                    }
-                                                    else{
-                                                        Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -194,13 +193,13 @@ public class messObjectAdapter extends BaseAdapter {
                                         Map<String, String> params = new HashMap<String, String>();
 
                                         // the POST parameters:
-                                        params.put("lord",row.getLord());
-                                        params.put("dishid",""+row.getDishId());
-                                        params.put("mid", row.getId()+"");
-                                        params.put("dishid",row.getDishId()+"");
-                                        params.put("booktype","t");
+                                        params.put("lord", row.getLord());
+                                        params.put("dishid", "" + row.getDishId());
+                                        params.put("mid", row.getId() + "");
+                                        params.put("dishid", row.getDishId() + "");
+                                        params.put("booktype", "t");
                                         params.put("action", "bookmeal");
-                                        params.put("datetime",row.getDatetime());
+                                        params.put("datetime", row.getDatetime());
                                         System.out.println(params);
                                         return params;
                                     }
@@ -212,19 +211,17 @@ public class messObjectAdapter extends BaseAdapter {
                         });
                         AlertDialog alertDialog = alertbuilder.create();
                         alertDialog.show();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(context, "Sorry!! You need to login first", Toast.LENGTH_LONG).show();
                     }
-                }
-                else if(row.getBook()==1){
+                } else if (row.getBook() == 1) {
                     alertbuilder.setTitle("Confirmation");
                     alertbuilder.setMessage("Are you sure?");
                     alertbuilder.setCancelable(true);
                     alertbuilder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Cancelling.....", true);
-                            String url = StartActivity.host+"index.php/ajaxactions";
+                            String url = StartActivity.host + "index.php/ajaxactions";
 
                             StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                                     new Response.Listener<String>() {
@@ -236,12 +233,11 @@ public class messObjectAdapter extends BaseAdapter {
                                                 jsonResponse = new JSONObject(response);
                                                 Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
-                                                if(ec==1){
+                                                if (ec == 1) {
                                                     Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
                                                     book.setText("Cancelled");
-                                                }
-                                                else{
-                                                    Toast.makeText(context,StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -264,12 +260,12 @@ public class messObjectAdapter extends BaseAdapter {
                                     Map<String, String> params = new HashMap<String, String>();
 
                                     // the POST parameters:
-                                    params.put("lord",row.getLord());
-                                    params.put("dishid",""+row.getDishId());
-                                    params.put("datetime",row.getDatetime());
+                                    params.put("lord", row.getLord());
+                                    params.put("dishid", "" + row.getDishId());
+                                    params.put("datetime", row.getDatetime());
                                     params.put("action", "cancelmeal");
-                                    params.put("status","-1");
-                                    params.put("uid",StartActivity.loginid);
+                                    params.put("status", "-1");
+                                    params.put("uid", StartActivity.loginid);
                                     System.out.println(params);
                                     return params;
                                 }
@@ -292,6 +288,17 @@ public class messObjectAdapter extends BaseAdapter {
         messTitle.setText(row.getTitle());
         messDescription.setText(row.getDescription());
         name.setText(row.getName());
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                messObjectAdapter.uid = row.getId();
+                com.ashleyjain.messmart.MessprofileActivity messprofileActivity = new com.ashleyjain.messmart.MessprofileActivity();
+                StartActivity.get().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
+                        .addToBackStack(messprofileActivity.toString())
+                        .commit();
+            }
+        });
         Prices.setText("" + row.getPrice() + "/-");
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);

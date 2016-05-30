@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,6 +38,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +58,8 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray days,days2;
     public static JSONObject errorcode;
     public static String loginid;
+    TextView Name;
+    ImageView im;
 
     public static String host = "http://192.168.0.106/mess/";
 
@@ -136,7 +141,8 @@ public class StartActivity extends AppCompatActivity {
                                 if(isLogin){
                                     loginname = dataobject.getJSONObject("drawer").getString("loginname");
                                     loginid = dataobject.getJSONObject("drawer").getString("loginid");
-                                    System.out.println("loginname: "+loginname);
+                                    Name.setText(loginname);
+                                    System.out.println("loginname: " + loginname);
                                 }
                                 dialog.dismiss();
                             } catch (JSONException e) {
@@ -175,6 +181,7 @@ public class StartActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_not,fragment,fragment.toString())
                     .commit();
+
             System.out.println("loginname2: "+loginname);
 
             //profile section in drawer layout
@@ -213,24 +220,23 @@ public class StartActivity extends AppCompatActivity {
                     Intent login;
                     switch (position) {
                         default:
-                            if(position==2){
-                                MessListTabLayout fragment = new MessListTabLayout("","",false);
+                            if (position == 2) {
+                                MessListTabLayout fragment = new MessListTabLayout("", "", false);
                                 Bundle bundle3 = new Bundle();
-                                bundle3.putString("days",days.toString());
-                                bundle3.putString("days2",days2.toString());
+                                bundle3.putString("days", days.toString());
+                                bundle3.putString("days2", days2.toString());
                                 fragment.setArguments(bundle3);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_not, fragment, fragment.toString())
                                         .addToBackStack(fragment.toString())
                                         .commit();
-                            }
-                            else if(position==3){
+                            } else if (position == 3) {
                                 if (!isLogin) {
                                     LoginActivity loginfragment = new LoginActivity();
                                     getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
-                                        .addToBackStack(loginfragment.toString())
-                                        .commit();
+                                            .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
+                                            .addToBackStack(loginfragment.toString())
+                                            .commit();
 
                                 } else {
                                     isLogin = false;
@@ -239,8 +245,7 @@ public class StartActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
                                     finish();
                                 }
-                            }
-                            else if(position==4){
+                            } else if (position == 4) {
                                 AboutusActivity aboutfragment = new AboutusActivity();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("aboutus", aboutus);
@@ -250,8 +255,7 @@ public class StartActivity extends AppCompatActivity {
                                         .addToBackStack(aboutfragment.toString())
                                         .commit();
 
-                            }
-                            else if(position==5){
+                            } else if (position == 5) {
                                 ContactusActivity contactfragment = new ContactusActivity();
                                 Bundle bundle2 = new Bundle();
                                 bundle2.putString("contactus", contactus);
@@ -260,14 +264,21 @@ public class StartActivity extends AppCompatActivity {
                                         .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
                                         .addToBackStack(contactfragment.toString())
                                         .commit();
-                            }
-                            else if(position==6){
+                            } else if (position == 6) {
                                 OrderFragment ofragment = new OrderFragment();
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_not, ofragment, ofragment.toString())
                                         .addToBackStack(ofragment.toString())
                                         .commit();
                                 getSupportActionBar().setTitle("Orders");
+                            }
+                            else if(position==7){
+                                UserprofileActivity userprofileActivity = new UserprofileActivity();
+                                                            getSupportFragmentManager().beginTransaction()
+                                                                          .replace(R.id.fragment_not,userprofileActivity,userprofileActivity.toString())
+                                                                           .addToBackStack(userprofileActivity.toString())
+                                                                           .commit();
+
                             }
                             break;
 
@@ -277,6 +288,56 @@ public class StartActivity extends AppCompatActivity {
             });
 
             drawer = builder.build();
+            Name = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_name);
+            im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
+
+            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Loading...", true);
+
+            StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("Response", response);
+                            //response JSON from url
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                JSONObject uinfo = jsonResponse.getJSONObject("data").getJSONObject("uinfo");
+                                String imageurl = uinfo.getString("profilepic");
+                                System.out.println("profileurl: " + imageurl);
+                                if(imageurl!=null)
+                                    Picasso.with(context).load(StartActivity.host+imageurl).into(im);
+                                dialog2.dismiss();
+                            } catch (JSONException e) {
+                                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                                dialog2.dismiss();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
+                    }
+
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Log.d("debug", "posting param");
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    // the POST parameters:
+                    params.put("action", "profile");
+                    System.out.println(params);
+                    return params;
+                }
+            };
+
+            // add it to the RequestQueue
+            getRequestQueue().add(postRequest2);
         }
 
 

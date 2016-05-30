@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class MessListTabLayout extends Fragment {
 
-    String days,days2;
+    String days,days2,datetime;
     String lord;
     JSONArray day,day2;
     String particularday;
@@ -51,7 +51,7 @@ public class MessListTabLayout extends Fragment {
         this.load = load;
         if(load){
             System.out.println("particularday: "+datetime);
-            particularday = datetime;
+            this.datetime = datetime;
             this.lord = lord;
         }
     }
@@ -151,7 +151,9 @@ public class MessListTabLayout extends Fragment {
                                 particularday = dataobject.getString("datetime");
                                 lord = dataobject.getString("lord");
                             }
-
+                            else{
+                                particularday=datetime;
+                            }
                             //adapter= new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),"1464393600");
                             //viewPager.setAdapter(adapter);
                             viewPager.postDelayed(new Runnable() {
@@ -161,7 +163,6 @@ public class MessListTabLayout extends Fragment {
                                     viewPager.setCurrentItem(lord.equals("l") ? 0 : 1);
                                 }
                             }, 100);
-                            int pos=0;
                             for(int i=0;i<day2.length();i++){
                                 System.out.println("found at "+i+" "+day2.getString(i));
                                 if(day2.getString(i).equals(particularday)){
