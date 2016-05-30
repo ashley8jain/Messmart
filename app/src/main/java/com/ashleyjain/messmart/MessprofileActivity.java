@@ -1,33 +1,28 @@
 package com.ashleyjain.messmart;
 
-        import android.content.Context;
-        import android.support.v4.app.Fragment;
-        import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.android.volley.Request;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.StringRequest;
-        import com.android.volley.toolbox.Volley;
-        import com.ashleyjain.messmart.R;
-        import com.ashleyjain.messmart.StartActivity;
-        import com.ashleyjain.messmart.adapter.messObjectAdapter;
-        import com.squareup.picasso.Picasso;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.util.HashMap;
-        import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MessprofileActivity extends Fragment {
     ImageView messlogo;
@@ -36,6 +31,11 @@ public class MessprofileActivity extends Fragment {
     TextView mess_aboutme;
     TextView mess_lunchtime;
     TextView mess_dinnertime;
+    int uid;
+
+    public MessprofileActivity(int uid){
+        this.uid = uid;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class MessprofileActivity extends Fragment {
 
 
 
-        final int uid_mess = (com.ashleyjain.messmart.adapter.messObjectAdapter.uid);//getSharedPreferences(StartActivity.MyPREFERENCES, Context.MODE_PRIVATE).getInt(StartActivity.uid_mess,0);
         String url = "http://192.168.0.106/mess/index.php/ajaxactions";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -115,7 +114,7 @@ public class MessprofileActivity extends Fragment {
 
                 // the POST parameters:
                 params.put("action", "profile");
-                params.put("uid", uid_mess+"");
+                params.put("uid", uid+"");
                 System.out.println(params);
                 return params;
             }

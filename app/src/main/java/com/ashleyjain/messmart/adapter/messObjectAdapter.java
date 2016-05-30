@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.MessprofileActivity;
 import com.ashleyjain.messmart.Object.MessObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
@@ -291,8 +292,7 @@ public class messObjectAdapter extends BaseAdapter {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messObjectAdapter.uid = row.getId();
-                com.ashleyjain.messmart.MessprofileActivity messprofileActivity = new com.ashleyjain.messmart.MessprofileActivity();
+                MessprofileActivity messprofileActivity = new MessprofileActivity(row.getId());
                 StartActivity.get().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
                         .addToBackStack(messprofileActivity.toString())

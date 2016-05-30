@@ -270,7 +270,6 @@ public class StartActivity extends AppCompatActivity {
                                         .replace(R.id.fragment_not, ofragment, ofragment.toString())
                                         .addToBackStack(ofragment.toString())
                                         .commit();
-                                getSupportActionBar().setTitle("Orders");
                             }
                             else if(position==7){
                                 UserprofileActivity userprofileActivity = new UserprofileActivity();

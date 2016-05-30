@@ -18,10 +18,65 @@ public class OrderObject {
     private int lOIDid,dOIDid;
     private String lDish,dDish;
     private String lMess,dMess;
-    private int lPrice,dPrice;
+
+    public int getlDishid() {
+        return lDishid;
+    }
+
+    public void setlDishid(int lDishid) {
+        this.lDishid = lDishid;
+    }
+
+    public int getdDishid() {
+        return dDishid;
+    }
+
+    public void setdDishid(int dDishid) {
+        this.dDishid = dDishid;
+    }
+
+    private int lDishid,dDishid,lPrice,dPrice;
     private String lStatus,dStatus;
 
-    public OrderObject(String datetime,String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus) {
+    public int getlMid() {
+        return lMid;
+    }
+
+    public void setlMid(int lMid) {
+        this.lMid = lMid;
+    }
+
+    public int getdMid() {
+        return dMid;
+    }
+
+    public void setdMid(int dMid) {
+        this.dMid = dMid;
+    }
+
+    private int lMid,dMid;
+
+    public String getlBooktype() {
+        return lBooktype;
+    }
+
+    public void setlBooktype(String lBooktype) {
+        this.lBooktype = lBooktype;
+    }
+
+    private String lBooktype;
+
+    public String getdBooktype() {
+        return dBooktype;
+    }
+
+    public void setdBooktype(String dBooktype) {
+        this.dBooktype = dBooktype;
+    }
+
+    private String dBooktype;
+
+    public OrderObject(String datetime,String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus,String lBooktype,String dBooktype,int lMid,int dMid,int lDishid,int dDishid) {
         this.datetime = datetime;
         this.date = date;
         this.lOIDid = lOIDid;
@@ -34,6 +89,12 @@ public class OrderObject {
         this.dPrice = dPrice;
         this.lStatus = lStatus;
         this.dStatus = dStatus;
+        this.lBooktype = lBooktype;
+        this.dBooktype = dBooktype;
+        this.lMid = lMid;
+        this.dMid = dMid;
+        this.lDishid = lDishid;
+        this.dDishid = dDishid;
     }
 
     public String getDate() {
