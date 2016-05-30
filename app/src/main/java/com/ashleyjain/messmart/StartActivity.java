@@ -52,11 +52,11 @@ public class StartActivity extends AppCompatActivity {
     String loginname;
     private Context context;
     String aboutus,contactus;
-    JSONArray days,days2;
+    public static JSONArray days,days2;
     public static JSONObject errorcode;
     public static String loginid;
 
-    public static String host = "http://www.messmart.com/";
+    public static String host = "http://192.168.0.106/mess/";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -72,9 +72,9 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-            Intent re = new Intent(StartActivity.this,StartActivity.class);
-            startActivity(re);
-            finish();
+//            Intent re = new Intent(StartActivity.this,StartActivity.class);
+//            startActivity(re);
+//            finish();
     }
 
     @Override
@@ -138,7 +138,6 @@ public class StartActivity extends AppCompatActivity {
                                     loginid = dataobject.getJSONObject("drawer").getString("loginid");
                                     System.out.println("loginname: "+loginname);
                                 }
-                                System.out.println("Message: " + message);
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
@@ -196,10 +195,8 @@ public class StartActivity extends AppCompatActivity {
                     .withHasStableIds(true)
                     .addDrawerItems(
                             new SectionDrawerItem().withName("Menu"),
-                            new PrimaryDrawerItem().withName("Cart").withIdentifier(4).withIcon(R.drawable.shopping_cart),
-                            new PrimaryDrawerItem().withName("Mess").withIdentifier(4).withIcon(R.drawable.bell_service),
-                            new PrimaryDrawerItem().withName("Pricing").withIdentifier(4).withIcon(R.drawable.coins),
-                            new PrimaryDrawerItem().withName(isLogin ? "Logout" : "Login").withIdentifier(4).withIcon(isLogin ? R.drawable.logout : R.drawable.login),
+                            new PrimaryDrawerItem().withName("Mess").withIcon(R.drawable.bell_service),
+                            new PrimaryDrawerItem().withName(isLogin ? "Logout" : "Login").withIcon(isLogin ? R.drawable.logout : R.drawable.login),
                             new PrimaryDrawerItem().withName("About us").withIcon(R.drawable.info),
                             new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.online_support)
                     );
@@ -215,66 +212,63 @@ public class StartActivity extends AppCompatActivity {
                 public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                     Intent login;
                     switch (position) {
-
-                        case 3:
-                            MessListTabLayout fragment = new MessListTabLayout();
-                            Bundle bundle3 = new Bundle();
-                            fragment.setArguments(bundle3);
-                            bundle3.putString("days",days.toString());
-                            bundle3.putString("days2",days2.toString());
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_not, fragment, fragment.toString())
-                                    .addToBackStack(fragment.toString())
-                                    .commit();
-                            break;
-                        case 5:
-                            if (!isLogin) {
-                                LoginActivity loginfragment = new LoginActivity();
+                        default:
+                            if(position==2){
+                                MessListTabLayout fragment = new MessListTabLayout("","",false);
+                                Bundle bundle3 = new Bundle();
+                                bundle3.putString("days",days.toString());
+                                bundle3.putString("days2",days2.toString());
+                                fragment.setArguments(bundle3);
                                 getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not, fragment, fragment.toString())
+                                        .addToBackStack(fragment.toString())
+                                        .commit();
+                            }
+                            else if(position==3){
+                                if (!isLogin) {
+                                    LoginActivity loginfragment = new LoginActivity();
+                                    getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
                                         .addToBackStack(loginfragment.toString())
                                         .commit();
-                                break;
-                            } else {
-                                isLogin = false;
-                                Intent re = new Intent(StartActivity.this, StartActivity.class);
-                                startActivity(re);
-                                Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                                finish();
+
+                                } else {
+                                    isLogin = false;
+                                    Intent re = new Intent(StartActivity.this, StartActivity.class);
+                                    startActivity(re);
+                                    Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
                             }
-                        case 6:
-                            AboutusActivity aboutfragment = new AboutusActivity();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("aboutus", aboutus);
-                            aboutfragment.setArguments(bundle);
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_not, aboutfragment, aboutfragment.toString())
-                                    .addToBackStack(aboutfragment.toString())
-                                    .commit();
-                            break;
-                        case 7:
-                            ContactusActivity contactfragment = new ContactusActivity();
-                            Bundle bundle2 = new Bundle();
-                            bundle2.putString("contactus", contactus);
-                            contactfragment.setArguments(bundle2);
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
-                                    .addToBackStack(contactfragment.toString())
-                                    .commit();
-                            break;
-                        case 8:
-                            OrderFragment ofragment = new OrderFragment();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_not, ofragment, ofragment.toString())
-                                    .addToBackStack(ofragment.toString())
-                                    .commit();
-                            getSupportActionBar().setTitle("Orders");
-                            break;
-                        case 9:
-                            //
-                            break;
-                        case 10:
-                            //
+                            else if(position==4){
+                                AboutusActivity aboutfragment = new AboutusActivity();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("aboutus", aboutus);
+                                aboutfragment.setArguments(bundle);
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not, aboutfragment, aboutfragment.toString())
+                                        .addToBackStack(aboutfragment.toString())
+                                        .commit();
+
+                            }
+                            else if(position==5){
+                                ContactusActivity contactfragment = new ContactusActivity();
+                                Bundle bundle2 = new Bundle();
+                                bundle2.putString("contactus", contactus);
+                                contactfragment.setArguments(bundle2);
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
+                                        .addToBackStack(contactfragment.toString())
+                                        .commit();
+                            }
+                            else if(position==6){
+                                OrderFragment ofragment = new OrderFragment();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not, ofragment, ofragment.toString())
+                                        .addToBackStack(ofragment.toString())
+                                        .commit();
+                                getSupportActionBar().setTitle("Orders");
+                            }
                             break;
 
                     }

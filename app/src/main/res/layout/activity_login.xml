@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/phone"
             android:hint="Phone"
-            android:text="9717849652"
+            android:text="7503759059"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/sym_action_call" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/confirmotp"
             android:inputType="textPassword"
-            android:text="123"
+            android:text="oo"
             android:ems="10"
             android:hint="OTP or Password"
             android:drawablePadding="10dp"

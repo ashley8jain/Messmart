@@ -34,15 +34,26 @@ import java.util.Map;
 public class MessListTabLayout extends Fragment {
 
     String days,days2;
+    String lord;
     JSONArray day,day2;
     String particularday;
     ViewPager viewPager;
     PagerAdapter adapter;
+    Boolean load;
 
     @Override
     public void onStop() {
         super.onStop();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    public MessListTabLayout(String datetime,String lord,Boolean load){
+        this.load = load;
+        if(load){
+            System.out.println("particularday: "+datetime);
+            particularday = datetime;
+            this.lord = lord;
+        }
     }
 
     @Override
@@ -135,8 +146,12 @@ public class MessListTabLayout extends Fragment {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
-                            particularday = dataobject.getString("datetime");
-                            final String lord = dataobject.getString("lord");
+                            if(!load){
+                                System.out.println("load: "+"false");
+                                particularday = dataobject.getString("datetime");
+                                lord = dataobject.getString("lord");
+                            }
+
                             //adapter= new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),"1464393600");
                             //viewPager.setAdapter(adapter);
                             viewPager.postDelayed(new Runnable() {

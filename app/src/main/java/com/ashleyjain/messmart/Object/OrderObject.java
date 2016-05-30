@@ -5,6 +5,15 @@ package com.ashleyjain.messmart.Object;
  */
 public class OrderObject {
 
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    private String datetime;
     private String date;
     private int lOIDid,dOIDid;
     private String lDish,dDish;
@@ -12,7 +21,8 @@ public class OrderObject {
     private int lPrice,dPrice;
     private String lStatus,dStatus;
 
-    public OrderObject(String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus) {
+    public OrderObject(String datetime,String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus) {
+        this.datetime = datetime;
         this.date = date;
         this.lOIDid = lOIDid;
         this.dOIDid = dOIDid;

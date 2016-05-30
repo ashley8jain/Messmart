@@ -22,7 +22,7 @@ public class OrderList extends ListFragment {
     String orderList;
     JSONArray datelist;
 
-    private String[] date;
+    private String[] datetime,date;
     private int[] lOIDid;
     private int[] dOIDid;
     private String[] lDish;
@@ -52,6 +52,7 @@ public class OrderList extends ListFragment {
         try {
             datelist = new JSONArray(orderList);
             Integer len = datelist.length();
+            datetime = new String[len];
             date=new String[len];
             lOIDid=new int[len];
             dOIDid=new int[len];
@@ -65,10 +66,13 @@ public class OrderList extends ListFragment {
             dStatus=new String[len];
             for(int i=0;i<datelist.length();i++){
                 JSONArray unused = datelist.getJSONArray(i);
+                String datetim = unused.getString(0);
+                datetime[i] = datetim;
+                System.out.println("orderdatetime: "+datetime[i]);
                 JSONArray subsubarr = unused.getJSONArray(1);
                 for(int j=0;j<subsubarr.length();j++){
                     JSONObject orderitem = subsubarr.getJSONObject(j);
-                    System.out.println("order item: "+j+" "+orderitem.toString());
+
                     if(j==0){
                         date[i]=orderitem.getString("datetimetext");
                         try{
@@ -89,7 +93,6 @@ public class OrderList extends ListFragment {
                     }
                     else{
                         try {
-                            System.out.println(orderitem.getString("dishid")+"----");
                             dOIDid[i]=orderitem.getInt("id");
                             dDish[i]=orderitem.getString("dishtitle");
                             dMess[i]=orderitem.getString("mname");
@@ -125,7 +128,7 @@ public class OrderList extends ListFragment {
 
         orderObjectList = new ArrayList<OrderObject>();
         for(int i = 0;i<date.length;i++){
-            OrderObject items = new OrderObject(date[i],lOIDid[i],dOIDid[i],lDish[i],dDish[i],lMess[i],dMess[i],lPrice[i],dPrice[i],lStatus[i],dStatus[i]);
+            OrderObject items = new OrderObject(datetime[i],date[i],lOIDid[i],dOIDid[i],lDish[i],dDish[i],lMess[i],dMess[i],lPrice[i],dPrice[i],lStatus[i],dStatus[i]);
             orderObjectList.add(items);
         }
         System.out.println(orderObjectList.size());
