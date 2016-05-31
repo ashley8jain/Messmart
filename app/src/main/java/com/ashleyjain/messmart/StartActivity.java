@@ -346,9 +346,6 @@ public class StartActivity extends AppCompatActivity {
             getRequestQueue().add(postRequest2);
         }
 
-
-
-
     }
 
     //Check if there is network connection or not

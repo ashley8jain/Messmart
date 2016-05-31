@@ -21,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChoosefoodActivity" />
         <activity
             android:name=".Fragment.MessjoinActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".UserprofileActivity" />
-        <activity android:name=".MessprofileActivity"></activity>
+        <activity android:name=".MessprofileActivity" />
+        <activity android:name=".Fragment.DishList"></activity>
     </application>
 
 </manifest>

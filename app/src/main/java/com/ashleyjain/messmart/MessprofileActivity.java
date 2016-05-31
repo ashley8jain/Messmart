@@ -1,6 +1,6 @@
 package com.ashleyjain.messmart;
 
-        import android.app.ProgressDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.ashleyjain.messmart.Fragment.DishList;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -32,6 +33,7 @@ public class MessprofileActivity extends Fragment {
     TextView mess_lunchtime;
     TextView mess_dinnertime;
     int uid;
+    JSONArray menulist;
 
     public MessprofileActivity(int uid){
         this.uid = uid;
@@ -40,6 +42,7 @@ public class MessprofileActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_messprofile, container, false);
+
     }
 
     @Override
@@ -66,6 +69,7 @@ public class MessprofileActivity extends Fragment {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject data = jsonResponse.getJSONObject("data");
+                            menulist = data.getJSONArray("menu_list");
                             JSONObject uinfo = data.getJSONObject("uinfo");
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
@@ -113,5 +117,22 @@ public class MessprofileActivity extends Fragment {
 
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
+
+        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
+        dishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DishList dishlist = new DishList();
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("menulist", menulist.toString());
+                dishlist.setArguments(bundle2);
+                StartActivity.get().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
+                        .addToBackStack(dishlist.toString())
+                        .commit();
+            }
+        });
+
     }
 }
