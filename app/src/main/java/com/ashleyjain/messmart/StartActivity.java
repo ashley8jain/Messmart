@@ -279,6 +279,13 @@ public class StartActivity extends AppCompatActivity {
                                                                            .commit();
 
                             }
+                            else if(position==8){
+                                Setting settingfragment = new Setting();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_not,settingfragment,settingfragment.toString())
+                                        .addToBackStack(settingfragment.toString())
+                                        .commit();
+                            }
                             break;
 
                     }
