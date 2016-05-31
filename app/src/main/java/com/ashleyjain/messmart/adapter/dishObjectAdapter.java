@@ -81,7 +81,7 @@ public class dishObjectAdapter extends BaseAdapter {
 
         final DishObject row = messList.get(position);
 
-
+        System.out.println(row.getBook()+"hereeee");
         book.setText(row.getBook() == 1 ? "cancel" : "book");
         final AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
         book.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +111,12 @@ public class dishObjectAdapter extends BaseAdapter {
                                                     dialog2.dismiss();
                                                     if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                        MessprofileActivity messprofileActivity = new MessprofileActivity(row.getId());
+                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                                .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
+                                                                .addToBackStack(messprofileActivity.toString())
+                                                                .commit();
                                                     } else {
                                                         Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
@@ -169,6 +175,12 @@ public class dishObjectAdapter extends BaseAdapter {
                                                     if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
                                                         book.setText("booked");
+                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                        MessprofileActivity messprofileActivity = new MessprofileActivity(row.getId());
+                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                                .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
+                                                                .addToBackStack(messprofileActivity.toString())
+                                                                .commit();
                                                     } else {
                                                         Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
@@ -237,6 +249,12 @@ public class dishObjectAdapter extends BaseAdapter {
                                                 if (ec == 1) {
                                                     Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
                                                     book.setText("Cancelled");
+                                                    StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                    MessprofileActivity messprofileActivity = new MessprofileActivity(row.getId());
+                                                    StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
+                                                            .addToBackStack(messprofileActivity.toString())
+                                                            .commit();
                                                 } else {
                                                     Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                 }

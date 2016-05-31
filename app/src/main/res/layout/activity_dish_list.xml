@@ -9,9 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ashleyjain.messmart.Fragment.DishList">
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@android:id/list">
+        android:layout_width="fill_parent"
+        android:id="@android:id/list"
+        android:layout_height="wrap_content">
     </ListView>
 
 </RelativeLayout>

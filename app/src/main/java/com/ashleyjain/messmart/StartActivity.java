@@ -239,11 +239,46 @@ public class StartActivity extends AppCompatActivity {
                                             .commit();
 
                                 } else {
-                                    isLogin = false;
-                                    Intent re = new Intent(StartActivity.this, StartActivity.class);
-                                    startActivity(re);
-                                    Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                                    finish();
+                                    final ProgressDialog dialog = ProgressDialog.show(context, "", "Logging out....", true);
+                                    String url = host+"index.php/ajaxactions";
+
+                                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.d("Response", response);
+                                                        isLogin = false;
+                                                        Intent re = new Intent(StartActivity.this, StartActivity.class);
+                                                        startActivity(re);
+                                                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                                                        finish();
+                                                        dialog.dismiss();
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                                    dialog.dismiss();
+                                                }
+                                            }
+
+                                    ) {
+                                        @Override
+                                        protected Map<String, String> getParams() {
+                                            Log.d("debug", "posting param");
+                                            Map<String, String> params = new HashMap<String, String>();
+
+                                            // the POST parameters:
+                                            params.put("action", "logout");
+                                            System.out.println(params);
+                                            return params;
+                                        }
+                                    };
+
+                                    // add it to the RequestQueue
+                                    getRequestQueue().add(postRequest);
                                 }
                             } else if (position == 4) {
                                 AboutusActivity aboutfragment = new AboutusActivity();
@@ -307,14 +342,15 @@ public class StartActivity extends AppCompatActivity {
                             //response JSON from url
                             try {
                                 JSONObject jsonResponse = new JSONObject(response);
-                                JSONObject uinfo = jsonResponse.getJSONObject("data").getJSONObject("uinfo");
+                                JSONObject data = jsonResponse.getJSONObject("data");
+                                JSONObject uinfo = data.getJSONObject("uinfo");
                                 String imageurl = uinfo.getString("profilepic");
                                 System.out.println("profileurl: " + imageurl);
                                 if(imageurl!=null)
                                     Picasso.with(context).load(StartActivity.host+imageurl).into(im);
                                 dialog2.dismiss();
                             } catch (JSONException e) {
-                                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
                                 dialog2.dismiss();
                             }
 

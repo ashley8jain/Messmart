@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.MessListTabLayout;
 import com.ashleyjain.messmart.MessprofileActivity;
 import com.ashleyjain.messmart.Object.MessObject;
 import com.ashleyjain.messmart.R;
@@ -111,6 +113,16 @@ public class messObjectAdapter extends BaseAdapter {
                                                     dialog2.dismiss();
                                                     if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                        Bundle bundle3 = new Bundle();
+                                                        bundle3.putString("days", StartActivity.days.toString());
+                                                        bundle3.putString("days2", StartActivity.days2.toString());
+                                                        fragment.setArguments(bundle3);
+                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                                .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                                .addToBackStack(fragment.toString())
+                                                                .commit();
                                                     } else {
                                                         Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
@@ -169,6 +181,16 @@ public class messObjectAdapter extends BaseAdapter {
                                                     if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
                                                         book.setText("booked");
+                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                        Bundle bundle3 = new Bundle();
+                                                        bundle3.putString("days", StartActivity.days.toString());
+                                                        bundle3.putString("days2", StartActivity.days2.toString());
+                                                        fragment.setArguments(bundle3);
+                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                                .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                                .addToBackStack(fragment.toString())
+                                                                .commit();
                                                     } else {
                                                         Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
@@ -237,6 +259,16 @@ public class messObjectAdapter extends BaseAdapter {
                                                 if (ec == 1) {
                                                     Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
                                                     book.setText("Cancelled");
+                                                    StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                    MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                    Bundle bundle3 = new Bundle();
+                                                    bundle3.putString("days", StartActivity.days.toString());
+                                                    bundle3.putString("days2", StartActivity.days2.toString());
+                                                    fragment.setArguments(bundle3);
+                                                    StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                            .addToBackStack(fragment.toString())
+                                                            .commit();
                                                 } else {
                                                     Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                 }
