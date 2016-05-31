@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Messmart.iml" filepath="$PROJECT_DIR$/Messmart.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/messmart.iml" filepath="$PROJECT_DIR$/messmart.iml" />
     </modules>
   </component>
 </project>

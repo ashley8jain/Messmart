@@ -1,18 +1,40 @@
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:background="#80f2f2bf">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_not">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/how"
                     >
                     <ImageView
                         android:layout_width="match_parent"
@@ -21,6 +43,9 @@
                         android:background="#80f2f2bf"
                         android:src="@drawable/messmart_logo"
                         android:gravity="center_horizontal"/>
+
+
+
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -35,7 +60,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Ratanlal"
+                            android:id="@+id/userinputname1"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:gravity="center_horizontal" />
@@ -53,7 +78,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Rs 596929"
+                            android:id="@+id/userinputwallet1"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"/>
                         <View
@@ -70,7 +95,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar Harinagar "
+                            android:id="@+id/userinputaddress1"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"/>
 
@@ -92,8 +117,10 @@
 
                 </LinearLayout>
 
+            </FrameLayout>
 
         </ScrollView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
+</android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,6 @@
 package com.ashleyjain.messmart;
 
-import android.app.AlertDialog;
+        import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,19 +12,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.ashleyjain.messmart.function.StringRequestCookies;
+        import com.android.volley.toolbox.StringRequest;
+        import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+
+        import java.util.HashMap;
 import java.util.Map;
 
 public class UserprofileActivity extends Fragment {
     ImageView userlogo;
+    static int uid;
+    static TextView inputUsername1,inputUserwallet1,inputUseraddress1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +45,11 @@ public class UserprofileActivity extends Fragment {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_userprofile);
         userlogo = (ImageView)view.findViewById(R.id.userlogo);
-        Picasso.with(getActivity()).load("http://i.imgur.com/DvpvklR.png").into(userlogo);
+        inputUsername1 = (TextView)view.findViewById(R.id.userinputname1);
+        inputUseraddress1 = (TextView)view.findViewById(R.id.userinputaddress1);
+        inputUserwallet1 = (TextView)view.findViewById(R.id.userinputwallet1);
+        getIdUser();
+        setInfo();
 
         Button showDialogedit = (Button) view.findViewById(R.id.showdialogedit);
         showDialogedit.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +62,9 @@ public class UserprofileActivity extends Fragment {
                 alertBuilder.setView(view);
                 final EditText userInputname = (EditText) view.findViewById(R.id.userinputname);
                 final EditText userInputaddress = (EditText) view.findViewById(R.id.userinputaddress);
+
+
+
 
                 alertBuilder.setCancelable(true)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -102,5 +116,108 @@ public class UserprofileActivity extends Fragment {
                 dialog.show();
             }
         });
+    }
+
+    private void getIdUser(){
+        int id =0;
+        String url = "http://192.168.0.106/mess/index.php/ajaxactions";
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            JSONObject drawer = data.getJSONObject("drawer");
+                            UserprofileActivity.uid = drawer.getInt("loginid");
+                            Toast.makeText(getActivity(),UserprofileActivity.uid +"",Toast.LENGTH_LONG).show();
+
+                        }
+                        catch(JSONException je){
+                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        //dialog.dismiss();
+                    }
+                }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Log.d("debug", "posting param");
+                Map<String, String> params = new HashMap<String, String>();
+
+                // the POST parameters:
+                params.put("action", "getinit");
+                System.out.println(params);
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        StartActivity.get().getRequestQueue().add(postRequest);
+
+    }
+
+
+    private void setInfo(){
+        String url = "http://192.168.0.106/mess/index.php/ajaxactions";
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            JSONObject uinfo = data.getJSONObject("uinfo");
+                            inputUsername1.setText(uinfo.getString("name"));
+                            inputUseraddress1.setText(uinfo.getString("address"));
+                            inputUserwallet1.setText(uinfo.getString("wallet"));
+                            Picasso.with(getActivity()).load("http://192.168.0.106/mess/" + uinfo.getString("profilepic")).into(userlogo);
+
+                        }
+                        catch(JSONException je){
+                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        //dialog.dismiss();
+                    }
+                }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Log.d("debug", "posting param");
+                Map<String, String> params = new HashMap<String, String>();
+
+                // the POST parameters:
+                params.put("action", "profile");
+                params.put("uid", UserprofileActivity.uid+"");
+                System.out.println(params);
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        StartActivity.get().getRequestQueue().add(postRequest);
+
     }
 }
