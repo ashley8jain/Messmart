@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart;
 
-        import android.os.Bundle;
+        import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,7 +46,7 @@ public class MessprofileActivity extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
-        messlogo = (ImageView)view.findViewById(R.id.messlogo);
+        messlogo = (ImageView)view.findViewById(R.id.messProfile);
 
         mess_name = (TextView)view.findViewById(R.id.mess_name);
         mess_address = (TextView)view.findViewById(R.id.mess_address);
@@ -55,8 +55,8 @@ public class MessprofileActivity extends Fragment {
         mess_dinnertime = (TextView)view.findViewById(R.id.mess_dinnertime);
 
 
-
-        String url = "http://192.168.0.106/mess/index.php/ajaxactions";
+        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading...", true);
+        String url = StartActivity.host+"index.php/ajaxactions";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -67,11 +67,10 @@ public class MessprofileActivity extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject data = jsonResponse.getJSONObject("data");
                             JSONObject uinfo = data.getJSONObject("uinfo");
-                            String message = data.getString("uinfo");
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
                             String address = uinfo.getString("address");
-                            String profilepic = "http://192.168.0.106/mess/"+uinfo.getString("profilepic");
+                            String profilepic = StartActivity.host+uinfo.getString("profilepic");
                             JSONArray profile_right_display = data.getJSONArray("profile_right_display");
                             String lunchtime = profile_right_display.getJSONArray(1).getString(1);
                             String dinnertime = profile_right_display.getJSONArray(2).getString(1);
@@ -80,19 +79,11 @@ public class MessprofileActivity extends Fragment {
                             mess_aboutme.setText(aboutus);
                             mess_lunchtime.setText(lunchtime);
                             mess_dinnertime.setText(dinnertime);
-
                             Picasso.with(getActivity()).load(profilepic).into(messlogo);
-
-                            //JSONArray profile_right_display = jsonResponse.getJSONArray("profile_right_display");
-                            //String message2 = profile_right_display.getString(0);
-                            //aboutus = dataobject.getString("aboutus_content");
-                            //contactus = dataobject.getString("contact");
-                            //System.out.println("Message: " + message);
-                            //dialog.dismiss();
-                            //Toast.makeText(MessprofileActivity.this,message,Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-                            //dialog.dismiss();
+                            dialog.dismiss();
                         }
 
                     }
@@ -102,7 +93,7 @@ public class MessprofileActivity extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                        //dialog.dismiss();
+                        dialog.dismiss();
                     }
                 }
 
@@ -121,6 +112,6 @@ public class MessprofileActivity extends Fragment {
         };
 
         // add it to the RequestQueue
-        Volley.newRequestQueue(getActivity()).add(postRequest);
+        StartActivity.get().getRequestQueue().add(postRequest);
     }
 }

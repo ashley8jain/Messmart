@@ -1,77 +1,84 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:background="#80f2f2bf">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="#f1e3e3">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/fragment_not">
-
-                <LinearLayout
+            <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/how"
                     >
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:id="@+id/messlogo"
-                        android:background="#80f2f2bf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="20dp"
+                        android:id="@+id/messProfile"
                         android:src="@drawable/messmart_logo"
                         android:gravity="center_horizontal"/>
 
-
-
-
-                    <LinearLayout
-                        android:orientation="vertical"
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_sub_view"
+                        card_view:cardCornerRadius="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-
+                        card_view:cardElevation="2dp"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:id="@+id/mess_name"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:text="Name"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
                             android:gravity="center_horizontal" />
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:padding="5dp"
+                        android:text="About Mess"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mess_aboutme"
+                        android:padding="5dp"
+                        android:text="Hey i m nmess csdcs vfdsvcf"/>
+                        </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_sub_view2"
+                    android:layout_width="match_parent"
+                    card_view:cardElevation="2dp"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:padding="10dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
                             android:text="Address"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp" />
@@ -85,27 +92,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray"/>
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="About Us"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/mess_aboutme"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
                             android:text="Lunch Timing"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp" />
@@ -123,7 +114,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
                             android:text="Dinner Timing"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp" />
@@ -133,22 +124,11 @@
                             android:id="@+id/mess_dinnertime"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
-
-
-
-
-                    </LinearLayout>
+                        </LinearLayout>
+                </android.support.v7.widget.CardView>
 
                 </LinearLayout>
 
-            </FrameLayout>
-
         </ScrollView>
 
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
