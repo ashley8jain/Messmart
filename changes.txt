@@ -8,7 +8,7 @@ saved number aur passworddon't have an acount ko lnk htao
 login wale me otp is incorrect
 forgot your password login me #Done
 scrollview in mess join us and login page #Done
-dropdown me lining and white text
+dropdown me lining and white text #Done
 displaying the dish properly
 lunch and dinner timing ko htao if not there... do not pick -
 blank space in mess profile ko htao
