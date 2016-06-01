@@ -1,34 +1,13 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:background="#80f2f2bf">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#eadbdb">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/fragment_not">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -38,17 +17,28 @@
                     >
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:id="@+id/userlogo"
-                        android:background="#80f2f2bf"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/profImg"
                         android:src="@drawable/messmart_logo"
                         android:gravity="center_horizontal"/>
-
-
-
-
+                    <TextView android:id="@+id/showdialogedit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#039be5"
+                        android:text="Edit Profile"
+                        android:paddingRight="20dp"
+                        android:gravity="end"
+                        />
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_sub_view"
+                        card_view:cardCornerRadius="30dp"
+                        android:layout_width="match_parent"
+                        card_view:cardElevation="2dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content">
                     <LinearLayout
                         android:orientation="vertical"
+                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
@@ -59,10 +49,11 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:id="@+id/userinputname1"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:text="Name"
+                            android:padding="10dp"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
                             android:gravity="center_horizontal" />
                         <View
                             android:layout_width="match_parent"
@@ -71,56 +62,34 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Wallet"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:id="@+id/userinputwallet1"
+                            android:text="1231"
+                            android:padding="10dp"
+                            android:drawableLeft="@drawable/inrup"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
+                            android:layout_marginBottom="5dp"
+                            android:textSize="20sp" />
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray"/>
                         <TextView
                             android:layout_width="match_parent"
+                            android:padding="10dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Address"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
+                            android:text="Address:-"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/userinputaddress1"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
-
-                        <Button android:id="@+id/showdialogedit"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Edit profile"
-                            />
-
-
-
-
+                            android:padding="10dp" />
                     </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
 
                 </LinearLayout>
 
-            </FrameLayout>
-
         </ScrollView>
 
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

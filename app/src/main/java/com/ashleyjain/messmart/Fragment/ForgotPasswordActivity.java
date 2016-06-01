@@ -2,10 +2,6 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,8 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
-import com.ashleyjain.messmart.UserprofileActivity;
-import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
 import org.json.JSONObject;

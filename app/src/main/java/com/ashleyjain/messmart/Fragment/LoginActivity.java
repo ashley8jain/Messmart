@@ -118,7 +118,6 @@ public class LoginActivity extends Fragment {
                                         Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
-                                        StartActivity.isLogin = true;
                                         getActivity().finish();
                                     }
                                     else{
