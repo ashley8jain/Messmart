@@ -6,6 +6,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,24 +61,21 @@ public class LoginActivity extends Fragment {
 
         signup = (TextView) view.findViewById(R.id.signup);
         signup.setText(Html.fromHtml("Don't have an account? "+"<font color=#039be5>"+"Sign Up"+"</font><br><br>"));
-
-        joinus = (TextView) view.findViewById(R.id.joinus);
-        joinus.setText(Html.fromHtml("Are you a mess? "+"<font color=#039be5>"+"Join us"+"</font><br><br>"));
-        joinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MessjoinActivity messFragment = new MessjoinActivity();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
-                        .addToBackStack(messFragment.toString())
-                        .commit();
-            }
-        });
-
-        forgetpass = (TextView) view.findViewById(R.id.forgot);
-        forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));
-
-        signup.setOnClickListener(new View.OnClickListener() {
+//        signup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SignUpActivity signupfragment = new SignUpActivity();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
+//                        .addToBackStack(signupfragment.toString())
+//                        .commit();
+//            }
+//        });
+        signup.setMovementMethod(LinkMovementMethod.getInstance());
+        signup.setText(signup.getText(), TextView.BufferType.SPANNABLE);
+        Spannable signupspannable = (Spannable)signup.getText();
+        ClickableSpan mySignUpSpan = new ClickableSpan()
+        {
             @Override
             public void onClick(View v) {
                 SignUpActivity signupfragment = new SignUpActivity();
@@ -84,7 +84,40 @@ public class LoginActivity extends Fragment {
                         .addToBackStack(signupfragment.toString())
                         .commit();
             }
-        });
+        };
+        signupspannable.setSpan(mySignUpSpan, 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        joinus = (TextView) view.findViewById(R.id.joinus);
+        joinus.setText(Html.fromHtml("Are you a mess? " + "<font color=#039be5>" + "Join us" + "</font><br><br>"));
+//        joinus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MessjoinActivity messFragment = new MessjoinActivity();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
+//                        .addToBackStack(messFragment.toString())
+//                        .commit();
+//            }
+//        });
+        joinus.setMovementMethod(LinkMovementMethod.getInstance());
+        joinus.setText(joinus.getText(), TextView.BufferType.SPANNABLE);
+        Spannable joinusspannable = (Spannable)joinus.getText();
+        ClickableSpan myJoinUsSpan = new ClickableSpan()
+        {
+            @Override
+            public void onClick(View v) {
+                MessjoinActivity messFragment = new MessjoinActivity();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
+                        .addToBackStack(messFragment.toString())
+                        .commit();
+            }
+        };
+        joinusspannable.setSpan(myJoinUsSpan, 16, 23, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        forgetpass = (TextView) view.findViewById(R.id.forgot);
+        forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
