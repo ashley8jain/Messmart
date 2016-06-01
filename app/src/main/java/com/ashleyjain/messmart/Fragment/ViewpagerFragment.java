@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
 import com.ashleyjain.messmart.adapter.CustomSwipeAdapter;
 import com.ashleyjain.messmart.R;
@@ -25,6 +26,7 @@ public class ViewpagerFragment extends Fragment {
     CustomSwipeAdapter adapter;
     Timer swipeTimer;
     int currentPage = 0;
+    ScrollView scrollViewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,10 +41,13 @@ public class ViewpagerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
-        adapter = new CustomSwipeAdapter(getActivity());
+        scrollViewPager = (ScrollView)view.findViewById(R.id.scroll_view_pager);
+        //adapter = new CustomSwipeAdapter(getActivity());
         viewPager.setAdapter(adapter);
 
-        final Handler handler = new Handler();
+
+
+        /*final Handler handler = new Handler();
 
         final Runnable Update = new Runnable() {
             public void run() {
@@ -60,7 +65,7 @@ public class ViewpagerFragment extends Fragment {
             public void run() {
                 handler.post(Update);
             }
-        }, 1000, 3000);
+        }, 1000, 3000);*/
 
         ImageView imgFacebook = (ImageView)view.findViewById(R.id.imageViewFacebook);
         imgFacebook.setOnClickListener(new View.OnClickListener(){

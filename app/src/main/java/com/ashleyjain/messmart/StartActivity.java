@@ -327,7 +327,7 @@ public class StartActivity extends AppCompatActivity {
                     return false;
                 }
             });
-
+            
             drawer = builder.build();
             Name = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_name);
             im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
