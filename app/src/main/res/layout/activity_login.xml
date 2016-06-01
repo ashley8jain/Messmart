@@ -10,6 +10,8 @@
     tools:context=".Fragment.LoginActivity"
     android:background="#ffffff">
 
+
+
     <LinearLayout
         android:id="@+id/EditTextLayout"
         android:layout_width="match_parent"
@@ -98,5 +100,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/EditTextLayout"
         android:layout_alignStart="@+id/EditTextLayout" />
+
 
 </RelativeLayout>
