@@ -7,7 +7,7 @@ contact us ko sundar bnao
 saved number aur passworddon't have an acount ko lnk htao
 login wale me otp is incorrect
 forgot your password login me
-scrollview in mess join us and login page
+scrollview in mess join us and login page #Done
 dropdown me lining and white text
 displaying the dish properly
 lunch and dinner timing ko htao if not there... do not pick -
