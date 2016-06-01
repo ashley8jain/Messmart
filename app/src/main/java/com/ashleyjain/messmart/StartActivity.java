@@ -105,6 +105,7 @@ public class StartActivity extends AppCompatActivity {
 
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
+                .withProfileImagesClickable(false)
                 .withActivity(this)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
@@ -117,9 +118,7 @@ public class StartActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withDisplayBelowStatusBar(true)
                 .withActionBarDrawerToggle(true)
-                .withAccountHeader(headerResult)
-                .withHasStableIds(true);
-
+                .withAccountHeader(headerResult);
 
         if (!isNetworkConnected(context)) {
             //when wifi is not connected
