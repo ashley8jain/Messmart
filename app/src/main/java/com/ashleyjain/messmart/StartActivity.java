@@ -14,6 +14,9 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,6 +78,25 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.home:
+                for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
+                    getSupportFragmentManager().popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
     protected void onRestart() {
         super.onRestart();
 //            Intent re = new Intent(StartActivity.this,StartActivity.class);
@@ -82,8 +104,10 @@ public class StartActivity extends AppCompatActivity {
 //            finish();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
@@ -102,6 +126,8 @@ public class StartActivity extends AppCompatActivity {
                 drawer.openDrawer();
             }
         });
+
+
 
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
@@ -207,6 +233,7 @@ public class StartActivity extends AppCompatActivity {
                 public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                     String name = ((Nameable) drawerItem).getName().toString();
                     if (name.equals("Menu")) {
+                        popStack();
                         MessListTabLayout fragment = new MessListTabLayout("", "", false);
                         Bundle bundle3 = new Bundle();
                         bundle3.putString("days", days.toString());
@@ -217,6 +244,7 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(fragment.toString())
                                 .commit();
                     } else if (name.equals("Login")) {
+                        popStack();
                         LoginActivity loginfragment = new LoginActivity();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
@@ -265,6 +293,7 @@ public class StartActivity extends AppCompatActivity {
                         // add it to the RequestQueue
                         getRequestQueue().add(postRequest);
                     } else if (name.equals("Aboutus")) {
+                        popStack();
                         AboutusActivity aboutfragment = new AboutusActivity();
                         Bundle bundle = new Bundle();
                         bundle.putString("aboutus", aboutus);
@@ -275,6 +304,7 @@ public class StartActivity extends AppCompatActivity {
                                 .commit();
 
                     } else if (name.equals(("Contactus"))) {
+                        popStack();
                         ContactusActivity contactfragment = new ContactusActivity();
                         Bundle bundle2 = new Bundle();
                         bundle2.putString("contactus", contactus);
@@ -284,12 +314,14 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(contactfragment.toString())
                                 .commit();
                     } else if (name.equals("Orders")) {
+                        popStack();
                         OrderFragment ofragment = new OrderFragment();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, ofragment, ofragment.toString())
                                 .addToBackStack(ofragment.toString())
                                 .commit();
                     } else if (name.equals("Profile")) {
+                        popStack();
                         UserprofileActivity userprofileActivity = new UserprofileActivity();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, userprofileActivity, userprofileActivity.toString())
@@ -297,6 +329,7 @@ public class StartActivity extends AppCompatActivity {
                                 .commit();
 
                     } else if (name.equals("Cpass")) {
+                        popStack();
                         Setting settingfragment = new Setting();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, settingfragment, settingfragment.toString())
@@ -413,6 +446,11 @@ public class StartActivity extends AppCompatActivity {
     //Volley request queue
     public RequestQueue getRequestQueue() {
         return _requestQueue;
+    }
+
+    private void popStack(){
+        for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
+            getSupportFragmentManager().popBackStack();
     }
 
 }

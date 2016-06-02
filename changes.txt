@@ -1,26 +1,16 @@
-contact us ko sundar bnao
-
 displaying the dish properly
 
 lunch and dinner timing ko htao if not there... do not pick -
 
 blank space in mess profile ko htao
 
-
 jis page se login kiya wohi pr jaye
-
 
 chota book bada book 
 
-
 button,heading(lunch,dinner) align kr do text se
 
-
 past me book now nhi aaye
-
-
-push kro ...setting ko dhang ka bnao
-
 
 heading ko hmesha messmart rkho wo link ho to the homepage
 
