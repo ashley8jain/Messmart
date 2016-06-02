@@ -10,6 +10,16 @@
     tools:context=".Fragment.LoginActivity"
     android:background="#ffffff">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
@@ -131,7 +141,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="70dp"/>
 
-
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
 
 
