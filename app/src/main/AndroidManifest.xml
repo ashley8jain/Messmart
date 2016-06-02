@@ -26,7 +26,11 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".UserprofileActivity" />
         <activity android:name=".MessprofileActivity" />
-        <activity android:name=".Fragment.DishList"></activity>
+        <activity android:name=".Fragment.DishList" />
+        <activity
+            android:name=".Fragment.ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

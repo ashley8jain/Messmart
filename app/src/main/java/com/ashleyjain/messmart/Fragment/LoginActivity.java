@@ -74,6 +74,16 @@ public class LoginActivity extends Fragment {
 
         forgetpass = (TextView) view.findViewById(R.id.forgot);
         forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));
+        forgetpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ForgotPasswordActivity forgotPasswordActivity = new ForgotPasswordActivity();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, forgotPasswordActivity, forgotPasswordActivity.toString())
+                        .addToBackStack(forgotPasswordActivity.toString())
+                        .commit();
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +118,6 @@ public class LoginActivity extends Fragment {
                                         Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
-                                        StartActivity.isLogin = true;
                                         getActivity().finish();
                                     }
                                     else{

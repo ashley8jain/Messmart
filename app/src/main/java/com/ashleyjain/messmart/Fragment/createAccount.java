@@ -78,7 +78,6 @@ public class createAccount extends Fragment {
                                         Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
-                                        StartActivity.isLogin = true;
                                         getActivity().finish();
                                     }
                                     else{
