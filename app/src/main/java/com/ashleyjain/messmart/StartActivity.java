@@ -167,7 +167,7 @@ public class StartActivity extends AppCompatActivity {
                                 tabs = drawer.getJSONArray("tabs");
                                 for(int i=0;i<tabs.length();i++){
                                     String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon(R.drawable.facebook_icon));
                                 }
                                 //System.out.println()
                                     loginname = drawer.getString("loginname");

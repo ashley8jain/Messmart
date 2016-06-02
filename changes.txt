@@ -3,7 +3,7 @@ how it works ko sudharo
 spacing
 remove view 
 copyright me space do
-contact us ko sundar bnao
+contact us ko sundar bnao #Done
 saved number aur passworddon't have an acount ko lnk htao
 login wale me otp is incorrect
 forgot your password login me #Done
@@ -25,8 +25,10 @@ push kro ... proflie,setting ko dhang ka bnao
 order profile setting ka icon dalo
 heading ko hmesha messmart rkho wo link ho to the homepage
 choose account ka entropy kam kro
-go back wala option dalo create acc otp me
+go back wala option dalo create acc otp me #Done
 
 Need a concentric colored square box with circular edges with sea green color in between squares.
-Pressing back does not closes navigation drawer
-Changing profile info does not changes it instantly
+Pressing back does not closes navigation drawer #Done
+Changing profile info does not changes it instantly #Done
+Add Icons in Navigation Drawer
+Remove Not Signed in from navigation drawer after signing in
