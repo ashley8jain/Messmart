@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="5dp"
-        >
+        android:layout_marginBottom="5dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -40,8 +39,7 @@
                 android:textStyle="bold"
                 android:id="@+id/title"
                 android:padding="5dp"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +47,7 @@
                 android:text="New Text"
                 android:padding="5dp"
                 android:textStyle="italic"
-                android:id="@+id/description" />
+                android:id="@+id/description"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +55,7 @@
                 android:text="New Text"
                 android:textColor="#62da4c"
                 android:padding="10dp"
-                android:id="@+id/messmakername" />
+                android:id="@+id/messmakername"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -82,7 +80,7 @@
                 android:layout_gravity="right"
                 android:text="23"
                 android:id="@+id/price"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"/>
 
             <Button
                 android:layout_width="90dp"
@@ -92,7 +90,7 @@
                 android:textColor="#ffffff"
                 android:padding="5dp"
                 android:text="BOOK"
-                android:id="@+id/bookbutton" />
+                android:id="@+id/bookbutton"/>
 
         </LinearLayout>
 
@@ -103,7 +101,7 @@
         android:text="deswdsw"
         android:layout_below="@id/linearLayout"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

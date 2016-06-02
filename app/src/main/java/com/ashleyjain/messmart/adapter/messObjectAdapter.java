@@ -94,73 +94,73 @@ public class messObjectAdapter extends BaseAdapter {
                         alertbuilder.setTitle("Booking");
                         alertbuilder.setMessage("Mess:" + row.getName() + "\n Address:" + row.getAddress() + "\n Timing:" + row.getTiming());
                         alertbuilder.setCancelable(true);
-                        alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                    alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-                                final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                                String url = StartActivity.host + "index.php/ajaxactions";
+                            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
+                            String url = StartActivity.host + "index.php/ajaxactions";
 
-                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                Log.d("Response", response);
-                                                JSONObject jsonResponse = null;
-                                                try {
-                                                    jsonResponse = new JSONObject(response);
-                                                    Integer ec = jsonResponse.getInt("ec");
-                                                    dialog2.dismiss();
-                                                    if (ec == 1) {
-                                                        Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
-                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
-                                                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
-                                                        Bundle bundle3 = new Bundle();
-                                                        bundle3.putString("days", StartActivity.days.toString());
-                                                        bundle3.putString("days2", StartActivity.days2.toString());
-                                                        fragment.setArguments(bundle3);
-                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
-                                                                .replace(R.id.fragment_not, fragment, fragment.toString())
-                                                                .addToBackStack(fragment.toString())
-                                                                .commit();
-                                                    } else {
-                                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
-                                                    }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d("Response", response);
+                                            JSONObject jsonResponse = null;
+                                            try {
+                                                jsonResponse = new JSONObject(response);
+                                                Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
+                                                if (ec == 1) {
+                                                    Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                    MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                    Bundle bundle3 = new Bundle();
+                                                    bundle3.putString("days", StartActivity.days.toString());
+                                                    bundle3.putString("days2", StartActivity.days2.toString());
+                                                    fragment.setArguments(bundle3);
+                                                    StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                            .addToBackStack(fragment.toString())
+                                                            .commit();
+                                                } else {
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
                                             }
                                         }
+                                    },
+                                    new Response.ErrorListener() {
 
-                                ) {
-                                    @Override
-                                    protected Map<String, String> getParams() {
-                                        Log.d("debug", "posting param");
-                                        Map<String, String> params = new HashMap<String, String>();
-
-                                        // the POST parameters:
-                                        params.put("lord", row.getLord());
-                                        params.put("dishid", "" + row.getDishId());
-                                        params.put("mid", row.getId() + "");
-                                        params.put("dishid", row.getDishId() + "");
-                                        params.put("booktype", "m");
-                                        params.put("action", "bookmeal");
-                                        params.put("datetime", row.getDatetime());
-                                        System.out.println(params);
-                                        return params;
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            dialog2.dismiss();
+                                        }
                                     }
-                                };
 
-                                // add it to the RequestQueue
-                                StartActivity.get().getRequestQueue().add(postRequest);
-                            }
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Log.d("debug", "posting param");
+                                    Map<String, String> params = new HashMap<String, String>();
+
+                                    // the POST parameters:
+                                    params.put("lord", row.getLord());
+                                    params.put("dishid", "" + row.getDishId());
+                                    params.put("mid", row.getId() + "");
+                                    params.put("dishid", row.getDishId() + "");
+                                    params.put("booktype", "m");
+                                    params.put("action", "bookmeal");
+                                    params.put("datetime", row.getDatetime());
+                                    System.out.println(params);
+                                    return params;
+                                }
+                            };
+
+                            // add it to the RequestQueue
+                            StartActivity.get().getRequestQueue().add(postRequest);
+                        }
                         });
                         alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
