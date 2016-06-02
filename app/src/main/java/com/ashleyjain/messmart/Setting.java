@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -54,13 +55,30 @@ public class Setting extends Fragment {
                     Toast.makeText(getActivity(),"Passwords do not match!",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Changing......", true);
                     String url = "http://192.168.0.106/mess/index.php/ajaxactions";
                     StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                             new Response.Listener<String>() {
                                 @Override
 
                                 public void onResponse(String response) {
-                                    Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+                                    Log.d("Response", response);
+                                    //response JSON from url
+                                    try {
+                                        JSONObject jsonResponse = new JSONObject(response);
+                                        Integer ec = jsonResponse.getInt("ec");
+                                        if(ec == 1){
+                                            Toast.makeText(getActivity(),"Changed", Toast.LENGTH_LONG).show();
+                                        }
+                                        else{
+                                            Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                        }
+                                        System.out.println("Message: " + ec);
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                        dialog.dismiss();
+                                    }
 
                                 }
                             },
@@ -69,7 +87,7 @@ public class Setting extends Fragment {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                    //dialog.dismiss();
+                                    dialog.dismiss();
                                 }
                             }
 
