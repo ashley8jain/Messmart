@@ -26,3 +26,5 @@ order profile setting ka icon dalo
 heading ko hmesha messmart rkho wo link ho to the homepage
 choose account ka entropy kam kro
 go back wala option dalo create acc otp me
+
+Need a concentric colored square box with circular edges
