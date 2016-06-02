@@ -4,35 +4,86 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.ViewpagerFragment">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scroll_view_pager">
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+            android:layout_height="wrap_content">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/food8"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="275dp"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/slider"
+                    android:src="@drawable/food8"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/slider"
+                    android:layout_alignTop="@id/slider"
+                    android:layout_alignRight="@id/slider"
+                    android:layout_alignLeft="@id/slider"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:layout_marginTop="85dp"
+                        android:text="Welcome to mesSmart"
+                        android:id="@+id/welcome"
+                        android:gravity="center_horizontal"
+                        android:textSize="32sp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:layout_margin="5dp"
+                        android:id="@+id/place"
+                        android:text="A place, where you can choose what to eat"
+                        android:gravity="center_horizontal"
+                        android:textSize="20sp"/>
+                    <Button
+                        android:layout_width="120dp"
+                        android:id="@+id/bookmeal"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/bookbuttonshape"
+                        android:textColor="#ffffff"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Book Meal" />
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="________  HOW IT WORKS  ________"
-                android:textColor="@color/md_blue_grey_400"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:text="HOW IT WORKS"
+                android:textColor="#ffffff"
+                android:background="@color/primary"
                 android:id="@+id/how"
                 android:gravity="center_horizontal" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+
             <LinearLayout
                 android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#80f2f2bf">
@@ -48,22 +99,23 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="You Book A Meal"
-                    android:layout_marginTop="20dp"
+                    android:padding="20dp"
                     android:id="@+id/textView"
                     android:gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="You visit messmart.com and find the best mess"
-                    android:paddingLeft="90dp"
                     android:paddingRight="90dp"
+                    android:paddingLeft="90dp"
+                    android:text="You visit messmart.com and find the best mess"
                     android:id="@+id/textView2"
                     android:gravity="center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#80ffffc0">
@@ -71,7 +123,6 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
                     android:id="@+id/imageView3"
                     android:src="@drawable/hww3_t" />
 
@@ -80,6 +131,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Chef Cooks"
+                    android:padding="20dp"
                     android:layout_marginTop="20dp"
                     android:id="@+id/textView3"
                     android:gravity="center_horizontal" />
@@ -97,6 +149,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:padding="20dp"
                 android:layout_height="match_parent"
                 android:background="#80e1e1b0">
 
@@ -104,7 +157,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView4"
-                    android:layout_marginTop="50dp"
                     android:src="@drawable/hww1_t" />
 
                 <TextView
@@ -112,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Daily Home Delivery"
-                    android:layout_marginTop="20dp"
+                    android:padding="20dp"
                     android:id="@+id/textView5"
                     android:gravity="center_horizontal" />
 
@@ -125,39 +177,6 @@
                     android:id="@+id/textView6"
                     android:gravity="center_horizontal" />
             </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/how"
-                >
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"/>
-
-
-
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#80e1e1b0">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:id="@+id/textView10"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -169,16 +188,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text=""
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:id="@+id/textView11"
-                        android:gravity="center_horizontal" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Connect with us"
+                        android:padding="20dp"
                         android:paddingLeft="90dp"
                         android:paddingRight="90dp"
                         android:id="@+id/textView12"
@@ -214,24 +225,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#83ffeec0">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brought to you by MesSmart"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="90dp"
-                        android:layout_marginBottom="5dp"
-                        android:id="@+id/textView13"
-                        android:gravity="center_horizontal" />
-
-                </LinearLayout>
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

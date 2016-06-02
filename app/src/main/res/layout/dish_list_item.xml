@@ -88,7 +88,7 @@
                 android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
-                android:background="@drawable/bookbuttonshape"
+                android:background="@drawable/buttonshape"
                 android:textColor="#ffffff"
                 android:padding="5dp"
                 android:text="BOOK"

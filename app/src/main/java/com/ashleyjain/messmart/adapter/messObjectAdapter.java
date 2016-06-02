@@ -90,7 +90,6 @@ public class messObjectAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (row.getBook() == 0) {
-                    if (StartActivity.isLogin) {
 
                         alertbuilder.setTitle("Booking");
                         alertbuilder.setMessage("Mess:" + row.getName() + "\n Address:" + row.getAddress() + "\n Timing:" + row.getTiming());
@@ -234,9 +233,6 @@ public class messObjectAdapter extends BaseAdapter {
                         });
                         AlertDialog alertDialog = alertbuilder.create();
                         alertDialog.show();
-                    } else {
-                        Toast.makeText(context, "Sorry!! You need to login first", Toast.LENGTH_LONG).show();
-                    }
                 } else if (row.getBook() == 1) {
                     alertbuilder.setTitle("Confirmation");
                     alertbuilder.setMessage("Are you sure?");
