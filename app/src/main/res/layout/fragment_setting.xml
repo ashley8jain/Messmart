@@ -18,8 +18,10 @@
                             android:layout_width="wrap_content"
                             android:paddingLeft="20dp"
                             android:textStyle="bold"
+                            android:textSize="25sp"
                             android:layout_height="wrap_content"
                             android:text="Change Password"/>
+
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -28,7 +30,8 @@
 
                             android:ems="10"
                             android:id="@+id/useroldpw"
-                            android:hint="Old Password"/>
+                            android:hint="Old Password"
+                            android:textSize="12sp"/>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -37,7 +40,8 @@
                             android:inputType="textPassword"
 
                             android:id="@+id/usernewpw"
-                            android:hint="New Password"/>
+                            android:hint="New Password"
+                            android:textSize="12sp"/>
 
                         <EditText
                             android:layout_width="match_parent"
@@ -47,7 +51,8 @@
                             android:inputType="textPassword"
 
                             android:ems="10"
-                            android:hint="Repeat New Password"/>
+                            android:hint="Repeat New Password"
+                            android:textSize="12sp"/>
 
                         <Button android:id="@+id/changepw"
                             android:layout_width="match_parent"
@@ -55,7 +60,7 @@
                             android:layout_margin="20dp"
 
                             android:textColor="#ffffff"
-                            android:text="Change password"
+                            android:text="Change"
                             android:background="@drawable/buttonshape"
                             android:layout_centerHorizontal="true" />
 

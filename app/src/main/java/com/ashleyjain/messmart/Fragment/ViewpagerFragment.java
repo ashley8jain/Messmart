@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ashleyjain.messmart.MessListTabLayout;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 

@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.ashleyjain.messmart.Fragment.DishList;
+import com.ashleyjain.messmart.Fragment.List.DishList;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 

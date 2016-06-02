@@ -1,11 +1,11 @@
 package com.ashleyjain.messmart.adapter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +19,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.ashleyjain.messmart.MessListTabLayout;
-import com.ashleyjain.messmart.MessprofileActivity;
+import com.ashleyjain.messmart.Fragment.MessListTabLayout;
+import com.ashleyjain.messmart.Fragment.MessprofileActivity;
 import com.ashleyjain.messmart.Object.MessObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;

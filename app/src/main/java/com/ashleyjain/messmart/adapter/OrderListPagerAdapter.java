@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.ashleyjain.messmart.Fragment.List.OrderList;
+import com.ashleyjain.messmart.Fragment.List.PastOrderList;
 
 /**
  * Created by ashleyjain on 24/05/16.
@@ -29,7 +30,7 @@ public class OrderListPagerAdapter extends FragmentStatePagerAdapter{
             return frag;
         }
         if(position == 1){
-            OrderList frag1 = new OrderList(upcomingOrderList);
+            PastOrderList frag1 = new PastOrderList(pastOrderList);
             return frag1;
         }
         return null;
