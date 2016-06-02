@@ -27,4 +27,6 @@ heading ko hmesha messmart rkho wo link ho to the homepage
 choose account ka entropy kam kro
 go back wala option dalo create acc otp me
 
-Need a concentric colored square box with circular edges
+Need a concentric colored square box with circular edges with sea green color in between squares.
+Pressing back does not closes navigation drawer
+Changing profile info does not changes it instantly

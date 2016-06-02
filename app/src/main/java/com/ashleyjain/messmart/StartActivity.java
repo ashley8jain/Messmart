@@ -11,9 +11,11 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,6 +82,14 @@ public class StartActivity extends AppCompatActivity {
 //            Intent re = new Intent(StartActivity.this,StartActivity.class);
 //            startActivity(re);
 //            finish();
+    }
+    @Override
+    public void onBackPressed() {
+        if (this.drawer.isDrawerOpen()) {
+            this.drawer.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -199,7 +209,7 @@ public class StartActivity extends AppCompatActivity {
 
             ViewpagerFragment fragment = new ViewpagerFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_not,fragment,fragment.toString())
+                    .replace(R.id.fragment_not, fragment, fragment.toString())
                     .commit();
 
             builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
