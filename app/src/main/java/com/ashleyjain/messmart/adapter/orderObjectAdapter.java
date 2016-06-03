@@ -295,8 +295,8 @@ public class orderObjectAdapter extends BaseAdapter {
                 StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
-        lprice.setText(""+row.getlPrice()+"/-");
-        dprice.setText(""+row.getdPrice()+"/-");
+        lprice.setText(row.getlPrice()+"/-");
+        dprice.setText(row.getdPrice()+"/-");
         lstatus.setText(row.getlStatus());
         dstatus.setText(row.getdStatus());
 

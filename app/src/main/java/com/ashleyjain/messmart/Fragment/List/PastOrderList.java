@@ -79,33 +79,36 @@ public class PastOrderList extends ListFragment {
             Mid = new int[len];
             Booktype = new String[len];
 
+            int offset=0;
             for(int i=0;i<datelist.length();i++){
                 JSONArray unused = datelist.getJSONArray(i);
                 String datetim = unused.getString(0);
                 System.out.println("datetime: "+datetim);
                 JSONArray subsubarr = unused.getJSONArray(1);
-                len=len+subsubarr.length();
                 for(int j=0;j<subsubarr.length();j++) {
                     JSONObject orderitem = subsubarr.getJSONObject(j);
                     System.out.println("orderitem: "+orderitem.toString());
-                    date[i+j]=orderitem.getString("datetimetext");
-                    datetime[i+j]=orderitem.getString("time");
-                    lord[i+j]=orderitem.getString("lordtext");
-                    OIDid[i+j]=orderitem.getInt("id");
-                    Dish[i+j]=orderitem.getString("dishtitle");
-                    Mess[i+j]=orderitem.getString("mname");
-                    Dishid[i+j]=orderitem.getInt("dishid");
-                    Price[i+j]=orderitem.getInt("price");
-                    Status[i+j]=orderitem.getString("status_text");
-                    Mid[i+j]=orderitem.getInt("mid");
-                    Booktype[i+j]=orderitem.getString("booktype");
+                    System.out.println("date[i+j]: "+(offset+j)+" "+orderitem.getString("datetimetext"));
+                    date[offset+j]=orderitem.getString("datetimetext");
+                    datetime[offset+j]=datetim;
+                    lord[offset+j]=orderitem.getString("lordtext");
+                    OIDid[offset+j]=orderitem.getInt("id");
+                    Dish[offset+j]=orderitem.getString("dishtitle");
+                    Mess[offset+j]=orderitem.getString("mname");
+                    Dishid[offset+j]=orderitem.getInt("dishid");
+                    Price[offset+j]=orderitem.getInt("price");
+                    Status[offset+j]=orderitem.getString("status_text");
+                    Mid[offset+j]=orderitem.getInt("mid");
+                    Booktype[offset+j]=orderitem.getString("booktype");
                 }
+                offset+=subsubarr.length();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         orderObjectList = new ArrayList<PastOrderObject>();
         for(int i = 0;i<date.length;i++){
+            System.out.println("dateeeee: "+date[i]);
             PastOrderObject items = new PastOrderObject(datetime[i],date[i],lord[i], OIDid[i],Dish[i],Mess[i],Dishid[i],Price[i],Status[i],Mid[i],Booktype[i]);
             orderObjectList.add(items);
         }
