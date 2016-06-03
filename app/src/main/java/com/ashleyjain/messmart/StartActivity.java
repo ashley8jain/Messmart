@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONObject errorcode;
     public static String loginid;
     TextView Name,Email;
+    HashMap hm = new HashMap();
     ImageView im;
     JSONArray tabs;
 
@@ -139,8 +141,6 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-
-
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withProfileImagesClickable(false)
@@ -193,6 +193,10 @@ public class StartActivity extends AppCompatActivity {
                                 days = days7.getJSONArray("textl");
                                 days2 = days7.getJSONArray("timel");
                                 JSONObject drawer = dataobject.getJSONObject("drawer");
+                                loginname = drawer.getString("loginname");
+                                loginid = drawer.getString("loginid");
+                                Name.setText(loginname.equals("Profile")?"Guest User":loginname);
+                                System.out.println("loginname: " + loginname);
                                 tabs = drawer.getJSONArray("tabs");
                                 JSONObject tab_map = drawer.getJSONObject("tab_map");
                                 Vector<String> tab_things = new Vector<>();
@@ -200,9 +204,19 @@ public class StartActivity extends AppCompatActivity {
                                 /*for(int i =0; i <tabs.length();i++){
                                     tab_things.add(tabs.getString(i));
                                 }*/
+                                hm.put("Login",R.drawable.login);
+                                hm.put("Logout", R.drawable.logout);
+                                hm.put("Contact us", R.drawable.online_support);
+                                hm.put("About us", R.drawable.aboutus);
+                                hm.put("Menu", R.drawable.menu);
+                                hm.put("Orders",R.drawable.order);
+                                hm.put("Settings",R.drawable.setting);
+                                hm.put(loginname,R.drawable.profile);
                                 for(int i = 0 ;i < tabs.length();i++){
                                     String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
+                                    System.out.println("cap: "+cap);
+                                    Drawable dr = getResources().getDrawable((int)hm.get(cap));
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon(dr));
                                 }
                                 /*for(int i=0;i<tabs.length();i++){
                                     String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
@@ -213,10 +227,7 @@ public class StartActivity extends AppCompatActivity {
                                     builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
                                 }*/
                                 //System.out.println()
-                                    loginname = drawer.getString("loginname");
-                                    loginid = drawer.getString("loginid");
-                                    Name.setText(loginname.equals("Profile")?"Guest User":loginname);
-                                    System.out.println("loginname: " + loginname);
+
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
