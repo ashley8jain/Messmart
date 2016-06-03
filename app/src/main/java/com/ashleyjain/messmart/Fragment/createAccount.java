@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,11 +128,22 @@ public class createAccount extends Fragment {
 
         alreadyhave = (TextView) view.findViewById(R.id.already);
         alreadyhave.setText(Html.fromHtml("Already have an account? " + "<font color=#039be5>" + "Login" + "</font><br><br>"));
-        alreadyhave.setOnClickListener(new View.OnClickListener() {
+//        alreadyhave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//        });
+        alreadyhave.setMovementMethod(LinkMovementMethod.getInstance());
+        alreadyhave.setText(alreadyhave.getText(), TextView.BufferType.SPANNABLE);
+        Spannable alreadyhavespannable = (Spannable)alreadyhave.getText();
+        ClickableSpan myAlreadyHaveSpan = new ClickableSpan()
+        {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
-        });
+        };
+        alreadyhavespannable.setSpan(myAlreadyHaveSpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 }
