@@ -1,36 +1,6 @@
-background pic- main pic jo ki website pr h
-how it works ko sudharo
-spacing
-remove view 
-copyright me space do
-contact us ko sundar bnao #Done
-saved number aur passworddon't have an acount ko lnk htao
-login wale me otp is incorrect
-forgot your password login me #Done
-scrollview in mess join us and login page #Done
-dropdown me lining and white text #Done
-displaying the dish properly
 lunch and dinner timing ko htao if not there... do not pick -
-blank space in mess profile ko htao
-#ccc 1px line everywhere in App for separation
-remove tilte menu 
-jis page se login kiya wohi pr jaye
-book ko click krne ke baad popup me space htao
-multiple loading htao
-chota book bada book 
-button,heading(lunch,dinner) align kr do text se
-past me book now nhi aaye
-cancel click krne ke baad book ka option aa jaye
-push kro ... proflie,setting ko dhang ka bnao
-order profile setting ka icon dalo
-heading ko hmesha messmart rkho wo link ho to the homepage
-choose account ka entropy kam kro
-go back wala option dalo create acc otp me #Done
 
-Need a concentric colored square box with circular edges with sea green color in between squares.
-Pressing back does not closes navigation drawer #Done
-Changing profile info does not changes it instantly #Done
-Add Icons in Navigation Drawer
-Remove Not Signed in from navigation drawer after signing in
-Beautify About Us
-Auto Detect OTP
+blank space in mess profile ko htao
+
+jis page se login kiya wohi pr jaye
+

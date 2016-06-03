@@ -69,6 +69,7 @@ public class OrderFragment extends Fragment {
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             upcominglist = dataobject.getString("0");
                             pastlist = dataobject.getString("1");
+                            System.out.println("pastlistttt: "+pastlist.toString());
                             dialog.dismiss();
                             final OrderListPagerAdapter adapter = new OrderListPagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),upcominglist,pastlist);
                             viewPager.setAdapter(adapter);

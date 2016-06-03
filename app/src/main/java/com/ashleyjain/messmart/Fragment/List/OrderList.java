@@ -74,7 +74,6 @@ public class OrderList extends ListFragment {
                 JSONArray unused = datelist.getJSONArray(i);
                 String datetim = unused.getString(0);
                 datetime[i] = datetim;
-                System.out.println("orderdatetime: "+datetime[i]);
                 JSONArray subsubarr = unused.getJSONArray(1);
                 for(int j=0;j<subsubarr.length();j++){
                     JSONObject orderitem = subsubarr.getJSONObject(j);
@@ -157,9 +156,6 @@ public class OrderList extends ListFragment {
         return inflater.inflate(R.layout.fragment_order_list, container, false);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
 
 }

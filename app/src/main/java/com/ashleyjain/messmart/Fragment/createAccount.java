@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
@@ -123,6 +124,7 @@ public class createAccount extends Fragment {
 
                 // add it to the RequestQueue
                 StartActivity.get().getRequestQueue().add(postRequest);
+                KeyboardDown.keyboardDown();
             }
         });
 

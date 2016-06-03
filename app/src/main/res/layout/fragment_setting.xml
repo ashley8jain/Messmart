@@ -1,124 +1,75 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:background="#80f2f2bf">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/fragment_not">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/how"
-                    >
-
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
 
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-
+                        android:padding="20dp"
+                        android:layout_height="match_parent">
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Old Password"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
+                            android:text="Change Password"/>
+
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="20dp"
+                            android:inputType="textPassword"
+
+                            android:ems="10"
                             android:id="@+id/useroldpw"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="New Password"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
+                            android:hint="Old Password"
+                            android:textSize="12sp"/>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/usernewpw"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
+                            android:padding="20dp"
+                            android:ems="10"
+                            android:inputType="textPassword"
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Re-enter New Password"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp" />
+                            android:id="@+id/usernewpw"
+                            android:hint="New Password"
+                            android:textSize="12sp"/>
+
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/usernewpwre"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"/>
+                            android:padding="20dp"
+                            android:inputType="textPassword"
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray"/>
+                            android:ems="10"
+                            android:hint="Repeat New Password"
+                            android:textSize="12sp"/>
 
                         <Button android:id="@+id/changepw"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Change password"
-                            />
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="20dp"
 
-
+                            android:textColor="#ffffff"
+                            android:text="Change"
+                            android:background="@drawable/buttonshape"
+                            android:layout_centerHorizontal="true" />
 
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-            </FrameLayout>
-
         </ScrollView>
 
-    </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>
+

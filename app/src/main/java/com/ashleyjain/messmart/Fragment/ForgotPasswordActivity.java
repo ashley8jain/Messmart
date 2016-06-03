@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.KeyboardDown;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,10 +51,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 forgotPassword();
-                InputMethodManager inputManager = (InputMethodManager)StartActivity.get().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(StartActivity.get().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-
+                KeyboardDown.keyboardDown();
             }
 
         });
