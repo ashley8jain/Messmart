@@ -34,3 +34,7 @@ Add Icons in Navigation Drawer
 Remove Not Signed in from navigation drawer after signing in
 Beautify About Us
 Auto Detect OTP
+Clicking Login in Create account does not take me to login page.
+Allowed only numbers to enter in registration
+10 digit Numbers only
+View Password Toggle Button

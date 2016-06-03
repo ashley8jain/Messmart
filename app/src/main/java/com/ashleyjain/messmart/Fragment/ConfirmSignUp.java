@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +72,7 @@ public class ConfirmSignUp extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Sent, Go Away!", Toast.LENGTH_LONG).show();
                                     }
                                     else{
                                         Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
@@ -130,7 +133,7 @@ public class ConfirmSignUp extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Enter Account Details!", Toast.LENGTH_LONG).show();
                                         createAccount fragment = new createAccount();
                                         Bundle bundle = new Bundle();
                                         bundle.putString("PHONE",phone);
@@ -180,13 +183,25 @@ public class ConfirmSignUp extends Fragment {
 
         TextView already = (TextView) view.findViewById(R.id.already);
         already.setText(Html.fromHtml("Already have an account? " + "<font color=#039be5>" + "Login" + "</font><br><br>"));
-        already.setOnClickListener(new View.OnClickListener() {
+//        already.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().popBackStack();
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//        });
+        already.setMovementMethod(LinkMovementMethod.getInstance());
+        already.setText(already.getText(), TextView.BufferType.SPANNABLE);
+        Spannable alreadyspannable = (Spannable)already.getText();
+        ClickableSpan myAlreadySpan = new ClickableSpan()
+        {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStack();
                 getActivity().getSupportFragmentManager().popBackStack();
             }
-        });
+        };
+        alreadyspannable.setSpan(myAlreadySpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     }
 }

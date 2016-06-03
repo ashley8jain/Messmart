@@ -48,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/phone"
+            android:inputType="number"
+            android:maxLength="10"
             android:hint="Phone"
             android:text="7503759059"
             android:drawablePadding="10dp"
