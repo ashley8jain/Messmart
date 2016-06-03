@@ -52,6 +52,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -137,10 +138,11 @@ public class StartActivity extends AppCompatActivity {
                 .withProfileImagesClickable(false)
                 .withActivity(this)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
+                        new ProfileDrawerItem().withName("Guest User").withEmail(null)
                 )
                 .withHeaderBackground(R.drawable.slider1)
                 .build();
+
 
         //buttons handling in drawer
         final DrawerBuilder builder = new DrawerBuilder()
@@ -184,10 +186,24 @@ public class StartActivity extends AppCompatActivity {
                                 days2 = days7.getJSONArray("timel");
                                 JSONObject drawer = dataobject.getJSONObject("drawer");
                                 tabs = drawer.getJSONArray("tabs");
-                                for(int i=0;i<tabs.length();i++){
-                                    String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
+                                JSONObject tab_map = drawer.getJSONObject("tab_map");
+                                Vector<String> tab_things = new Vector<>();
+
+                                /*for(int i =0; i <tabs.length();i++){
+                                    tab_things.add(tabs.getString(i));
+                                }*/
+                                for(int i = 0 ;i < tabs.length();i++){
+                                    String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
                                     builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
                                 }
+                                /*for(int i=0;i<tabs.length();i++){
+                                    String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
+
+                                    if(cap.equals("Cpass")){
+                                        cap="Setting";
+                                    }
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
+                                }*/
                                 //System.out.println()
                                     loginname = drawer.getString("loginname");
                                     loginid = drawer.getString("loginid");
@@ -323,7 +339,7 @@ public class StartActivity extends AppCompatActivity {
                                 .replace(R.id.fragment_not, ofragment, ofragment.toString())
                                 .addToBackStack(ofragment.toString())
                                 .commit();
-                    } else if (name.equals("Profile")) {
+                    } else if (name.equals(loginname)) {
                         popStack();
                         UserprofileActivity userprofileActivity = new UserprofileActivity();
                         getSupportFragmentManager().beginTransaction()
@@ -331,7 +347,7 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(userprofileActivity.toString())
                                 .commit();
 
-                    } else if (name.equals("Cpass")) {
+                    } else if (name.equals("Settings")) {
                         popStack();
                         Setting settingfragment = new Setting();
                         getSupportFragmentManager().beginTransaction()
