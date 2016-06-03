@@ -12,13 +12,12 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.ashleyjain.messmart.MessListTabLayout;
+
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 
 
 public class ViewpagerFragment extends Fragment {
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,13 +30,12 @@ public class ViewpagerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         TranslateAnimation moveToptoBottom = new TranslateAnimation(0,0, -1000, 0);
-        moveToptoBottom.setDuration(2000);
+        moveToptoBottom.setDuration(1000);
         moveToptoBottom.setFillAfter(true);
 
         TranslateAnimation moveBottomtoTop = new TranslateAnimation(0,0,1000,0);
-        moveBottomtoTop.setDuration(2000);
+        moveBottomtoTop.setDuration(1000);
         moveBottomtoTop.setFillAfter(true);
 
         TranslateAnimation moveLefttoRight = new TranslateAnimation(-900,0, 0, 0);

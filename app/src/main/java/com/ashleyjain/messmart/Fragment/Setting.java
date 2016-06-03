@@ -1,10 +1,14 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +18,9 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
@@ -30,6 +37,25 @@ public class Setting extends Fragment {
 
     EditText useroldpw,usernewpw,usernewpwre;
     Button changepw;
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.home:
+                for(int i=0;i<getActivity().getSupportFragmentManager().getBackStackEntryCount();i++)
+                    getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,13 +80,31 @@ public class Setting extends Fragment {
                     Toast.makeText(getActivity(),"Passwords do not match!",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Changing......", true);
                     String url = "http://192.168.0.106/mess/index.php/ajaxactions";
                     StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                             new Response.Listener<String>() {
                                 @Override
 
                                 public void onResponse(String response) {
-                                    Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+                                    Log.d("Response", response);
+                                    //response JSON from url
+                                    try {
+                                        JSONObject jsonResponse = new JSONObject(response);
+                                        Integer ec = jsonResponse.getInt("ec");
+                                        if(ec == 1){
+                                            Toast.makeText(getActivity(),"Changed", Toast.LENGTH_LONG).show();
+                                            getActivity().getSupportFragmentManager().popBackStack();
+                                        }
+                                        else{
+                                            Toast.makeText(getActivity(), StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                        }
+                                        System.out.println("Message: " + ec);
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                        dialog.dismiss();
+                                    }
 
                                 }
                             },
@@ -69,7 +113,7 @@ public class Setting extends Fragment {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                    //dialog.dismiss();
+                                    dialog.dismiss();
                                 }
                             }
 
@@ -90,6 +134,7 @@ public class Setting extends Fragment {
 
                     // add it to the RequestQueue
                     StartActivity.get().getRequestQueue().add(postRequest);
+                    KeyboardDown.keyboardDown();
                     //getActivity().finish();
                     //StartActivity.get().onBackPressed();
                     //getActivity().getSupportFragmentManager().beginTransaction().remove(Setting.this).commit();

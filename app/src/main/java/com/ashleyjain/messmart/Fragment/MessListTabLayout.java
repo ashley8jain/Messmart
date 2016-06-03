@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.adapter.PagerAdapter;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
@@ -41,12 +43,6 @@ public class MessListTabLayout extends Fragment {
     PagerAdapter adapter;
     Boolean load;
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
-    }
-
     public MessListTabLayout(String datetime,String lord,Boolean load){
         this.load = load;
         if(load){
@@ -57,8 +53,24 @@ public class MessListTabLayout extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.toolbar_menu, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+
+
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Toast.makeText(getActivity(), getActivity().getSupportFragmentManager().getBackStackEntryCount()+"", Toast.LENGTH_SHORT).show();
         days = getArguments().getString("days");
         days2 = getArguments().getString("days2");
         System.out.println("days: "+days);

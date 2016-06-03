@@ -11,11 +11,12 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +30,10 @@ import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.AboutusActivity;
 import com.ashleyjain.messmart.Fragment.ContactusActivity;
 import com.ashleyjain.messmart.Fragment.LoginActivity;
+import com.ashleyjain.messmart.Fragment.MessListTabLayout;
 import com.ashleyjain.messmart.Fragment.OrderFragment;
+import com.ashleyjain.messmart.Fragment.Setting;
+import com.ashleyjain.messmart.Fragment.UserprofileActivity;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -48,6 +52,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -77,6 +82,25 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.home:
+                for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
+                    getSupportFragmentManager().popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
     protected void onRestart() {
         super.onRestart();
 //            Intent re = new Intent(StartActivity.this,StartActivity.class);
@@ -92,8 +116,10 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
@@ -113,15 +139,18 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+
+
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withProfileImagesClickable(false)
                 .withActivity(this)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
+                        new ProfileDrawerItem().withName("Guest User").withEmail(null)
                 )
                 .withHeaderBackground(R.drawable.slider1)
                 .build();
+
 
         //buttons handling in drawer
         final DrawerBuilder builder = new DrawerBuilder()
@@ -165,10 +194,24 @@ public class StartActivity extends AppCompatActivity {
                                 days2 = days7.getJSONArray("timel");
                                 JSONObject drawer = dataobject.getJSONObject("drawer");
                                 tabs = drawer.getJSONArray("tabs");
-                                for(int i=0;i<tabs.length();i++){
-                                    String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon(R.drawable.facebook_icon));
+                                JSONObject tab_map = drawer.getJSONObject("tab_map");
+                                Vector<String> tab_things = new Vector<>();
+
+                                /*for(int i =0; i <tabs.length();i++){
+                                    tab_things.add(tabs.getString(i));
+                                }*/
+                                for(int i = 0 ;i < tabs.length();i++){
+                                    String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
                                 }
+                                /*for(int i=0;i<tabs.length();i++){
+                                    String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
+
+                                    if(cap.equals("Cpass")){
+                                        cap="Setting";
+                                    }
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
+                                }*/
                                 //System.out.println()
                                     loginname = drawer.getString("loginname");
                                     loginid = drawer.getString("loginid");
@@ -217,6 +260,7 @@ public class StartActivity extends AppCompatActivity {
                 public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
                     String name = ((Nameable) drawerItem).getName().toString();
                     if (name.equals("Menu")) {
+                        popStack();
                         MessListTabLayout fragment = new MessListTabLayout("", "", false);
                         Bundle bundle3 = new Bundle();
                         bundle3.putString("days", days.toString());
@@ -227,6 +271,7 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(fragment.toString())
                                 .commit();
                     } else if (name.equals("Login")) {
+                        popStack();
                         LoginActivity loginfragment = new LoginActivity();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
@@ -274,7 +319,8 @@ public class StartActivity extends AppCompatActivity {
 
                         // add it to the RequestQueue
                         getRequestQueue().add(postRequest);
-                    } else if (name.equals("Aboutus")) {
+                    } else if (name.equals("About us")) {
+                        popStack();
                         AboutusActivity aboutfragment = new AboutusActivity();
                         Bundle bundle = new Bundle();
                         bundle.putString("aboutus", aboutus);
@@ -284,7 +330,8 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(aboutfragment.toString())
                                 .commit();
 
-                    } else if (name.equals(("Contactus"))) {
+                    } else if (name.equals(("Contact us"))) {
+                        popStack();
                         ContactusActivity contactfragment = new ContactusActivity();
                         Bundle bundle2 = new Bundle();
                         bundle2.putString("contactus", contactus);
@@ -294,19 +341,22 @@ public class StartActivity extends AppCompatActivity {
                                 .addToBackStack(contactfragment.toString())
                                 .commit();
                     } else if (name.equals("Orders")) {
+                        popStack();
                         OrderFragment ofragment = new OrderFragment();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, ofragment, ofragment.toString())
                                 .addToBackStack(ofragment.toString())
                                 .commit();
-                    } else if (name.equals("Profile")) {
+                    } else if (name.equals(loginname)) {
+                        popStack();
                         UserprofileActivity userprofileActivity = new UserprofileActivity();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, userprofileActivity, userprofileActivity.toString())
                                 .addToBackStack(userprofileActivity.toString())
                                 .commit();
 
-                    } else if (name.equals("Cpass")) {
+                    } else if (name.equals("Settings")) {
+                        popStack();
                         Setting settingfragment = new Setting();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, settingfragment, settingfragment.toString())
@@ -423,6 +473,11 @@ public class StartActivity extends AppCompatActivity {
     //Volley request queue
     public RequestQueue getRequestQueue() {
         return _requestQueue;
+    }
+
+    private void popStack(){
+        for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
+            getSupportFragmentManager().popBackStack();
     }
 
 }

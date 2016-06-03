@@ -1,11 +1,10 @@
-package com.ashleyjain.messmart.Fragment;
+package com.ashleyjain.messmart.Fragment.List;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 
 import com.ashleyjain.messmart.Object.DishObject;
-import com.ashleyjain.messmart.Object.MessObject;
 import com.ashleyjain.messmart.adapter.dishObjectAdapter;
 
 import org.json.JSONArray;

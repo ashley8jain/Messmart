@@ -19,8 +19,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.Fragment.OrderFragment;
-import com.ashleyjain.messmart.MessListTabLayout;
-import com.ashleyjain.messmart.MessprofileActivity;
+import com.ashleyjain.messmart.Fragment.MessListTabLayout;
+import com.ashleyjain.messmart.Fragment.MessprofileActivity;
 import com.ashleyjain.messmart.Object.OrderObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
@@ -295,8 +295,8 @@ public class orderObjectAdapter extends BaseAdapter {
                 StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
-        lprice.setText(""+row.getlPrice()+"/-");
-        dprice.setText(""+row.getdPrice()+"/-");
+        lprice.setText(row.getlPrice()+"/-");
+        dprice.setText(row.getdPrice()+"/-");
         lstatus.setText(row.getlStatus());
         dstatus.setText(row.getdStatus());
 
