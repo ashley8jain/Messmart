@@ -1,17 +1,21 @@
 package com.ashleyjain.messmart.Fragment;
 
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +40,7 @@ import java.util.Map;
 public class Setting extends Fragment {
 
     EditText useroldpw,usernewpw,usernewpwre;
+    CheckBox showHidePas;
     Button changepw;
 
     @Override
@@ -72,6 +77,24 @@ public class Setting extends Fragment {
         usernewpwre = (EditText)view.findViewById(R.id.usernewpwre);
         useroldpw = (EditText)view.findViewById(R.id.useroldpw);
         changepw = (Button)view.findViewById(R.id.changepw);
+
+        CheckBox showPassword = (CheckBox) view.findViewById(R.id.showHidePassword);
+        showPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked) {
+                    //Show password
+                    useroldpw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    usernewpw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    usernewpwre.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    //Hide password
+                    useroldpw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    usernewpw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    usernewpwre.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
 
         changepw.setOnClickListener(new View.OnClickListener() {
             @Override

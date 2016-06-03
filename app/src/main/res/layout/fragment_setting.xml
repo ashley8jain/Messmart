@@ -38,7 +38,6 @@
                             android:padding="20dp"
                             android:ems="10"
                             android:inputType="textPassword"
-
                             android:id="@+id/usernewpw"
                             android:hint="New Password"
                             android:textSize="12sp"/>
@@ -49,10 +48,16 @@
                             android:id="@+id/usernewpwre"
                             android:padding="20dp"
                             android:inputType="textPassword"
-
                             android:ems="10"
                             android:hint="Repeat New Password"
                             android:textSize="12sp"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Show Password"
+                            android:id="@+id/showHidePassword"
+                            android:checked="false" />
 
                         <Button android:id="@+id/changepw"
                             android:layout_width="match_parent"
