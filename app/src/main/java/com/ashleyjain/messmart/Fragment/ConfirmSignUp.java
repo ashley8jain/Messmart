@@ -73,7 +73,7 @@ public class ConfirmSignUp extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(), "Sent, Go Away!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
                                     }
                                     else{
                                         Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
