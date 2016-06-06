@@ -8,7 +8,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/activity_messjoin">
 
     <ScrollView
         android:layout_width="match_parent"

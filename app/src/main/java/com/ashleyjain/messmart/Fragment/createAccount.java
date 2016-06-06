@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,9 +58,19 @@ public class createAccount extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.fragment_create_account);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
         nm = (EditText) view.findViewById(R.id.name);
         add = (EditText) view.findViewById(R.id.address);
         chPass = (EditText) view.findViewById(R.id.choosepassword);
+
         createAcc = (Button) view.findViewById(R.id.createb);
 
         createAcc.setOnClickListener(new View.OnClickListener() {

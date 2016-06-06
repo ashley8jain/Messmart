@@ -1,12 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+    android:id="@+id/fragment_setting">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scrollView">
+            android:id="@+id/fragment_setting_sv">
 
 
                     <LinearLayout
@@ -47,8 +48,9 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="#d3e9d9"
+                            android:padding="10dp"
                             android:id="@+id/usernewpwre"
-                            android:padding="20dp"
                             android:inputType="textPassword"
                             android:ems="10"
                             android:hint="Repeat New Password"

@@ -8,18 +8,21 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/activity_login">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:id="@+id/activity_login_sv">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:id="@+id/activity_login2">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

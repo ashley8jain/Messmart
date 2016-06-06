@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
 
 
-    android:layout_height="500dp"
-    android:layout_margin="0dp">
+    android:layout_height="500dp">
     <!--card_view:cardCornerRadius="8dp"
     card_view:cardElevation="2dp"-->
     <RelativeLayout

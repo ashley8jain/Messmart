@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -47,6 +49,7 @@ public class Setting extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -77,6 +80,24 @@ public class Setting extends Fragment {
         usernewpwre = (EditText)view.findViewById(R.id.usernewpwre);
         useroldpw = (EditText)view.findViewById(R.id.useroldpw);
         changepw = (Button)view.findViewById(R.id.changepw);
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.fragment_setting);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.fragment_setting_sv);
+        scrollView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
 
         CheckBox showPassword = (CheckBox) view.findViewById(R.id.showHidePassword);
         showPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {

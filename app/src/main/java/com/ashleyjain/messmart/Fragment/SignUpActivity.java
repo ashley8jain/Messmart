@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,8 +20,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,9 +77,31 @@ public class SignUpActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
 
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_sign_up);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+
         newmobile = (EditText) view.findViewById(R.id.newmob);
         newmobile.setTypeface(font);
         newmobile.addTextChangedListener(new checkError(newmobile));
+
+        /*newmobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager inputManager = (InputMethodManager)StartActivity.get().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    Toast.makeText(getActivity(),"unfocused",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });*/
 
         sendotp = (Button) view.findViewById(R.id.sendotp);
         sendotp.setTypeface(font);

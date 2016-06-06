@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,34 @@ public class LoginActivity extends Fragment {
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
 
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_login);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        RelativeLayout rlayout2 = (RelativeLayout) view.findViewById(R.id.activity_login2);
+        rlayout2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.activity_login_sv);
+        scrollView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
         mobileno = (EditText) view.findViewById(R.id.phone);
         mobileno.setTypeface(font);
         mobileno.addTextChangedListener(new checkError(mobileno));

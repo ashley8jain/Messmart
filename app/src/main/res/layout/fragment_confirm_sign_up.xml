@@ -8,7 +8,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/fragment_confirm_sign_up">
 
     <TextView
         android:layout_width="wrap_content"

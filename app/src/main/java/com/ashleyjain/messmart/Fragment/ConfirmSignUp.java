@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,15 @@ public class ConfirmSignUp extends Fragment {
 
         ph = (EditText) view.findViewById(R.id.mob);
         ph.setText(phone);
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.fragment_confirm_sign_up);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
 
         resend = (Button) view.findViewById(R.id.resend);
         resend.setOnClickListener(new View.OnClickListener() {

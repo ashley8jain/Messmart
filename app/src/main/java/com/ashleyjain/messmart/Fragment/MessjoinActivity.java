@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -52,6 +53,16 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
         password = (EditText) view.findViewById(R.id.EditTextPassword);
         editTextelse = (EditText) view.findViewById(R.id.EditTextElse);
         buttonSubmit = (Button) view.findViewById(R.id.ButtonSubmit);
+
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_messjoin);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
 
 
         name.addTextChangedListener(new TextWatcher() {
