@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
@@ -26,18 +27,17 @@ public class AboutusActivity extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Picasso.with(getActivity()).load(StartActivity.host+"photo/chef2.jpg").into(iv);
         View view = inflater.inflate(R.layout.activity_aboutus, container, false);
         abus = (TextView) view.findViewById(R.id.textView2);
-        //wv = (WebView) view.findViewById(R.id.webView);
-//        String html = "<h1 style='color:red;' onclick='document.getElementById(\"timepass\").style.display=\"none\";' >Mohit Saini</h1> <img id='timepass' style='width:300px;' src='http://192.168.0.102/mess/photo/chef2.jpg' />";
-//        String mime = "text/html";
-//        String encoding = "utf-8";
-        //wv.getSettings().setJavaScriptEnabled(true);
-        //wv.loadDataWithBaseURL(null, html, mime, encoding, null);
         abus.setText(Html.fromHtml(aboutus));
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("About Us");
         return view;
 
     }

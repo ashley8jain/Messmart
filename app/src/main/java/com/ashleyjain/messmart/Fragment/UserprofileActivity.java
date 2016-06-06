@@ -6,7 +6,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+        import android.support.v7.app.AppCompatActivity;
+        import android.util.Log;
 import android.view.LayoutInflater;
         import android.view.Menu;
         import android.view.MenuInflater;
@@ -38,6 +39,12 @@ public class UserprofileActivity extends Fragment {
     String name,address;
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -58,6 +65,7 @@ public class UserprofileActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profile");
         return inflater.inflate(R.layout.activity_userprofile, container, false);
     }
 

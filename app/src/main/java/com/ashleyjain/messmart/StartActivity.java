@@ -1,6 +1,5 @@
 package com.ashleyjain.messmart;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,9 +8,11 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -59,7 +60,7 @@ public class StartActivity extends AppCompatActivity {
 
     protected Drawer drawer = null;
     AccountHeader headerResult = null;
-    String loginname;
+    String loginname,logintype;
     private Context context;
     String aboutus,contactus;
     public static JSONArray days,days2;
@@ -195,8 +196,8 @@ public class StartActivity extends AppCompatActivity {
                                 JSONObject drawer = dataobject.getJSONObject("drawer");
                                 loginname = drawer.getString("loginname");
                                 loginid = drawer.getString("loginid");
-                                Name.setText(loginname.equals("Profile")?"Guest User":loginname);
-                                System.out.println("loginname: " + loginname);
+                                logintype = drawer.getString("logintype");
+                                Name.setText(loginname.equals("Profile") ? "Guest User" : loginname);
                                 tabs = drawer.getJSONArray("tabs");
                                 JSONObject tab_map = drawer.getJSONObject("tab_map");
                                 Vector<String> tab_things = new Vector<>();
@@ -209,14 +210,35 @@ public class StartActivity extends AppCompatActivity {
                                 hm.put("Contact us", R.drawable.online_support);
                                 hm.put("About us", R.drawable.aboutus);
                                 hm.put("Menu", R.drawable.menu);
-                                hm.put("Orders",R.drawable.order);
-                                hm.put("Settings",R.drawable.setting);
-                                hm.put(loginname,R.drawable.profile);
+                                hm.put("Orders", R.drawable.order);
+                                hm.put("Settings", R.drawable.setting);
+                                hm.put(loginname, R.drawable.profile);
                                 for(int i = 0 ;i < tabs.length();i++){
                                     String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
-                                    System.out.println("cap: "+cap);
                                     Drawable dr = getResources().getDrawable((int)hm.get(cap));
                                     builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon(dr));
+                                }
+                                    if( !logintype.equals("null")&& !logintype.equals("u")){
+                                    AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
+                                    alertbuilder.setTitle("You are not user!!");
+                                    alertbuilder.setMessage("Go to www.messmart.com website");
+                                    alertbuilder.setCancelable(true);
+                                    alertbuilder.setPositiveButton("Open Website", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.messmart.com"));
+                                            startActivity(browserIntent);
+                                            logoutapi();
+                                            finish();
+                                        }
+                                    });
+                                    alertbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            logoutapi();
+                                        }
+                                    });
+                                    AlertDialog alertDialog = alertbuilder.create();
+                                    alertDialog.show();
                                 }
                                 /*for(int i=0;i<tabs.length();i++){
                                     String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
@@ -291,45 +313,7 @@ public class StartActivity extends AppCompatActivity {
 
 
                     } else if (name.equals("Logout")) {
-                        final ProgressDialog dialog = ProgressDialog.show(context, "", "Logging out....", true);
-                        String url = host + "index.php/ajaxactions";
-
-                        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                                new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        Log.d("Response", response);
-                                        Intent re = new Intent(StartActivity.this, StartActivity.class);
-                                        startActivity(re);
-                                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                                        finish();
-                                        dialog.dismiss();
-                                    }
-                                },
-                                new Response.ErrorListener() {
-
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                                        dialog.dismiss();
-                                    }
-                                }
-
-                        ) {
-                            @Override
-                            protected Map<String, String> getParams() {
-                                Log.d("debug", "posting param");
-                                Map<String, String> params = new HashMap<String, String>();
-
-                                // the POST parameters:
-                                params.put("action", "logout");
-                                System.out.println(params);
-                                return params;
-                            }
-                        };
-
-                        // add it to the RequestQueue
-                        getRequestQueue().add(postRequest);
+                        logoutapi();
                     } else if (name.equals("About us")) {
                         popStack();
                         AboutusActivity aboutfragment = new AboutusActivity();
@@ -489,6 +473,48 @@ public class StartActivity extends AppCompatActivity {
     private void popStack(){
         for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
             getSupportFragmentManager().popBackStack();
+    }
+
+    private void logoutapi(){
+        final ProgressDialog dialog = ProgressDialog.show(context, "", "Logging out....", true);
+        String url = host + "index.php/ajaxactions";
+
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        Intent re = new Intent(StartActivity.this, StartActivity.class);
+                        startActivity(re);
+                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                        finish();
+                        dialog.dismiss();
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Log.d("debug", "posting param");
+                Map<String, String> params = new HashMap<String, String>();
+
+                // the POST parameters:
+                params.put("action", "logout");
+                System.out.println(params);
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        getRequestQueue().add(postRequest);
     }
 
 }

@@ -327,7 +327,7 @@ public class messObjectAdapter extends BaseAdapter {
                         .commit();
             }
         });
-        Prices.setText(row.getPrice());
+        Prices.setText(row.getPrice()+"");
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
 
