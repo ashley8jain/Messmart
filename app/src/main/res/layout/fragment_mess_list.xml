@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+
     android:paddingTop="20dp"
     android:background="#ffffff"
     tools:context=".Fragment.List.MessList">
@@ -10,7 +10,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@android:id/list">
+        android:id="@android:id/list"
+        android:scrollbars="none">
     </ListView>
 
     <TextView
