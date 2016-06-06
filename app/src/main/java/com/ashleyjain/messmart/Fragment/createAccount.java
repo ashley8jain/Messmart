@@ -2,12 +2,15 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,14 +131,18 @@ public class createAccount extends Fragment {
             }
         });
 
-        alreadyhave = (TextView) view.findViewById(R.id.already);
-        alreadyhave.setText(Html.fromHtml("Already have an account? " + "<font color=#039be5>" + "Login" + "</font><br><br>"));
+        alreadyhave = (TextView) view.findViewById(R.id.already_conf);
+        alreadyhave.setText(Html.fromHtml("Already have an account? Login" + "</font><br><br>"));
+
 //        alreadyhave.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                getActivity().getSupportFragmentManager().popBackStack();
 //            }
 //        });
+
+
+
         alreadyhave.setMovementMethod(LinkMovementMethod.getInstance());
         alreadyhave.setText(alreadyhave.getText(), TextView.BufferType.SPANNABLE);
         Spannable alreadyhavespannable = (Spannable)alreadyhave.getText();
@@ -147,7 +154,13 @@ public class createAccount extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStack();
                 getActivity().getSupportFragmentManager().popBackStack();
             }
+            @Override
+            public void updateDrawState(TextPaint ds) {// override updateDrawState
+                ds.setUnderlineText(false); // set to false to remove underline
+            }
         };
         alreadyhavespannable.setSpan(myAlreadyHaveSpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        alreadyhavespannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
+        /**/
     }
 }

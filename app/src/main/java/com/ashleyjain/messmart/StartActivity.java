@@ -383,7 +383,7 @@ public class StartActivity extends AppCompatActivity {
             Email = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_email);
             im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
 
-            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Loading...", true);
+            //final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Loading...", true);
 
             StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -400,10 +400,10 @@ public class StartActivity extends AppCompatActivity {
                                 System.out.println("profileurl: " + imageurl);
                                 if(imageurl!=null)
                                     Picasso.with(context).load(StartActivity.host+imageurl).into(im);
-                                dialog2.dismiss();
+                                //dialog2.dismiss();
                             } catch (JSONException e) {
                                 //Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                                dialog2.dismiss();
+                                //dialog2.dismiss();
                             }
 
                         }

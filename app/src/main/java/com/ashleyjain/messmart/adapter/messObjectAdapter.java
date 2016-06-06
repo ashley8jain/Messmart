@@ -84,7 +84,7 @@ public class messObjectAdapter extends BaseAdapter {
         final MessObject row = messList.get(position);
 
 
-        book.setText(row.getBook() == 1 ? "cancel" : "book");
+        book.setText(row.getBook() == 1 ? "Cancel" : "Book");
         final AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
         book.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +92,7 @@ public class messObjectAdapter extends BaseAdapter {
                 if (row.getBook() == 0) {
 
                         alertbuilder.setTitle("Booking");
-                        alertbuilder.setMessage("Mess:" + row.getName() + "\n Address:" + row.getAddress() + "\n Timing:" + row.getTiming());
+                        alertbuilder.setMessage("Mess : " + row.getName() + "\nAddress : " + row.getAddress() + "\nTiming : " + row.getTiming());
                         alertbuilder.setCancelable(true);
                     alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -179,7 +179,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                     dialog2.dismiss();
                                                     if (ec == 1) {
                                                         Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
-                                                        book.setText("booked");
+                                                        book.setText("Booked");
                                                         StartActivity.get().getSupportFragmentManager().popBackStack();
                                                         MessListTabLayout fragment = new MessListTabLayout("", "", false);
                                                         Bundle bundle3 = new Bundle();
@@ -313,9 +313,9 @@ public class messObjectAdapter extends BaseAdapter {
         });
 
 
-
+        //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
         messTitle.setText(row.getTitle());
-        messDescription.setText(row.getDescription());
+        messDescription.setText("Description:\n"+row.getDescription());
         name.setText(row.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -327,7 +327,7 @@ public class messObjectAdapter extends BaseAdapter {
                         .commit();
             }
         });
-        Prices.setText("" + row.getPrice() + "/-");
+        Prices.setText(row.getPrice());
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
 

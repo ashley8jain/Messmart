@@ -1,12 +1,15 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -170,8 +173,8 @@ public class ConfirmSignUp extends Fragment {
                         Map<String, String> params = new HashMap<String, String>();
 
                         // the POST parameters:
-                        params.put("phone",phone);
-                        params.put("otp", confirmpass);
+                        params.put("phone",phone+"");
+                        params.put("otp", confirmpass+"");
                         params.put("action", "confirmotp");
                         System.out.println(params);
                         return params;
@@ -203,8 +206,13 @@ public class ConfirmSignUp extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStack();
                 getActivity().getSupportFragmentManager().popBackStack();
             }
+            @Override
+            public void updateDrawState(TextPaint ds) {// override updateDrawState
+                ds.setUnderlineText(false); // set to false to remove underline
+            }
         };
         alreadyspannable.setSpan(myAlreadySpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        alreadyspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
 
     }
 }

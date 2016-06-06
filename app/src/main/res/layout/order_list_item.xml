@@ -141,6 +141,7 @@
                     android:id="@+id/lcancel"
                     android:textColor="#ffffff"
                     android:text="Cancel"
+                    android:textAllCaps="false"
                     android:layout_margin="10dp"
                     android:background="@drawable/buttonshape"/>
             </LinearLayout>
@@ -264,6 +265,7 @@
                         android:id="@+id/dcancel"
                         android:textColor="#ffffff"
                         android:text="Cancel"
+                        android:textAllCaps="false"
                         android:layout_margin="10dp"
                         android:background="@drawable/buttonshape"/>
                 </LinearLayout>

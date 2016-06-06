@@ -1,14 +1,17 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -166,8 +169,14 @@ public class SignUpActivity extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
+            @Override
+            public void updateDrawState(TextPaint ds) {// override updateDrawState
+                ds.setUnderlineText(false); // set to false to remove underline
+            }
         };
         alreadyhavespannable.setSpan(myAlreadyHaveSpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        alreadyhavespannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
+
     }
 
 

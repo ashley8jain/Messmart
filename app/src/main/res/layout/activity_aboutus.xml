@@ -51,7 +51,6 @@
                 android:layout_weight="1"
                 app:cardElevation="10dp"
                 app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/colorPrimaryLight"
                 app:cardUseCompatPadding="true">
 
                 <TextView

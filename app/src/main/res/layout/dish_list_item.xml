@@ -41,13 +41,6 @@
                 android:padding="5dp"
                 android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:padding="5dp"
-                android:textStyle="italic"
-                android:id="@+id/description"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,6 +49,16 @@
                 android:textColor="#62da4c"
                 android:padding="10dp"
                 android:id="@+id/messmakername"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:padding="5dp"
+                android:textStyle="italic"
+                android:id="@+id/description"
+                />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -86,10 +89,11 @@
                 android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
+                android:textAllCaps="false"
                 android:background="@drawable/buttonshape"
                 android:textColor="#ffffff"
                 android:padding="5dp"
-                android:text="BOOK"
+                android:text="Book"
                 android:id="@+id/bookbutton"/>
 
         </LinearLayout>

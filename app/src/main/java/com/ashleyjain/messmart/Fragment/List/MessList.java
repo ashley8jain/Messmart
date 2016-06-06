@@ -59,7 +59,7 @@ public class MessList extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+        //final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
         String url = StartActivity.host+"index.php/ajaxactions";
 
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
@@ -105,10 +105,10 @@ public class MessList extends ListFragment {
                                 messBook[i]=fooditem.getInt("isbooked");
                             }
 
-                            dialog.dismiss();
+                            ////dialog.dismiss();
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(),e.toString(), Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
+                            //dialog.dismiss();
                         }
                         messObjectList = new ArrayList<MessObject>();
                         for(int i = 0;i<messId.length;i++){
@@ -125,7 +125,7 @@ public class MessList extends ListFragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                        //dialog.dismiss();
                     }
                 }
 

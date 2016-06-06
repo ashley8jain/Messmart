@@ -57,7 +57,8 @@
                         android:textColor="#ffffff"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Book Meal" />
+                        android:text="Book Meal"
+                        android:textAllCaps="false"/>
                 </LinearLayout>
 
             </RelativeLayout>

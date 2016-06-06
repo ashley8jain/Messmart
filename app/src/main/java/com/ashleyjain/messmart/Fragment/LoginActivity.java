@@ -2,13 +2,16 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +64,7 @@ public class LoginActivity extends Fragment {
         login = (Button) view.findViewById(R.id.loginbutton);
 
         signup = (TextView) view.findViewById(R.id.signup);
-        signup.setText(Html.fromHtml("Don't have an account? "+"<font color=#039be5>"+"Sign Up"+"</font><br><br>"));
+        signup.setText(Html.fromHtml("Don't have an account? <font color=#039be5>Sign Up</font><br><br>"));
 //        signup.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -84,9 +87,19 @@ public class LoginActivity extends Fragment {
                         .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
                         .addToBackStack(signupfragment.toString())
                         .commit();
+
             }
+            @Override
+            public void updateDrawState(TextPaint ds) {// override updateDrawState
+                ds.setUnderlineText(false); // set to false to remove underline
+            }
+
+
+
         };
         signupspannable.setSpan(mySignUpSpan, 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signupspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),23, 30,0);
+
 
 
         joinus = (TextView) view.findViewById(R.id.joinus);
@@ -114,8 +127,15 @@ public class LoginActivity extends Fragment {
                         .addToBackStack(messFragment.toString())
                         .commit();
             }
+            @Override
+            public void updateDrawState(TextPaint ds) {// override updateDrawState
+                ds.setUnderlineText(false); // set to false to remove underline
+            }
         };
         joinusspannable.setSpan(myJoinUsSpan, 16, 23, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        joinusspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),16, 23,0);
+        //joinusspannable.setSpan(new MyClickableSpan());
+
 
         forgetpass = (TextView) view.findViewById(R.id.forgot);
         forgetpass.setText(Html.fromHtml("<font color=#039be5> Forgot your password ? </font><br><br>"));

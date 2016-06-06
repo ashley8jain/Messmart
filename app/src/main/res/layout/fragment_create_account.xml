@@ -40,14 +40,6 @@
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/collaborator" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:text="your full address where tiffin` will be delivered"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/hin"
-            />
 
         <EditText
             android:layout_width="match_parent"
@@ -55,7 +47,7 @@
             android:id="@+id/address"
             android:hint="Address"
             android:drawablePadding="10dp"
-            android:drawableLeft="@drawable/marker" />
+            android:drawableLeft="@drawable/marker3" />
 
         <EditText
             android:layout_width="match_parent"
@@ -70,22 +62,25 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="create account"
+        android:text="Create Account"
+        android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:layout_margin="16dp"
         android:background="@drawable/buttonshape"
         android:id="@+id/createb"
         android:layout_below="@+id/EditTextLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:layout_marginTop="10dp"
-        android:id="@+id/already"
+        android:id="@+id/already_conf"
+        android:text="new text"
         android:layout_below="@+id/createb"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
