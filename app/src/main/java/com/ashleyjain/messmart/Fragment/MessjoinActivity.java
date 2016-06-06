@@ -2,7 +2,7 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,9 +37,15 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
     EditText editTextelse;
     Button buttonSubmit;
 
-    @Nullable
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Mess Join Us");
         return inflater.inflate(R.layout.activity_messjoin, container, false);
     }
 
@@ -52,6 +59,16 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
         password = (EditText) view.findViewById(R.id.EditTextPassword);
         editTextelse = (EditText) view.findViewById(R.id.EditTextElse);
         buttonSubmit = (Button) view.findViewById(R.id.ButtonSubmit);
+
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_messjoin);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
 
 
         name.addTextChangedListener(new TextWatcher() {

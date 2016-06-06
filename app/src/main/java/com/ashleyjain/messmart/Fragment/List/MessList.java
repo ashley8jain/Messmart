@@ -1,6 +1,5 @@
 package com.ashleyjain.messmart.Fragment.List;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -96,7 +95,7 @@ public class MessList extends ListFragment {
                                 messTitle[i] = fooditem.getString("title");
                                 messDescription[i] = fooditem.getString("descp");
                                 messPrice[i] = fooditem.getInt("price");
-                                messIsVeg[i] = fooditem.getString("isveg")=="n"?false:true;
+                                messIsVeg[i] = fooditem.getString("isveg").equals("n")?false:true;
                                 messPic[i] = fooditem.getString("pic");
                                 messName[i] = fooditem.getString("name");
                                 messAddress[i] = fooditem.getString("address");

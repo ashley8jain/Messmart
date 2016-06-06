@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.createAccount">
+    tools:context=".Fragment.createAccount"
+    android:id="@+id/fragment_create_account">
 
 
     <TextView

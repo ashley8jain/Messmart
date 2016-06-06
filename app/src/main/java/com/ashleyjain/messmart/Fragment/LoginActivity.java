@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +46,14 @@ public class LoginActivity extends Fragment {
     TextView signup,joinus,forgetpass;
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Login");
         return inflater.inflate(R.layout.activity_login, container, false);
     }
 
@@ -53,6 +63,34 @@ public class LoginActivity extends Fragment {
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
 
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_login);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        RelativeLayout rlayout2 = (RelativeLayout) view.findViewById(R.id.activity_login2);
+        rlayout2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.activity_login_sv);
+        scrollView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
         mobileno = (EditText) view.findViewById(R.id.phone);
         mobileno.setTypeface(font);
         mobileno.addTextChangedListener(new checkError(mobileno));
@@ -169,7 +207,7 @@ public class LoginActivity extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
                                         getActivity().finish();

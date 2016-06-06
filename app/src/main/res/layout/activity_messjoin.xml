@@ -8,7 +8,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/activity_messjoin">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,23 +23,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Mess Join Us"
-        android:id="@+id/textView"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_lout_email"
-        android:layout_width="match_parent"
-        android:layout_below="@id/textView"
-        android:layout_height="wrap_content">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,14 +32,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextName"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layouemail"
-        android:layout_below="@id/input_lout_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <EditText
             android:layout_width="match_parent"
@@ -70,14 +46,6 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextMobile"/>
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/iut_layout_email"
-        android:layout_width="match_parent"
-        android:layout_below="@id/input_layouemail"
-        android:layout_height="wrap_content">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,14 +56,6 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextEmailid"/>
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_il"
-        android:layout_width="match_parent"
-        android:layout_below="@id/iut_layout_email"
-        android:layout_height="wrap_content">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,14 +65,6 @@
             android:padding="10dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextAddress"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/inutaout_email"
-        android:layout_width="match_parent"
-        android:layout_below="@id/input_layout_il"
-        android:layout_height="wrap_content">
 
         <EditText
             android:layout_width="match_parent"
@@ -125,14 +77,6 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextPassword"/>
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_email"
-        android:layout_below="@id/inutaout_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,12 +88,10 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextElse"/>
 
-    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:background="@drawable/buttonshape"
-        android:layout_below="@id/input_layout_email"
         android:layout_height="wrap_content"
         android:id="@+id/ButtonSubmit"
         android:text="Submit"

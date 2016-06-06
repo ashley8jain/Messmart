@@ -1,15 +1,15 @@
 package com.ashleyjain.messmart.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,16 +36,43 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Forgot Password");
         return inflater.inflate(R.layout.activity_forgot_password, container, false);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_forgot_password);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+
         forgot_mob = (EditText)view.findViewById(R.id.forgot_mob);
         forgot_password_button = (Button)view.findViewById(R.id.forgot_password_button);
         login_link = (TextView)view.findViewById(R.id.login_link);
+
+        forgot_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    KeyboardDown.keyboardDown();
+                }
+
+            }
+        });
 
         forgot_password_button.setOnClickListener(new View.OnClickListener() {
             @Override

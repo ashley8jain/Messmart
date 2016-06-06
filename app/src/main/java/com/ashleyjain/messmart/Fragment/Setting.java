@@ -3,6 +3,7 @@ package com.ashleyjain.messmart.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -11,12 +12,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,9 +47,24 @@ public class Setting extends Fragment {
     Button changepw;
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
+        return inflater.inflate(R.layout.fragment_setting, container, false);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -63,13 +81,6 @@ public class Setting extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
-    }
-
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
@@ -77,6 +88,24 @@ public class Setting extends Fragment {
         usernewpwre = (EditText)view.findViewById(R.id.usernewpwre);
         useroldpw = (EditText)view.findViewById(R.id.useroldpw);
         changepw = (Button)view.findViewById(R.id.changepw);
+        RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.fragment_setting);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.fragment_setting_sv);
+        scrollView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
 
         CheckBox showPassword = (CheckBox) view.findViewById(R.id.showHidePassword);
         showPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {

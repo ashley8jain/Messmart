@@ -1,6 +1,7 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,12 @@ public class ContactusActivity extends android.support.v4.app.Fragment {
 
     TextView cn;
     String email,phone;
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class ContactusActivity extends android.support.v4.app.Fragment {
         cn = (TextView) view.findViewById(R.id.textView2);
         //cn.setText("free");
         cn.setText("E-mail:"+email+"\n"+"Phone:"+phone);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Contact Us");
         return view;
     }
 }
