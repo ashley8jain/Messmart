@@ -49,7 +49,7 @@
         android:background="@drawable/buttonshape"
         android:textColor="#ffffff"
         android:layout_marginTop="10dp"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:drawableRight="@android:drawable/sym_call_incoming"
         android:layout_below="@+id/mob"
         android:layout_centerHorizontal="true" />
@@ -75,7 +75,7 @@
         android:background="@drawable/buttonshape"
         android:textColor="#ffffff"
         android:layout_marginTop="10dp"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:layout_below="@+id/confirmotppp"
         android:layout_centerHorizontal="true" />
 

@@ -71,18 +71,25 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:layout_marginTop="20dp"
-        android:id="@+id/loginbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/buttonshape"
-        android:layout_below="@+id/EditTextLayout"
         android:textColor="#ffffff"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-         />
+        android:text="Login"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:id="@+id/loginbutton"
+        android:layout_centerHorizontal="true"
+        android:padding="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_below="@+id/EditTextLayout"
+        android:layout_marginTop="20dp"
+        />
+
 
     <TextView
         android:layout_width="wrap_content"

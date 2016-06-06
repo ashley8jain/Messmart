@@ -105,6 +105,7 @@
             android:background="@drawable/buttonshape"
             android:textColor="#ffffff"
             android:text="Book"
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:id="@+id/bookbutton"
             android:layout_centerHorizontal="true"

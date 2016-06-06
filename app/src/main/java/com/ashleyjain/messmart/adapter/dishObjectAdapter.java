@@ -82,7 +82,7 @@ public class dishObjectAdapter extends BaseAdapter {
         final DishObject row = messList.get(position);
 
         System.out.println(row.getBook()+"hereeee");
-        book.setText(row.getBook() == 1 ? "cancel" : "book");
+        book.setText(row.getBook() == 1 ? "Cancel" : "Book");
         final AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
         book.setOnClickListener(new View.OnClickListener() {
             @Override
