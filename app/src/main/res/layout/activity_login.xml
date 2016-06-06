@@ -23,16 +23,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:id="@+id/activity_login2">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Login"
-            android:textStyle="bold"
-            android:id="@+id/textView20"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/EditTextLayout"
-            android:layout_alignStart="@+id/EditTextLayout" />
+        
     <LinearLayout
         android:id="@+id/EditTextLayout"
         android:layout_width="match_parent"

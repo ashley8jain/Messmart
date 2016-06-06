@@ -86,7 +86,7 @@ public class MessListTabLayout extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Menu");
         View rootView = inflater.inflate(R.layout.fragment_mess_list_tab_layout, container, false);
         return rootView;
     }
@@ -102,7 +102,7 @@ public class MessListTabLayout extends Fragment {
         viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        //final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
         String url = StartActivity.host+"index.php/ajaxactions";
 
         // Spinner element
@@ -142,7 +142,6 @@ public class MessListTabLayout extends Fragment {
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categories);
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categories);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -160,7 +159,6 @@ public class MessListTabLayout extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             if(!load){
-                                System.out.println("load: "+"false");
                                 particularday = dataobject.getString("datetime");
                                 lord = dataobject.getString("lord");
                             }
@@ -177,15 +175,14 @@ public class MessListTabLayout extends Fragment {
                                 }
                             }, 100);
                             for(int i=0;i<day2.length();i++){
-                                System.out.println("found at "+i+" "+day2.getString(i));
                                 if(day2.getString(i).equals(particularday)){
                                     spinner.setSelection(i);
                                 }
                             }
-                            //dialog.dismiss();
+                            dialog.dismiss();
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-                            //dialog.dismiss();
+                            dialog.dismiss();
                         }
 
                     }
@@ -195,7 +192,7 @@ public class MessListTabLayout extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                        //dialog.dismiss();
+                        dialog.dismiss();
                     }
                 }
 

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -45,7 +46,14 @@ public class LoginActivity extends Fragment {
     TextView signup,joinus,forgetpass;
 
     @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Login");
         return inflater.inflate(R.layout.activity_login, container, false);
     }
 
@@ -199,7 +207,7 @@ public class LoginActivity extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
                                         getActivity().finish();
