@@ -14,13 +14,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/how"
+                    android:gravity="center_horizontal"
                     >
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <com.ashleyjain.messmart.function.RoundedImageView
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
                         android:id="@+id/profImg"
+                        android:layout_marginTop="10dp"
                         android:src="@drawable/messmart_logo"
                         android:gravity="center_horizontal"/>
+
                     <TextView android:id="@+id/showdialogedit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

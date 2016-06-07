@@ -57,12 +57,6 @@ public class MessListTabLayout extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.toolbar_menu, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-
 
 
     @Override

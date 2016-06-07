@@ -207,10 +207,12 @@ public class LoginActivity extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        //Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
                                         Intent re = new Intent(getContext(),StartActivity.class);
                                         startActivity(re);
                                         getActivity().finish();
+//                                        StartActivity.get().drawer();
+//                                        StartActivity.get().getSupportFragmentManager().popBackStackImmediate();
                                     }
                                     else{
                                         Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();

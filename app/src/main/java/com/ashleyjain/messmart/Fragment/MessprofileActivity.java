@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.Fragment.List.DishList;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.RoundedImageView;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +30,7 @@ import java.util.Map;
 
 
 public class MessprofileActivity extends Fragment {
-    ImageView messlogo;
+    RoundedImageView messlogo;
     TextView mess_name;
     TextView mess_address;
     TextView mess_aboutme;
@@ -63,7 +63,7 @@ public class MessprofileActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
 
-        messlogo = (ImageView)view.findViewById(R.id.messProfile);
+        messlogo = (RoundedImageView)view.findViewById(R.id.messProfile);
 
         mess_name = (TextView)view.findViewById(R.id.mess_name);
         mess_address = (TextView)view.findViewById(R.id.mess_address);
@@ -96,10 +96,10 @@ public class MessprofileActivity extends Fragment {
                             String aboutus = uinfo.getString("aboutus");
                             String address = uinfo.getString("address");
                             String profilepic = StartActivity.host+uinfo.getString("profilepic");
-                            JSONArray profile_right_display = data.getJSONArray("profile_ri//ght_display");
+                            JSONArray profile_right_display = data.getJSONArray("profile_right_display");
                             mess_name.setText(name);
                             mess_address.setText(address);
-                            // mess_aboutme.setText(aboutus);
+                            mess_aboutme.setText(aboutus);
                             Picasso.with(getActivity()).load(profilepic).into(messlogo);
                             String lunchtime = profile_right_display.getJSONArray(1).getString(1);
                             String dinnertime = profile_right_display.getJSONArray(2).getString(1);

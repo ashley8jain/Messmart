@@ -54,11 +54,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 public class StartActivity extends AppCompatActivity {
 
     protected Drawer drawer = null;
+    DrawerBuilder builder;
     AccountHeader headerResult = null;
     String loginname,logintype;
     private Context context;
@@ -146,15 +146,16 @@ public class StartActivity extends AppCompatActivity {
         headerResult = new AccountHeaderBuilder()
                 .withProfileImagesClickable(false)
                 .withActivity(this)
+                .withSelectionListEnabled(false)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Guest User").withEmail(null)
+                        new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
                 )
                 .withHeaderBackground(R.drawable.slider1)
                 .build();
 
 
         //buttons handling in drawer
-        final DrawerBuilder builder = new DrawerBuilder()
+        builder = new DrawerBuilder()
                 .withActivity(this)
                 .withDisplayBelowStatusBar(true)
                 .withActionBarDrawerToggle(true)
@@ -200,11 +201,7 @@ public class StartActivity extends AppCompatActivity {
                                 Name.setText(loginname.equals("Profile") ? "Guest User" : loginname);
                                 tabs = drawer.getJSONArray("tabs");
                                 JSONObject tab_map = drawer.getJSONObject("tab_map");
-                                Vector<String> tab_things = new Vector<>();
 
-                                /*for(int i =0; i <tabs.length();i++){
-                                    tab_things.add(tabs.getString(i));
-                                }*/
                                 hm.put("Login",R.drawable.login);
                                 hm.put("Logout", R.drawable.logout);
                                 hm.put("Contact us", R.drawable.online_support);
@@ -216,7 +213,7 @@ public class StartActivity extends AppCompatActivity {
                                 for(int i = 0 ;i < tabs.length();i++){
                                     String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
                                     Drawable dr = getResources().getDrawable((int)hm.get(cap));
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon(dr));
+                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int)hm.get(cap)));
                                 }
                                     if( !logintype.equals("null")&& !logintype.equals("u")){
                                     AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
@@ -240,16 +237,6 @@ public class StartActivity extends AppCompatActivity {
                                     AlertDialog alertDialog = alertbuilder.create();
                                     alertDialog.show();
                                 }
-                                /*for(int i=0;i<tabs.length();i++){
-                                    String cap = tabs.getString(i).substring(0, 1).toUpperCase() + tabs.getString(i).substring(1);
-
-                                    if(cap.equals("Cpass")){
-                                        cap="Setting";
-                                    }
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap));
-                                }*/
-                                //System.out.println()
-
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
@@ -301,14 +288,13 @@ public class StartActivity extends AppCompatActivity {
                         fragment.setArguments(bundle3);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, fragment, fragment.toString())
-                                .addToBackStack(fragment.toString())
+                                .addToBackStack(null)
                                 .commit();
                     } else if (name.equals("Login")) {
-                        popStack();
                         LoginActivity loginfragment = new LoginActivity();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
-                                .addToBackStack(loginfragment.toString())
+                                .addToBackStack(null)
                                 .commit();
 
 
@@ -515,6 +501,153 @@ public class StartActivity extends AppCompatActivity {
 
         // add it to the RequestQueue
         getRequestQueue().add(postRequest);
+    }
+
+    public void drawer(){
+
+        String url = host+"index.php/ajaxactions";
+        final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
+
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        //response JSON from url
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            JSONObject dataobject = jsonResponse.getJSONObject("data");
+                            errorcode= dataobject.getJSONObject("ec");
+                            aboutus = dataobject.getString("aboutus_content");
+                            contactus = dataobject.getString("contact");
+                            JSONObject days7 = dataobject.getJSONObject("7days");
+                            days = days7.getJSONArray("textl");
+                            days2 = days7.getJSONArray("timel");
+                            JSONObject drawer = dataobject.getJSONObject("drawer");
+                            loginname = drawer.getString("loginname");
+                            loginid = drawer.getString("loginid");
+                            logintype = drawer.getString("logintype");
+                            Name.setText(loginname.equals("Profile") ? "Guest User" : loginname);
+                            tabs = drawer.getJSONArray("tabs");
+                            JSONObject tab_map = drawer.getJSONObject("tab_map");
+
+
+                            hm.put("Login",R.drawable.login);
+                            hm.put("Logout", R.drawable.logout);
+                            hm.put("Contact us", R.drawable.online_support);
+                            hm.put("About us", R.drawable.aboutus);
+                            hm.put("Menu", R.drawable.menu);
+                            hm.put("Orders", R.drawable.order);
+                            hm.put("Settings", R.drawable.setting);
+                            hm.put(loginname, R.drawable.profile);
+
+
+                            for(int i = 0 ;i < tabs.length();i++){
+                                String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
+                                builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int) hm.get(cap)));
+                            }
+
+                            if( !logintype.equals("null")&& !logintype.equals("u")){
+                                AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
+                                alertbuilder.setTitle("You are not user!!");
+                                alertbuilder.setMessage("Go to www.messmart.com website");
+                                alertbuilder.setCancelable(true);
+                                alertbuilder.setPositiveButton("Open Website", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.messmart.com"));
+                                        startActivity(browserIntent);
+                                        logoutapi();
+                                        finish();
+                                    }
+                                });
+                                alertbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        logoutapi();
+                                    }
+                                });
+                                AlertDialog alertDialog = alertbuilder.create();
+                                alertDialog.show();
+                            }
+                            dialog.dismiss();
+                        } catch (JSONException e) {
+                            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Log.d("debug", "posting param");
+                Map<String, String> params = new HashMap<String, String>();
+
+                // the POST parameters:
+                params.put("action", "getinit");
+                System.out.println(params);
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        getRequestQueue().add(postRequest);
+
+
+        StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        //response JSON from url
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            JSONObject data = jsonResponse.getJSONObject("data");
+                            JSONObject uinfo = data.getJSONObject("uinfo");
+                            Email.setText("Wallet: "+uinfo.getString("wallet")+"/-");
+                            String imageurl = uinfo.getString("profilepic");
+                            System.out.println("profileurl: " + imageurl);
+                            if(imageurl!=null)
+                                Picasso.with(context).load(StartActivity.host+imageurl).into(im);
+                        } catch (JSONException e) {
+                            //Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Log.d("debug", "posting param");
+                Map<String, String> params = new HashMap<String, String>();
+
+                // the POST parameters:
+                params.put("action", "profile");
+                System.out.println(params);
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        getRequestQueue().add(postRequest2);
+
     }
 
 }

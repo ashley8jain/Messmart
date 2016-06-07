@@ -6,25 +6,25 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-        import com.ashleyjain.messmart.R;
-        import com.ashleyjain.messmart.StartActivity;
-        import com.ashleyjain.messmart.function.StringRequestCookies;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.RoundedImageView;
+import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserprofileActivity extends Fragment {
-    ImageView userlogo;
+    RoundedImageView userlogo;
     static TextView inputUsername1,inputUserwallet1,inputUseraddress1;
     String name,address;
 
@@ -75,7 +75,7 @@ public class UserprofileActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_userprofile);
-        userlogo = (ImageView)view.findViewById(R.id.profImg);
+        userlogo = (RoundedImageView)view.findViewById(R.id.profImg);
         inputUsername1 = (TextView)view.findViewById(R.id.userinputname1);
         inputUseraddress1 = (TextView)view.findViewById(R.id.userinputaddress1);
         inputUserwallet1 = (TextView)view.findViewById(R.id.userinputwallet1);

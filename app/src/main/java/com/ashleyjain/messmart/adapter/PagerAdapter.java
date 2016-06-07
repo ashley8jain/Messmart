@@ -2,14 +2,14 @@ package com.ashleyjain.messmart.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.ashleyjain.messmart.Fragment.List.MessList;
 
 /**
  * Created by ashleyjain on 21/05/16.
  */
-public class PagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter {
 
     int NumOfTabs;
     String pd;
