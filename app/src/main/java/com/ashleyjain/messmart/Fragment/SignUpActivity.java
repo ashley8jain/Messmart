@@ -186,29 +186,29 @@ public class SignUpActivity extends Fragment {
         });
 
         alreadyhave = (TextView) view.findViewById(R.id.already);
-        alreadyhave.setText(Html.fromHtml("Already have an account? "+"<font color=#039be5>"+"Login"+"</font><br><br>"));
-//        alreadyhave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().getSupportFragmentManager().popBackStack();
-//            }
-//        });
-        alreadyhave.setMovementMethod(LinkMovementMethod.getInstance());
-        alreadyhave.setText(alreadyhave.getText(), TextView.BufferType.SPANNABLE);
-        Spannable alreadyhavespannable = (Spannable)alreadyhave.getText();
-        ClickableSpan myAlreadyHaveSpan = new ClickableSpan()
-        {
+        alreadyhave.setText(Html.fromHtml(""+"<font color=#039be5>"+"Login"+"</font><br><br>"));
+        alreadyhave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
-            @Override
-            public void updateDrawState(TextPaint ds) {// override updateDrawState
-                ds.setUnderlineText(false); // set to false to remove underline
-            }
-        };
-        alreadyhavespannable.setSpan(myAlreadyHaveSpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        alreadyhavespannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
+        });
+//        alreadyhave.setMovementMethod(LinkMovementMethod.getInstance());
+//        alreadyhave.setText(alreadyhave.getText(), TextView.BufferType.SPANNABLE);
+//        Spannable alreadyhavespannable = (Spannable)alreadyhave.getText();
+//        ClickableSpan myAlreadyHaveSpan = new ClickableSpan()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {// override updateDrawState
+//                ds.setUnderlineText(false); // set to false to remove underline
+//            }
+//        };
+//        alreadyhavespannable.setSpan(myAlreadyHaveSpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        alreadyhavespannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
 
     }
 

@@ -102,22 +102,8 @@ public class LoginActivity extends Fragment {
         login = (Button) view.findViewById(R.id.loginbutton);
 
         signup = (TextView) view.findViewById(R.id.signup);
-        signup.setText(Html.fromHtml("Don't have an account? <font color=#039be5>Sign Up</font><br><br>"));
-//        signup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SignUpActivity signupfragment = new SignUpActivity();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
-//                        .addToBackStack(signupfragment.toString())
-//                        .commit();
-//            }
-//        });
-        signup.setMovementMethod(LinkMovementMethod.getInstance());
-        signup.setText(signup.getText(), TextView.BufferType.SPANNABLE);
-        Spannable signupspannable = (Spannable)signup.getText();
-        ClickableSpan mySignUpSpan = new ClickableSpan()
-        {
+        signup.setText(Html.fromHtml("<font color=#039be5>Sign Up</font><br><br>"));
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SignUpActivity signupfragment = new SignUpActivity();
@@ -125,38 +111,39 @@ public class LoginActivity extends Fragment {
                         .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
                         .addToBackStack(signupfragment.toString())
                         .commit();
-
             }
-            @Override
-            public void updateDrawState(TextPaint ds) {// override updateDrawState
-                ds.setUnderlineText(false); // set to false to remove underline
-            }
-
-
-
-        };
-        signupspannable.setSpan(mySignUpSpan, 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signupspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),23, 30,0);
+        });
+        /*The Below code does same thing as above onClickListener*/
+//        signup.setMovementMethod(LinkMovementMethod.getInstance());
+//        signup.setText(signup.getText(), TextView.BufferType.SPANNABLE);
+//        Spannable signupspannable = (Spannable)signup.getText();
+//        ClickableSpan mySignUpSpan = new ClickableSpan()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                SignUpActivity signupfragment = new SignUpActivity();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
+//                        .addToBackStack(signupfragment.toString())
+//                        .commit();
+//
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {// override updateDrawState
+//                ds.setUnderlineText(false); // set to false to remove underline
+//            }
+//
+//
+//
+//        };
+//        signupspannable.setSpan(mySignUpSpan, 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        signupspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),23, 30,0);
 
 
 
         joinus = (TextView) view.findViewById(R.id.joinus);
-        joinus.setText(Html.fromHtml("Are you a mess? " + "<font color=#039be5>" + "Join us" + "</font><br><br>"));
-//        joinus.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MessjoinActivity messFragment = new MessjoinActivity();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
-//                        .addToBackStack(messFragment.toString())
-//                        .commit();
-//            }
-//        });
-        joinus.setMovementMethod(LinkMovementMethod.getInstance());
-        joinus.setText(joinus.getText(), TextView.BufferType.SPANNABLE);
-        Spannable joinusspannable = (Spannable)joinus.getText();
-        ClickableSpan myJoinUsSpan = new ClickableSpan()
-        {
+        joinus.setText(Html.fromHtml("" + "<font color=#039be5>" + "Join us" + "</font><br><br>"));
+        joinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MessjoinActivity messFragment = new MessjoinActivity();
@@ -165,13 +152,28 @@ public class LoginActivity extends Fragment {
                         .addToBackStack(messFragment.toString())
                         .commit();
             }
-            @Override
-            public void updateDrawState(TextPaint ds) {// override updateDrawState
-                ds.setUnderlineText(false); // set to false to remove underline
-            }
-        };
-        joinusspannable.setSpan(myJoinUsSpan, 16, 23, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        joinusspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),16, 23,0);
+        });
+        /*The Below code does same thing as above onClickListener*/
+//        joinus.setMovementMethod(LinkMovementMethod.getInstance());
+//        joinus.setText(joinus.getText(), TextView.BufferType.SPANNABLE);
+//        Spannable joinusspannable = (Spannable)joinus.getText();
+//        ClickableSpan myJoinUsSpan = new ClickableSpan()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                MessjoinActivity messFragment = new MessjoinActivity();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_not, messFragment, messFragment.toString())
+//                        .addToBackStack(messFragment.toString())
+//                        .commit();
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {// override updateDrawState
+//                ds.setUnderlineText(false); // set to false to remove underline
+//            }
+//        };
+//        joinusspannable.setSpan(myJoinUsSpan, 16, 23, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        joinusspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),16, 23,0);
         //joinusspannable.setSpan(new MyClickableSpan());
 
 

@@ -11,6 +11,17 @@
     android:background="#ffffff"
     android:id="@+id/activity_sign_up">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Student Signup"
+        android:id="@+id/textView21"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +33,7 @@
         android:hint="Enter New Mobile no."
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="107dp"
+        android:layout_marginTop="67dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@android:drawable/sym_action_call"
         android:textCursorDrawable="@drawable/custom_cursor"/>
@@ -35,30 +46,33 @@
         android:id="@+id/sendotp"
         android:background="@drawable/buttonshape"
         android:textColor="#ffffff"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textSize="15dp"
         android:drawableRight="@android:drawable/sym_call_incoming"
         android:layout_below="@+id/newmob"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Student Signup"
-        android:id="@+id/textView21"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/sendotp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:layout_marginTop="20dp"
+        android:text="Already have an account? "
+        android:id="@+id/alreadyText"
+        android:textSize="18sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
         android:id="@+id/already"
-        android:layout_below="@+id/sendotp"
-        android:layout_centerHorizontal="true" />
+        android:textSize="18sp"/>
+    </LinearLayout>
 
 </RelativeLayout>
