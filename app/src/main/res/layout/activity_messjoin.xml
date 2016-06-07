@@ -31,7 +31,8 @@
             android:hint="Name"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextName"/>
+            android:id="@+id/EditTextName"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -44,7 +45,8 @@
             android:maxLength="10"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextMobile"/>
+            android:id="@+id/EditTextMobile"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -54,7 +56,8 @@
             android:hint="Email Id"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextEmailid"/>
+            android:id="@+id/EditTextEmailid"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -64,7 +67,8 @@
             android:background="#d3e9d9"
             android:padding="10dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextAddress"/>
+            android:id="@+id/EditTextAddress"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -75,7 +79,8 @@
             android:padding="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextPassword"/>
+            android:id="@+id/EditTextPassword"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -86,7 +91,8 @@
             android:padding="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/EditTextElse"/>
+            android:id="@+id/EditTextElse"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
 
     <Button

@@ -47,7 +47,8 @@
             android:hint="Phone"
             android:text="7503759059"
             android:drawablePadding="10dp"
-            android:drawableLeft="@android:drawable/sym_action_call" />
+            android:drawableLeft="@android:drawable/sym_action_call"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -60,7 +61,8 @@
             android:ems="10"
             android:hint="OTP or Password"
             android:drawablePadding="10dp"
-            android:drawableLeft="@android:drawable/ic_lock_lock" />
+            android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:textCursorDrawable="@drawable/custom_cursor"/>
 
     </LinearLayout>
 
@@ -76,10 +78,6 @@
         android:id="@+id/loginbutton"
         android:layout_centerHorizontal="true"
         android:padding="2dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:layout_below="@+id/EditTextLayout"
         android:layout_marginTop="20dp"
         />
