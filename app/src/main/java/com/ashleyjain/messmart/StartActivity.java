@@ -470,7 +470,7 @@ public class StartActivity extends AppCompatActivity {
         return _requestQueue;
     }
 
-    private void popStack(){
+    public void popStack(){
         for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
             getSupportFragmentManager().popBackStack();
     }

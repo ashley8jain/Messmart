@@ -6,9 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,6 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class MessprofileActivity extends Fragment {
     ImageView messlogo;
     TextView mess_name;
@@ -45,11 +43,6 @@ public class MessprofileActivity extends Fragment {
         this.uid = uid;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
     @Override
     public void onStop() {
@@ -57,18 +50,6 @@ public class MessprofileActivity extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.home:
-                for(int i=0;i<getActivity().getSupportFragmentManager().getBackStackEntryCount();i++)
-                    getActivity().getSupportFragmentManager().popBackStack();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,6 +62,7 @@ public class MessprofileActivity extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
+
         messlogo = (ImageView)view.findViewById(R.id.messProfile);
 
         mess_name = (TextView)view.findViewById(R.id.mess_name);
@@ -102,22 +84,22 @@ public class MessprofileActivity extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject data = jsonResponse.getJSONObject("data");
                             menulist = data.getJSONArray("menu_list");
-                            DishList dishlist = new DishList();
-                            Bundle bundle2 = new Bundle();
-                            bundle2.putString("menulist", menulist.toString());
-                            dishlist.setArguments(bundle2);
-                            StartActivity.get().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fraglist, dishlist, dishlist.toString())
-                                    .commit();
+//                            DishList dishlist = new DishList();
+//                            Bundle bundle2 = new Bundle();
+//                            bundle2.putString("menulist", menulist.toString());
+//                            dishlist.setArguments(bundle2);
+//                            StartActivity.get().getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.fraglist, dishlist, dishlist.toString())
+//                                    .commit();
                             JSONObject uinfo = data.getJSONObject("uinfo");
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
                             String address = uinfo.getString("address");
                             String profilepic = StartActivity.host+uinfo.getString("profilepic");
-                            JSONArray profile_right_display = data.getJSONArray("profile_right_display");
+                            JSONArray profile_right_display = data.getJSONArray("profile_ri//ght_display");
                             mess_name.setText(name);
                             mess_address.setText(address);
-                            mess_aboutme.setText(aboutus);
+                            // mess_aboutme.setText(aboutus);
                             Picasso.with(getActivity()).load(profilepic).into(messlogo);
                             String lunchtime = profile_right_display.getJSONArray(1).getString(1);
                             String dinnertime = profile_right_display.getJSONArray(2).getString(1);
@@ -157,21 +139,21 @@ public class MessprofileActivity extends Fragment {
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
 
-//        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
-//        dishlist.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                DishList dishlist = new DishList();
-//                Bundle bundle2 = new Bundle();
-//                bundle2.putString("menulist", menulist.toString());
-//                dishlist.setArguments(bundle2);
-//                StartActivity.get().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
-//                        .addToBackStack(dishlist.toString())
-//                        .commit();
-//            }
-//        });
+        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
+        dishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DishList dishlist = new DishList();
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("menulist", menulist.toString());
+                dishlist.setArguments(bundle2);
+                StartActivity.get().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
+                        .addToBackStack(dishlist.toString())
+                        .commit();
+            }
+        });
 
 
     }
