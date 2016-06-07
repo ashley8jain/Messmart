@@ -155,15 +155,9 @@ public class MessList extends ListFragment {
                 return params;
             }
         };
-
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
-
-
-
 //        messId = new int[2];
-
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mess_list, container, false);
 
