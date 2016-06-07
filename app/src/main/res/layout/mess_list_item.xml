@@ -40,7 +40,7 @@
             android:paddingRight="10dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:textSize="15dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -57,7 +57,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textColor="#039be5"
-            android:textSize="10dp"/>
+            android:textSize="13sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,14 +76,17 @@
             android:paddingEnd="10dp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:id="@+id/imgveg"
             android:paddingRight="10dp"
             android:src="@drawable/veg"
             android:layout_alignRight="@+id/messmakername"
             android:layout_below="@+id/messimg"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +114,7 @@
             android:textStyle="italic"
             android:layout_below="@+id/bookbutton"
             android:id="@+id/description" />
+        
 
     </RelativeLayout>
 
