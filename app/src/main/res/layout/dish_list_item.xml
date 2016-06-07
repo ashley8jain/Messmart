@@ -4,10 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="2dp"
-    android:layout_height="500dp"
-    android:layout_margin="3dp"
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout

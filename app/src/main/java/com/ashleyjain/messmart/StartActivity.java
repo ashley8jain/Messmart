@@ -71,7 +71,7 @@ public class StartActivity extends AppCompatActivity {
     ImageView im;
     JSONArray tabs;
 
-    public static String host = "http://192.168.0.106/mess/";
+    public static String host = "http://192.168.0.111/mess/";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
