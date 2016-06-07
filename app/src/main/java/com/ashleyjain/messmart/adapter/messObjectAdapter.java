@@ -97,7 +97,7 @@ public class messObjectAdapter extends BaseAdapter {
                     alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
-                            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
+                            //final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
                             String url = StartActivity.host + "index.php/ajaxactions";
 
                             StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
@@ -109,7 +109,7 @@ public class messObjectAdapter extends BaseAdapter {
                                             try {
                                                 jsonResponse = new JSONObject(response);
                                                 Integer ec = jsonResponse.getInt("ec");
-                                                dialog2.dismiss();
+                                                //dialog2.dismiss();
                                                 if (ec == 1) {
                                                     Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
                                                     StartActivity.get().getSupportFragmentManager().popBackStack();
@@ -135,7 +135,7 @@ public class messObjectAdapter extends BaseAdapter {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                                            dialog2.dismiss();
+                                            //dialog2.dismiss();
                                         }
                                     }
 
@@ -315,7 +315,7 @@ public class messObjectAdapter extends BaseAdapter {
 
         //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
         messTitle.setText(row.getTitle());
-        messDescription.setText("Description:\n"+row.getDescription());
+        messDescription.setText(row.getDescription());
         name.setText(row.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override

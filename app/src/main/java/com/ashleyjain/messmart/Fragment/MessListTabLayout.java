@@ -1,6 +1,5 @@
 package com.ashleyjain.messmart.Fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -102,7 +101,7 @@ public class MessListTabLayout extends Fragment {
         viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+        //final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
         String url = StartActivity.host+"index.php/ajaxactions";
 
         // Spinner element
@@ -165,8 +164,6 @@ public class MessListTabLayout extends Fragment {
                             else{
                                 particularday=datetime;
                             }
-                            //adapter= new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),"1464393600");
-                            //viewPager.setAdapter(adapter);
                             viewPager.postDelayed(new Runnable() {
 
                                 @Override
@@ -179,10 +176,10 @@ public class MessListTabLayout extends Fragment {
                                     spinner.setSelection(i);
                                 }
                             }
-                            dialog.dismiss();
+                            //dialog.dismiss();
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
+                            //dialog.dismiss();
                         }
 
                     }
@@ -192,7 +189,7 @@ public class MessListTabLayout extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                        //dialog.dismiss();
                     }
                 }
 

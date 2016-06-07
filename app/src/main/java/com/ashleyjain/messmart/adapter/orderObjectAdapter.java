@@ -163,6 +163,7 @@ public class orderObjectAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 MessprofileActivity messprofileActivity = new MessprofileActivity(row.getdMid());
+                StartActivity.get().getSupportFragmentManager().popBackStack();
                 StartActivity.get().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_not, messprofileActivity, messprofileActivity.toString())
                         .addToBackStack(messprofileActivity.toString())

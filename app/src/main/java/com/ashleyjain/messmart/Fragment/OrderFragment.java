@@ -73,7 +73,6 @@ public class OrderFragment extends Fragment {
                             dialog.dismiss();
                             final OrderListPagerAdapter adapter = new OrderListPagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),upcominglist,pastlist);
                             viewPager.setAdapter(adapter);
-
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                             dialog.dismiss();

@@ -2,7 +2,7 @@ package com.ashleyjain.messmart.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ashleyjain.messmart.Fragment.List.OrderList;
 import com.ashleyjain.messmart.Fragment.List.PastOrderList;
@@ -10,7 +10,7 @@ import com.ashleyjain.messmart.Fragment.List.PastOrderList;
 /**
  * Created by ashleyjain on 24/05/16.
  */
-public class OrderListPagerAdapter extends FragmentStatePagerAdapter{
+public class OrderListPagerAdapter extends FragmentPagerAdapter{
 
     String upcomingOrderList,pastOrderList;
 
