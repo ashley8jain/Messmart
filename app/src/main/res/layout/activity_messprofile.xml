@@ -137,17 +137,16 @@
                 android:textSize="20sp"
                 android:id="@+id/dishlist"
                 android:padding="10dp"
-                android:text="His Dishes for this week"
-                android:textColor="#039be5"
+                android:text="Dishes for this week"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
-        </LinearLayout>
-</ScrollView>
-    <FrameLayout
-        android:layout_below="@+id/sc"
+
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/fraglist">
             </FrameLayout>
+        </LinearLayout>
+</ScrollView>
 
 </RelativeLayout>

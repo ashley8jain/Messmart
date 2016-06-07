@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.ashleyjain.messmart.Object.DishObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.adapter.dishObjectAdapter;
+import com.ashleyjain.messmart.function.ExpandableHeightListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +80,7 @@ public class DishList extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         messObjectList = new ArrayList<DishObject>();
         for(int i = 0;i<messId.length;i++){
             DishObject items = new DishObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messDatetext[i]);
@@ -87,5 +89,14 @@ public class DishList extends ListFragment {
         System.out.println(messObjectList.size());
         adapter = new dishObjectAdapter(getActivity(), messObjectList);
         setListAdapter(adapter);
-        return inflater.inflate(R.layout.activity_dish_list, container, false);    }
+        return inflater.inflate(R.layout.activity_dish_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //ListView
+        ExpandableHeightListView listView = (ExpandableHeightListView) view.findViewById(android.R.id.list);
+        listView.setExpanded(true);
+    }
 }
