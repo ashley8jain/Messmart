@@ -84,13 +84,13 @@ public class MessprofileActivity extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject data = jsonResponse.getJSONObject("data");
                             menulist = data.getJSONArray("menu_list");
-//                            DishList dishlist = new DishList();
-//                            Bundle bundle2 = new Bundle();
-//                            bundle2.putString("menulist", menulist.toString());
-//                            dishlist.setArguments(bundle2);
-//                            StartActivity.get().getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.fraglist, dishlist, dishlist.toString())
-//                                    .commit();
+                            DishList dishlist = new DishList();
+                            Bundle bundle2 = new Bundle();
+                            bundle2.putString("menulist", menulist.toString());
+                            dishlist.setArguments(bundle2);
+                            StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fraglist, dishlist, dishlist.toString())
+                                    .commit();
                             JSONObject uinfo = data.getJSONObject("uinfo");
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
@@ -139,21 +139,21 @@ public class MessprofileActivity extends Fragment {
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
 
-        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
-        dishlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DishList dishlist = new DishList();
-                Bundle bundle2 = new Bundle();
-                bundle2.putString("menulist", menulist.toString());
-                dishlist.setArguments(bundle2);
-                StartActivity.get().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
-                        .addToBackStack(dishlist.toString())
-                        .commit();
-            }
-        });
+//        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
+//        dishlist.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                DishList dishlist = new DishList();
+//                Bundle bundle2 = new Bundle();
+//                bundle2.putString("menulist", menulist.toString());
+//                dishlist.setArguments(bundle2);
+//                StartActivity.get().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
+//                        .addToBackStack(dishlist.toString())
+//                        .commit();
+//            }
+//        });
 
 
     }

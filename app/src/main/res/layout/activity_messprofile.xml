@@ -4,13 +4,13 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:background="#f1e3e3">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
-
+<ScrollView
+    android:id="@+id/sc"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="vertical"
+            android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.ashleyjain.messmart.function.RoundedImageView
@@ -141,13 +141,13 @@
                 android:textColor="#039be5"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
-
-            <FrameLayout
+        </LinearLayout>
+</ScrollView>
+    <FrameLayout
+        android:layout_below="@+id/sc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/fraglist">
             </FrameLayout>
 
-        </LinearLayout>
-    </ScrollView>
 </RelativeLayout>
