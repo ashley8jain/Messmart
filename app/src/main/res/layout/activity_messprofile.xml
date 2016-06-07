@@ -121,7 +121,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="--"
+                        android:text=""
                         android:id="@+id/mess_dinnertime"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"/>
@@ -138,18 +138,16 @@
                 android:textSize="20sp"
                 android:id="@+id/dishlist"
                 android:padding="10dp"
-                android:text="Dishes for this week"
+                android:text="His Dishes for this week"
+                android:textColor="#039be5"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="10000dp"
-                    android:id="@+id/fraglist"
-                    android:orientation="vertical">
-                </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fraglist">
+            </FrameLayout>
 
         </LinearLayout>
     </ScrollView>

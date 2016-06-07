@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -62,6 +64,24 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
 
         RelativeLayout rlayout = (RelativeLayout) view.findViewById(R.id.activity_messjoin);
         rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.activity_messjoin_sv);
+        scrollView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                KeyboardDown.keyboardDown();
+            }
+
+        });
+        LinearLayout llayout = (LinearLayout) view.findViewById(R.id.activity_messjoin_ll);
+        llayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

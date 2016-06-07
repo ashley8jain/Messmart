@@ -76,6 +76,7 @@ public class DishList extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         messObjectList = new ArrayList<DishObject>();
         for(int i = 0;i<messId.length;i++){
             DishObject items = new DishObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messDatetext[i]);

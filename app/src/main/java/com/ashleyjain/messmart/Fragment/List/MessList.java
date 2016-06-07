@@ -104,7 +104,7 @@ public class MessList extends ListFragment {
                                 messBook[i]=fooditem.getInt("isbooked");
                             }
 
-                            ////dialog.dismiss();
+                            //dialog.dismiss();
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(),e.toString(), Toast.LENGTH_LONG).show();
                             //dialog.dismiss();
