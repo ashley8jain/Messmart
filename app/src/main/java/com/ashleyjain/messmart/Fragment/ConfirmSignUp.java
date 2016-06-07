@@ -198,31 +198,31 @@ public class ConfirmSignUp extends Fragment {
         });
 
         TextView already = (TextView) view.findViewById(R.id.already);
-        already.setText(Html.fromHtml("Already have an account? " + "<font color=#039be5>" + "Login" + "</font><br><br>"));
-//        already.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().getSupportFragmentManager().popBackStack();
-//                getActivity().getSupportFragmentManager().popBackStack();
-//            }
-//        });
-        already.setMovementMethod(LinkMovementMethod.getInstance());
-        already.setText(already.getText(), TextView.BufferType.SPANNABLE);
-        Spannable alreadyspannable = (Spannable)already.getText();
-        ClickableSpan myAlreadySpan = new ClickableSpan()
-        {
+        already.setText(Html.fromHtml("" + "<font color=#039be5>" + "Login" + "</font><br><br>"));
+        already.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStack();
                 getActivity().getSupportFragmentManager().popBackStack();
             }
-            @Override
-            public void updateDrawState(TextPaint ds) {// override updateDrawState
-                ds.setUnderlineText(false); // set to false to remove underline
-            }
-        };
-        alreadyspannable.setSpan(myAlreadySpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        alreadyspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
+        });
+//        already.setMovementMethod(LinkMovementMethod.getInstance());
+//        already.setText(already.getText(), TextView.BufferType.SPANNABLE);
+//        Spannable alreadyspannable = (Spannable)already.getText();
+//        ClickableSpan myAlreadySpan = new ClickableSpan()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().popBackStack();
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {// override updateDrawState
+//                ds.setUnderlineText(false); // set to false to remove underline
+//            }
+//        };
+//        alreadyspannable.setSpan(myAlreadySpan, 25, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        alreadyspannable.setSpan(new ForegroundColorSpan(Color.parseColor("#039be5")),25, 30,0);
 
     }
 }

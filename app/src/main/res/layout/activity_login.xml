@@ -82,34 +82,60 @@
         android:layout_marginTop="20dp"
         />
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_below="@+id/loginbutton"
+    android:id="@+id/linearLayoutSignUp"
+    android:layout_marginTop="20dp"
+    android:layout_centerHorizontal="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don\'t have an account? "
+        android:id="@+id/signupText"
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don\'t have an account? Sign Up"
+        android:text="SignUp"
         android:id="@+id/signup"
-        android:layout_below="@+id/loginbutton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:textSize="18sp"/>
+</LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/linearLayoutSignUp"
+            android:id="@+id/linearLayoutJoinUs"
+            android:layout_centerHorizontal="true">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Are you a mess? Join us"
-        android:id="@+id/joinus"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/signup"
-        android:layout_centerHorizontal="true" />
+        android:text="Are you a mess? "
+        android:id="@+id/joinusText"
+        android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JoinUs"
+            android:id="@+id/joinus"
+            android:textSize="18sp"/>
+        </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot your password ?"
         android:id="@+id/forgot"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/joinus"
-        android:layout_alignLeft="@+id/joinus"
-        android:layout_alignStart="@+id/joinus" />
+        android:textSize="18sp"
+        android:layout_below="@+id/linearLayoutJoinUs"
+        android:layout_alignLeft="@+id/linearLayoutJoinUs"
+        android:layout_alignStart="@+id/linearLayoutJoinUs"/>
 
 
     </RelativeLayout>
