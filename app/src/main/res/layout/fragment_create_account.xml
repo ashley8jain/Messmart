@@ -18,7 +18,6 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:id="@+id/textView22"
-
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/EditTextLayout"
         android:layout_alignStart="@+id/EditTextLayout" />
