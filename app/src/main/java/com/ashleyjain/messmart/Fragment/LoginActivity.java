@@ -1,18 +1,11 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.drawer;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.checkError;
@@ -210,11 +204,11 @@ public class LoginActivity extends Fragment {
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
                                         Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
-                                        Intent re = new Intent(getContext(),StartActivity.class);
-                                        startActivity(re);
-                                        getActivity().finish();
-//                                        StartActivity.get().drawer();
-//                                        StartActivity.get().getSupportFragmentManager().popBackStackImmediate();
+//                                        Intent re = new Intent(getContext(),StartActivity.class);
+//                                        startActivity(re);
+//                                        getActivity().finish();
+                                        new drawer().rebuild();
+                                        StartActivity.get().getSupportFragmentManager().popBackStackImmediate();
                                     }
                                     else{
                                         Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();

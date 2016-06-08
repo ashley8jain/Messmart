@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -20,8 +18,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,27 +25,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.ashleyjain.messmart.Fragment.AboutusActivity;
-import com.ashleyjain.messmart.Fragment.ContactusActivity;
-import com.ashleyjain.messmart.Fragment.LoginActivity;
-import com.ashleyjain.messmart.Fragment.MessListTabLayout;
-import com.ashleyjain.messmart.Fragment.OrderFragment;
-import com.ashleyjain.messmart.Fragment.Setting;
-import com.ashleyjain.messmart.Fragment.UserprofileActivity;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
 import com.ashleyjain.messmart.function.StringRequestCookies;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.Nameable;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -57,21 +36,17 @@ import java.util.Map;
 
 public class StartActivity extends AppCompatActivity {
 
-    protected Drawer drawer = null;
-    DrawerBuilder builder;
-    AccountHeader headerResult = null;
-    String loginname,logintype;
+    public static String loginname,logintype;
     private Context context;
-    String aboutus,contactus;
+    public static String aboutus,contactus;
     public static JSONArray days,days2;
     public static JSONObject errorcode;
     public static String loginid;
-    TextView Name,Email;
-    HashMap hm = new HashMap();
-    ImageView im;
-    JSONArray tabs;
 
-    public static String host = "http://192.168.0.111/mess/";
+    public static JSONArray tabs;
+    public static JSONObject tab_map;
+
+    public static String host = "http://www.messmart.com/";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -104,16 +79,9 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-//            Intent re = new Intent(StartActivity.this,StartActivity.class);
-//            startActivity(re);
-//            finish();
-    }
-    @Override
     public void onBackPressed() {
-        if (this.drawer.isDrawerOpen()) {
-            this.drawer.closeDrawer();
+        if (drawer.drawer.isDrawerOpen()) {
+            drawer.drawer.closeDrawer();
         } else {
             super.onBackPressed();
         }
@@ -138,28 +106,10 @@ public class StartActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawer.openDrawer();
+                drawer.drawer.openDrawer();
             }
         });
 
-        //profile section in drawer layout
-        headerResult = new AccountHeaderBuilder()
-                .withProfileImagesClickable(false)
-                .withActivity(this)
-                .withSelectionListEnabled(false)
-                .addProfiles(
-                        new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
-                )
-                .withHeaderBackground(R.drawable.slider1)
-                .build();
-
-
-        //buttons handling in drawer
-        builder = new DrawerBuilder()
-                .withActivity(this)
-                .withDisplayBelowStatusBar(true)
-                .withActionBarDrawerToggle(true)
-                .withAccountHeader(headerResult);
 
         if (!isNetworkConnected(context)) {
             //when wifi is not connected
@@ -176,232 +126,15 @@ public class StartActivity extends AppCompatActivity {
             AlertDialog alertDialog = alertbuilder.create();
             alertDialog.show();
         } else {
-            final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
-            String url = host+"index.php/ajaxactions";
+            new drawer().rebuild();
 
-            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("Response", response);
-                            //response JSON from url
-                            try {
-                                JSONObject jsonResponse = new JSONObject(response);
-                                JSONObject dataobject = jsonResponse.getJSONObject("data");
-                                errorcode= dataobject.getJSONObject("ec");
-                                aboutus = dataobject.getString("aboutus_content");
-                                contactus = dataobject.getString("contact");
-                                JSONObject days7 = dataobject.getJSONObject("7days");
-                                days = days7.getJSONArray("textl");
-                                days2 = days7.getJSONArray("timel");
-                                JSONObject drawer = dataobject.getJSONObject("drawer");
-                                loginname = drawer.getString("loginname");
-                                loginid = drawer.getString("loginid");
-                                logintype = drawer.getString("logintype");
-                                Name.setText(loginname.equals("Profile") ? "Guest User" : loginname);
-                                tabs = drawer.getJSONArray("tabs");
-                                JSONObject tab_map = drawer.getJSONObject("tab_map");
-
-                                hm.put("Login",R.drawable.login);
-                                hm.put("Logout", R.drawable.logout);
-                                hm.put("Contact us", R.drawable.online_support);
-                                hm.put("About us", R.drawable.aboutus);
-                                hm.put("Menu", R.drawable.menu);
-                                hm.put("Orders", R.drawable.order);
-                                hm.put("Settings", R.drawable.setting);
-                                hm.put(loginname, R.drawable.profile);
-                                for(int i = 0 ;i < tabs.length();i++){
-                                    String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
-                                    Drawable dr = getResources().getDrawable((int)hm.get(cap));
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int)hm.get(cap)));
-                                }
-                                    if( !logintype.equals("null")&& !logintype.equals("u")){
-                                    AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
-                                    alertbuilder.setTitle("You are not user!!");
-                                    alertbuilder.setMessage("Go to www.messmart.com website");
-                                    alertbuilder.setCancelable(true);
-                                    alertbuilder.setPositiveButton("Open Website", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.messmart.com"));
-                                            startActivity(browserIntent);
-                                            logoutapi();
-                                            finish();
-                                        }
-                                    });
-                                    alertbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            logoutapi();
-                                        }
-                                    });
-                                    AlertDialog alertDialog = alertbuilder.create();
-                                    alertDialog.show();
-                                }
-                                dialog.dismiss();
-                            } catch (JSONException e) {
-                                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                        }
-                    }
-
-            ) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Log.d("debug", "posting param");
-                    Map<String, String> params = new HashMap<String, String>();
-
-                    // the POST parameters:
-                    params.put("action", "getinit");
-                    System.out.println(params);
-                    return params;
-                }
-            };
-
-            // add it to the RequestQueue
-            getRequestQueue().add(postRequest);
 
             ViewpagerFragment fragment = new ViewpagerFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_not, fragment, fragment.toString())
                     .commit();
 
-            builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                @Override
-                public boolean onItemClick(View v, int position, IDrawerItem drawerItem) {
-                    String name = ((Nameable) drawerItem).getName().toString();
-                    if (name.equals("Menu")) {
-                        popStack();
-                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
-                        Bundle bundle3 = new Bundle();
-                        bundle3.putString("days", days.toString());
-                        bundle3.putString("days2", days2.toString());
-                        fragment.setArguments(bundle3);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, fragment, fragment.toString())
-                                .addToBackStack(null)
-                                .commit();
-                    } else if (name.equals("Login")) {
-                        LoginActivity loginfragment = new LoginActivity();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, loginfragment, loginfragment.toString())
-                                .addToBackStack(null)
-                                .commit();
 
-
-                    } else if (name.equals("Logout")) {
-                        logoutapi();
-                    } else if (name.equals("About us")) {
-                        popStack();
-                        AboutusActivity aboutfragment = new AboutusActivity();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("aboutus", aboutus);
-                        aboutfragment.setArguments(bundle);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, aboutfragment, aboutfragment.toString())
-                                .addToBackStack(aboutfragment.toString())
-                                .commit();
-
-                    } else if (name.equals(("Contact us"))) {
-                        popStack();
-                        ContactusActivity contactfragment = new ContactusActivity();
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putString("contactus", contactus);
-                        contactfragment.setArguments(bundle2);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, contactfragment, contactfragment.toString())
-                                .addToBackStack(contactfragment.toString())
-                                .commit();
-                    } else if (name.equals("Orders")) {
-                        popStack();
-                        OrderFragment ofragment = new OrderFragment();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, ofragment, ofragment.toString())
-                                .addToBackStack(ofragment.toString())
-                                .commit();
-                    } else if (name.equals(loginname)) {
-                        popStack();
-                        UserprofileActivity userprofileActivity = new UserprofileActivity();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, userprofileActivity, userprofileActivity.toString())
-                                .addToBackStack(userprofileActivity.toString())
-                                .commit();
-
-                    } else if (name.equals("Settings")) {
-                        popStack();
-                        Setting settingfragment = new Setting();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_not, settingfragment, settingfragment.toString())
-                                .addToBackStack(settingfragment.toString())
-                                .commit();
-                    }
-                    return false;
-                }
-            });
-            
-            drawer = builder.build();
-            Name = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_name);
-            Email = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_email);
-            im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
-
-            //final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Loading...", true);
-
-            StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("Response", response);
-                            //response JSON from url
-                            try {
-                                JSONObject jsonResponse = new JSONObject(response);
-                                JSONObject data = jsonResponse.getJSONObject("data");
-                                JSONObject uinfo = data.getJSONObject("uinfo");
-                                Email.setText("Wallet: "+uinfo.getString("wallet")+"/-");
-                                String imageurl = uinfo.getString("profilepic");
-                                System.out.println("profileurl: " + imageurl);
-                                if(imageurl!=null)
-                                    Picasso.with(context).load(StartActivity.host+imageurl).into(im);
-                                //dialog2.dismiss();
-                            } catch (JSONException e) {
-                                //Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                                //dialog2.dismiss();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                        }
-                    }
-
-            ) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Log.d("debug", "posting param");
-                    Map<String, String> params = new HashMap<String, String>();
-
-                    // the POST parameters:
-                    params.put("action", "profile");
-                    System.out.println(params);
-                    return params;
-                }
-            };
-
-            // add it to the RequestQueue
-            getRequestQueue().add(postRequest2);
         }
 
     }
@@ -461,7 +194,7 @@ public class StartActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
     }
 
-    private void logoutapi(){
+    public void logoutapi(){
         final ProgressDialog dialog = ProgressDialog.show(context, "", "Logging out....", true);
         String url = host + "index.php/ajaxactions";
 
@@ -470,10 +203,8 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("Response", response);
-                        Intent re = new Intent(StartActivity.this, StartActivity.class);
-                        startActivity(re);
                         Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                        finish();
+                        new drawer().rebuild();
                         dialog.dismiss();
                     }
                 },
@@ -501,153 +232,6 @@ public class StartActivity extends AppCompatActivity {
 
         // add it to the RequestQueue
         getRequestQueue().add(postRequest);
-    }
-
-    public void drawer(){
-
-        String url = host+"index.php/ajaxactions";
-        final ProgressDialog dialog = ProgressDialog.show(context, "", "Loading...", true);
-
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Response", response);
-                        //response JSON from url
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            JSONObject dataobject = jsonResponse.getJSONObject("data");
-                            errorcode= dataobject.getJSONObject("ec");
-                            aboutus = dataobject.getString("aboutus_content");
-                            contactus = dataobject.getString("contact");
-                            JSONObject days7 = dataobject.getJSONObject("7days");
-                            days = days7.getJSONArray("textl");
-                            days2 = days7.getJSONArray("timel");
-                            JSONObject drawer = dataobject.getJSONObject("drawer");
-                            loginname = drawer.getString("loginname");
-                            loginid = drawer.getString("loginid");
-                            logintype = drawer.getString("logintype");
-                            Name.setText(loginname.equals("Profile") ? "Guest User" : loginname);
-                            tabs = drawer.getJSONArray("tabs");
-                            JSONObject tab_map = drawer.getJSONObject("tab_map");
-
-
-                            hm.put("Login",R.drawable.login);
-                            hm.put("Logout", R.drawable.logout);
-                            hm.put("Contact us", R.drawable.online_support);
-                            hm.put("About us", R.drawable.aboutus);
-                            hm.put("Menu", R.drawable.menu);
-                            hm.put("Orders", R.drawable.order);
-                            hm.put("Settings", R.drawable.setting);
-                            hm.put(loginname, R.drawable.profile);
-
-
-                            for(int i = 0 ;i < tabs.length();i++){
-                                String cap = (String)tab_map.getJSONArray(tabs.getString(i)).get(0);
-                                builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int) hm.get(cap)));
-                            }
-
-                            if( !logintype.equals("null")&& !logintype.equals("u")){
-                                AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
-                                alertbuilder.setTitle("You are not user!!");
-                                alertbuilder.setMessage("Go to www.messmart.com website");
-                                alertbuilder.setCancelable(true);
-                                alertbuilder.setPositiveButton("Open Website", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.messmart.com"));
-                                        startActivity(browserIntent);
-                                        logoutapi();
-                                        finish();
-                                    }
-                                });
-                                alertbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        logoutapi();
-                                    }
-                                });
-                                AlertDialog alertDialog = alertbuilder.create();
-                                alertDialog.show();
-                            }
-                            dialog.dismiss();
-                        } catch (JSONException e) {
-                            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
-                    }
-                }
-
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Log.d("debug", "posting param");
-                Map<String, String> params = new HashMap<String, String>();
-
-                // the POST parameters:
-                params.put("action", "getinit");
-                System.out.println(params);
-                return params;
-            }
-        };
-
-        // add it to the RequestQueue
-        getRequestQueue().add(postRequest);
-
-
-        StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Response", response);
-                        //response JSON from url
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            JSONObject data = jsonResponse.getJSONObject("data");
-                            JSONObject uinfo = data.getJSONObject("uinfo");
-                            Email.setText("Wallet: "+uinfo.getString("wallet")+"/-");
-                            String imageurl = uinfo.getString("profilepic");
-                            System.out.println("profileurl: " + imageurl);
-                            if(imageurl!=null)
-                                Picasso.with(context).load(StartActivity.host+imageurl).into(im);
-                        } catch (JSONException e) {
-                            //Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }
-
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Log.d("debug", "posting param");
-                Map<String, String> params = new HashMap<String, String>();
-
-                // the POST parameters:
-                params.put("action", "profile");
-                System.out.println(params);
-                return params;
-            }
-        };
-
-        // add it to the RequestQueue
-        getRequestQueue().add(postRequest2);
-
     }
 
 }
