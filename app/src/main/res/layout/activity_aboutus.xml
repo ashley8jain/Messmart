@@ -5,28 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.AboutusActivity">
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/imageView5"-->
-            <!--android:background="#80f2f2bf"-->
-            <!--android:src="@drawable/messmart_logo" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1"-->
-            <!--app:cardElevation="5dp"-->
-            <!--app:cardCornerRadius="10dp"-->
-            <!--app:cardBackgroundColor="@color/colorPrimary"-->
-            <!--app:contentPadding="8dp"-->
-            <!--app:cardUseCompatPadding="true">-->
-
-        <!--</android.support.v7.widget.CardView>-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -34,12 +16,15 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardElevation="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,15 +33,94 @@
                     android:paddingRight="40dp"
                     android:id="@+id/textView2"
                     android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Our Core Team"
+                        android:textStyle="bold"
+                        android:paddingLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+
+                    <com.ashleyjain.messmart.function.RoundedImageView
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:id="@+id/prof"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/messmart_logo"
+                        android:layout_gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mohit Saini"
+                        android:textStyle="bold"
+                        android:paddingLeft="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="An IIT Delhi graduate, Technical Head, who is either coding right now or sleeping and dreaming about the code. A crazy programmer who is addicted to programming. The only power in this universe, which can stop him from coding, is SLEEP."
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+                    <com.ashleyjain.messmart.function.RoundedImageView
+                        android:layout_width="300dp"
+                        android:id="@+id/prof1"
+                        android:layout_height="300dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/messmart_logo"
+                        android:layout_gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MansimrnJeet Singh"
+                        android:textStyle="bold"
+                        android:paddingLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="He is also an IIT Delhi graduate having vision of changing the way with which people currently eat in India. An analytical thinker who penetrates into critical real world problems and always comes up with optimal and sustainable solutions"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+                    <com.ashleyjain.messmart.function.RoundedImageView
+                        android:layout_width="300dp"
+                        android:id="@+id/prof2"
+                        android:layout_height="300dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/messmart_logo"
+                        android:layout_gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kamal"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:paddingLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="He is also an IIT Delhi graduate, the guy behind the idea. A Marketing and Operations GEEK who always finds himself compatible with the management stuff."
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center_horizontal"/>
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
         </ScrollView>
-                        <!--<WebView-->
-                        <!--android:layout_width="300dp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:id="@+id/webView"-->
-                        <!--android:layout_gravity="center_horizontal" />-->
 
     </LinearLayout>
     </FrameLayout>

@@ -1,20 +1,23 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+import com.squareup.picasso.Picasso;
 
 public class AboutusActivity extends Fragment {
 
     TextView abus;
-    //ImageView iv;
+    ImageView prof,prof1,prof2;
     String aboutus;
     //WebView wv;
 
@@ -34,10 +37,19 @@ public class AboutusActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("About Us");
+
         View view = inflater.inflate(R.layout.activity_aboutus, container, false);
         abus = (TextView) view.findViewById(R.id.textView2);
         abus.setText(Html.fromHtml(aboutus));
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("About Us");
+        prof = (ImageView) view.findViewById(R.id.prof);
+        prof1 = (ImageView) view.findViewById(R.id.prof1);
+        prof2 = (ImageView) view.findViewById(R.id.prof2);
+        Picasso.with(getActivity()).load(StartActivity.host + "photo/pic2.jpg").into(prof);
+        Picasso.with(getActivity()).load(StartActivity.host + "photo/pic1.jpg").into(prof1);
+        Picasso.with(getActivity()).load(StartActivity.host + "photo/pic3.jpg").into(prof2);
+
+
         return view;
 
     }
