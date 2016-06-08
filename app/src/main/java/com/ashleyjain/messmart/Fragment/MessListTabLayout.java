@@ -95,9 +95,6 @@ public class MessListTabLayout extends Fragment {
         viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        //final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
-        String url = StartActivity.host+"index.php/ajaxactions";
-
         // Spinner element
         final Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
 
@@ -142,7 +139,7 @@ public class MessListTabLayout extends Fragment {
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

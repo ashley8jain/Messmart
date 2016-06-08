@@ -56,9 +56,8 @@ public class OrderFragment extends Fragment {
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
-        String url = StartActivity.host+"index.php/ajaxactions";
 
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

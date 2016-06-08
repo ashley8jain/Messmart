@@ -43,7 +43,6 @@ import java.util.Map;
 public class Setting extends Fragment {
 
     EditText useroldpw,usernewpw,usernewpwre;
-    CheckBox showHidePas;
     Button changepw;
 
     @Override
@@ -133,8 +132,7 @@ public class Setting extends Fragment {
                 }
                 else {
                     final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Changing......", true);
-                    String url = "http://192.168.0.106/mess/index.php/ajaxactions";
-                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                             new Response.Listener<String>() {
                                 @Override
 
@@ -187,10 +185,6 @@ public class Setting extends Fragment {
                     // add it to the RequestQueue
                     StartActivity.get().getRequestQueue().add(postRequest);
                     KeyboardDown.keyboardDown();
-                    //getActivity().finish();
-                    //StartActivity.get().onBackPressed();
-                    //getActivity().getSupportFragmentManager().beginTransaction().remove(Setting.this).commit();
-
 
                 }
             }

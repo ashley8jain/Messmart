@@ -96,9 +96,8 @@ public class dishObjectAdapter extends BaseAdapter {
                         public void onClick(DialogInterface dialog, int id) {
 
                             final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                            String url = StartActivity.host + "index.php/ajaxactions";
 
-                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
@@ -159,9 +158,8 @@ public class dishObjectAdapter extends BaseAdapter {
                     alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                            String url = StartActivity.host + "index.php/ajaxactions";
 
-                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
@@ -230,9 +228,8 @@ public class dishObjectAdapter extends BaseAdapter {
                     alertbuilder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Cancelling.....", true);
-                            String url = StartActivity.host + "index.php/ajaxactions";
 
-                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {

@@ -22,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
-import com.ashleyjain.messmart.drawer;
+import com.ashleyjain.messmart.function.drawer;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.checkError;
@@ -191,9 +191,7 @@ public class LoginActivity extends Fragment {
                 final String mbnb = mobileno.getText().toString();
                 final String pwd = pass.getText().toString();
 
-                String url = StartActivity.host+"index.php/ajaxactions";
-
-                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {

@@ -196,8 +196,7 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                         || !mobile.getText().toString().matches("\\d{10}")
                         || !emailid.getText().toString().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$"))) {
 
-                    final String url = "http://192.168.0.102/mess/index.php/ajaxactions";
-                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -212,7 +211,7 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                                         }
                                     }
                                     final String ec_val_str = ec_val;
-                                    StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                                    StringRequest postRequest = new StringRequest(Request.Method.POST, StartActivity.url,
                                             new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String response) {

@@ -1,19 +1,12 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -120,9 +112,7 @@ public class SignUpActivity extends Fragment {
                 final String phone = newmobile.getText().toString();
                 if (phone.length() == 10) {
                     final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
-                    String url = StartActivity.host + "index.php/ajaxactions";
-                    //final String phone = newmobile.getText().toString();
-                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

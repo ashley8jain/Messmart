@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
 import com.ashleyjain.messmart.function.StringRequestCookies;
+import com.ashleyjain.messmart.function.drawer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,6 +48,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONObject tab_map;
 
     public static String host = "http://www.messmart.com/";
+    public static String url = StartActivity.host+"index.php/ajaxactions";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -196,7 +198,6 @@ public class StartActivity extends AppCompatActivity {
 
     public void logoutapi(){
         final ProgressDialog dialog = ProgressDialog.show(context, "", "Logging out....", true);
-        String url = host + "index.php/ajaxactions";
 
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -209,7 +210,6 @@ public class StartActivity extends AppCompatActivity {
                     }
                 },
                 new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();

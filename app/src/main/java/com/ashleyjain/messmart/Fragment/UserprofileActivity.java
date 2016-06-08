@@ -102,8 +102,7 @@ public class UserprofileActivity extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading......", true);
-                                String url = StartActivity.host+"index.php/ajaxactions";
-                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {
@@ -180,8 +179,7 @@ public class UserprofileActivity extends Fragment {
 
     private void setInfo(){
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading...", true);
-        String url = StartActivity.host+"index.php/ajaxactions";
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
 

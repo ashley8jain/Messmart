@@ -1,15 +1,9 @@
 package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,9 +68,8 @@ public class ConfirmSignUp extends Fragment {
             public void onClick(View v) {
                 phone = ph.getText().toString();
                 final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
-                String url = StartActivity.host+"index.php/ajaxactions";
 
-                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -135,10 +128,9 @@ public class ConfirmSignUp extends Fragment {
             @Override
             public void onClick(View v) {
                 final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Verifying.....", true);
-                String url = StartActivity.host+"index.php/ajaxactions";
                 confirmpass = otp.getText().toString();
 
-                StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
+                StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {

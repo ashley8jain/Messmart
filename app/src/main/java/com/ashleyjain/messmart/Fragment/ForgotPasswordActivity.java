@@ -99,8 +99,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
     }
 
     private void forgotPassword(){
-        String url = "http://192.168.0.106/mess/index.php/ajaxactions";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
 
@@ -148,8 +147,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
 
     }
     private void getMessage(){
-        String url = "http://192.168.0.106/mess/index.php/ajaxactions";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
 

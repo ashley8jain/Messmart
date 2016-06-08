@@ -1,12 +1,12 @@
 package com.ashleyjain.messmart.Fragment.List;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +32,6 @@ public class MessList extends ListFragment {
 
     String lord,pd;
     TextView emp;
-    ListView list;
 
     private int[] messDishId,messId;
     private String[] messTitle,messLord;
@@ -44,11 +43,6 @@ public class MessList extends ListFragment {
 
     private List<MessObject> messObjectList;
     messObjectAdapter adapter;
-
-//    ListView lv = (ListView) findViewById(R.id.list);
-//    lv.setDivider(null);
-//    lv.setDividerHeight(0);
-
 
     public MessList(String lord,String pd){
         this.lord = lord;
@@ -63,18 +57,13 @@ public class MessList extends ListFragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
 
-        //final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading.....", true);
-        String url = StartActivity.host+"index.php/ajaxactions";
-
-
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -84,6 +73,7 @@ public class MessList extends ListFragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             emp.setText(dataobject.getString("isbookingclosed"));
+                            emp.setTypeface(font);
                             JSONArray foodarray = dataobject.getJSONArray("foodlist");
                             System.out.println(foodarray);
                             Integer len = foodarray.length();
@@ -157,17 +147,11 @@ public class MessList extends ListFragment {
         };
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
-//        messId = new int[2];
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mess_list, container, false);
 
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        getListView().setDivider(null);
-//        getListView().setDividerHeight(0);
-    }
 
 }

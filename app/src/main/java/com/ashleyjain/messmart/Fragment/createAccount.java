@@ -2,15 +2,9 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,9 +75,7 @@ public class createAccount extends Fragment {
                 choosePass = chPass.getText().toString();
 
                 final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Signing up.....", true);
-                String url = StartActivity.host + "index.php/ajaxactions";
-
-                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {

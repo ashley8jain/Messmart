@@ -1,4 +1,4 @@
-package com.ashleyjain.messmart;
+package com.ashleyjain.messmart.function;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -22,7 +22,8 @@ import com.ashleyjain.messmart.Fragment.MessListTabLayout;
 import com.ashleyjain.messmart.Fragment.OrderFragment;
 import com.ashleyjain.messmart.Fragment.Setting;
 import com.ashleyjain.messmart.Fragment.UserprofileActivity;
-import com.ashleyjain.messmart.function.StringRequestCookies;
+import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -74,9 +75,8 @@ public class drawer {
         im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
 
         final ProgressDialog dialog = ProgressDialog.show(StartActivity.get(), "", "Loading...", true);
-        String url = StartActivity.host+"index.php/ajaxactions";
 
-        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -132,7 +132,6 @@ public class drawer {
                                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.messmart.com"));
                                         StartActivity.get().startActivity(browserIntent);
                                         StartActivity.get().logoutapi();
-                                        StartActivity.get().finish();
                                     }
                                 });
                                 alertbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -254,7 +253,7 @@ public class drawer {
             }
         });
 
-        StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, url,
+        StringRequestCookies postRequest2 = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
