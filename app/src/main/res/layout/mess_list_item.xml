@@ -17,91 +17,99 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:id="@+id/messimg"
             android:src="@drawable/food3"
             android:scaleType="fitXY"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:text="dish name"
-            android:layout_below="@+id/messimg"
-            android:textAlignment="textStart"
-            android:gravity="start"
-            android:padding="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/messmakername"
-            android:text="mess name"
-            android:layout_below="@+id/title"
-            android:textAlignment="textStart"
-            android:gravity="start"
-            android:padding="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textColor="#039be5"
-            android:textSize="13sp"/>
+            android:layout_alignParentTop="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="dish name"
+            android:layout_below="@+id/messimg"
+            android:layout_alignLeft="@+id/messimg"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_alignTop="@+id/imgveg"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="23"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:id="@+id/price"
             android:drawableLeft="@drawable/inrup"
-            android:layout_below="@+id/messmakername"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:padding="2dp"
-            android:paddingLeft="10dp"
+            android:drawablePadding="-2dp"
+            android:layout_alignRight="@+id/imgveg"
+            android:layout_below="@+id/messimg"
+            android:layout_marginRight="30dp"
             android:paddingRight="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:layout_marginTop="10dp"
+            />
 
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:id="@+id/imgveg"
             android:paddingRight="10dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/veg"
-            android:layout_alignRight="@+id/messmakername"
+            android:layout_alignRight="@+id/messimg"
             android:layout_below="@+id/messimg"
-            android:paddingTop="5dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="3dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"/>
 
-        <Button
-            android:layout_width="160dp"
+
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/buttonshape"
+            android:id="@+id/messmakername"
+            android:text="mess name"
+            android:layout_below="@+id/title"
+            android:layout_alignBaseline="@+id/bookbutton"
+            android:textColor="#039be5"
+            android:textSize="14sp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/messmakerlogo"
+            android:layout_toRightOf="@+id/messmakerlogo"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/messmakerlogo"
+            android:layout_below="@+id/price"
+            android:src="@drawable/google_icon"
+            android:layout_alignLeft="@+id/messimg"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/bookbutton"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
             android:textColor="#ffffff"
+            android:background="@drawable/bookbutton"
             android:text="Book"
-            android:textSize="20sp"
             android:textAllCaps="false"
+            android:textSize="14sp"
             android:id="@+id/bookbutton"
-            android:layout_centerHorizontal="true"
-            android:padding="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignRight="@+id/messimg"
             android:layout_below="@+id/price"/>
 
         <TextView
@@ -110,8 +118,10 @@
             android:text="Newnklllllllllllllllllllllllllllllllllllll
             llllllllllllllllllllkllllllllllllll Text"
             android:padding="10dp"
-            android:layout_below="@+id/bookbutton"
+            android:layout_below="@+id/messmakerlogo"
             android:id="@+id/description"/>
+
+
 
     </RelativeLayout>
 

@@ -77,6 +77,7 @@ public class messObjectAdapter extends BaseAdapter {
         TextView messDescription = (TextView) convertView.findViewById(R.id.description);
         TextView Prices = (TextView) convertView.findViewById(R.id.price);
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
+        ImageView messLogo = (ImageView) convertView.findViewById(R.id.messmakerlogo);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
         final Button book = (Button) convertView.findViewById(R.id.bookbutton);
@@ -91,9 +92,9 @@ public class messObjectAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (row.getBook() == 0) {
 
-                        alertbuilder.setTitle("Booking");
-                        alertbuilder.setMessage("Mess : " + row.getName() + "\nAddress : " + row.getAddress() + "\nTiming : " + row.getTiming());
-                        alertbuilder.setCancelable(true);
+                    alertbuilder.setTitle("Booking");
+                    alertbuilder.setMessage("Mess : " + row.getName() + "\nAddress : " + row.getAddress() + "\nTiming : " + row.getTiming());
+                    alertbuilder.setCancelable(true);
                     alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -199,38 +200,38 @@ public class messObjectAdapter extends BaseAdapter {
                                         },
                                         new Response.ErrorListener() {
 
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                                                dialog2.dismiss();
-                                            }
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            dialog2.dismiss();
                                         }
-
-                                ) {
-                                    @Override
-                                    protected Map<String, String> getParams() {
-                                        Log.d("debug", "posting param");
-                                        Map<String, String> params = new HashMap<String, String>();
-
-                                        // the POST parameters:
-                                        params.put("lord", row.getLord());
-                                        params.put("dishid", "" + row.getDishId());
-                                        params.put("mid", row.getId() + "");
-                                        params.put("dishid", row.getDishId() + "");
-                                        params.put("booktype", "t");
-                                        params.put("action", "bookmeal");
-                                        params.put("datetime", row.getDatetime());
-                                        System.out.println(params);
-                                        return params;
                                     }
-                                };
 
-                                // add it to the RequestQueue
-                                StartActivity.get().getRequestQueue().add(postRequest);
-                            }
-                        });
-                        AlertDialog alertDialog = alertbuilder.create();
-                        alertDialog.show();
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Log.d("debug", "posting param");
+                                    Map<String, String> params = new HashMap<String, String>();
+
+                                    // the POST parameters:
+                                    params.put("lord", row.getLord());
+                                    params.put("dishid", "" + row.getDishId());
+                                    params.put("mid", row.getId() + "");
+                                    params.put("dishid", row.getDishId() + "");
+                                    params.put("booktype", "t");
+                                    params.put("action", "bookmeal");
+                                    params.put("datetime", row.getDatetime());
+                                    System.out.println(params);
+                                    return params;
+                                }
+                            };
+
+                            // add it to the RequestQueue
+                            StartActivity.get().getRequestQueue().add(postRequest);
+                        }
+                    });
+                    AlertDialog alertDialog = alertbuilder.create();
+                    alertDialog.show();
                 } else if (row.getBook() == 1) {
                     alertbuilder.setTitle("Confirmation");
                     alertbuilder.setMessage("Are you sure?");
@@ -313,6 +314,7 @@ public class messObjectAdapter extends BaseAdapter {
         //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
         messTitle.setText(row.getTitle());
         messDescription.setText(row.getDescription());
+        messLogo.setImageResource(R.drawable.google_icon);
         name.setText(row.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
