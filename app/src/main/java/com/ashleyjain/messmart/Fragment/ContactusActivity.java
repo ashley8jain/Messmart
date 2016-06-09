@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +41,12 @@ public class ContactusActivity extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_contactus, container, false);
-        cn = (TextView) view.findViewById(R.id.textView2);
-        //cn.setText("free");
-        cn.setText("E-mail:"+email+"\n"+"Phone:"+phone);
+        cn = (TextView) view.findViewById(R.id.call);
+        cn.setText(phone);
+        cn.setTypeface(StartActivity.font);
+        TextView ml = (TextView) view.findViewById(R.id.mail);
+        ml.setText(email);
+        ml.setTypeface(StartActivity.font);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Contact Us");
         return view;
     }

@@ -1,6 +1,5 @@
 package com.ashleyjain.messmart.Fragment.List;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -61,8 +60,6 @@ public class MessList extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"YuppySC-Regular.ttf");
-
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
                     @Override
@@ -73,7 +70,7 @@ public class MessList extends ListFragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             emp.setText(dataobject.getString("isbookingclosed"));
-                            emp.setTypeface(font);
+                            emp.setTypeface(StartActivity.font);
                             JSONArray foodarray = dataobject.getJSONArray("foodlist");
                             System.out.println(foodarray);
                             Integer len = foodarray.length();

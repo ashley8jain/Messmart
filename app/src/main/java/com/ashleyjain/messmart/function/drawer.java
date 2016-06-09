@@ -86,7 +86,8 @@ public class drawer {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             StartActivity.errorcode= dataobject.getJSONObject("ec");
-                            StartActivity.aboutus = dataobject.getString("aboutus_content");
+                            StartActivity.aboutus = dataobject.getString("aboutus");
+                            System.out.println("about: "+StartActivity.aboutus);
                             StartActivity.contactus = dataobject.getString("contact");
                             JSONObject days7 = dataobject.getJSONObject("7days");
                             StartActivity.days = days7.getJSONArray("textl");

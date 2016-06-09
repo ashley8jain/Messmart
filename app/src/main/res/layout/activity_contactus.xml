@@ -5,12 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ContactusActivity">
 
-    <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/imageView5"-->
-    <!--android:background="#80f2f2bf"-->
-    <!--android:src="@drawable/messmart_logo" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,27 +18,54 @@
             app:cardElevation="10dp"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
-
-            <TextView
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Here, you have to get content from api using post request."
-                android:textColor="#987654"
-                android:padding="30dp"
-                android:textSize="@dimen/materialize_typography_subheading"
-                android:id="@+id/textView2"
-                android:gravity="center_horizontal"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:drawablePadding="10dp"
+                    android:textStyle="bold"
+                    android:text="Mail:"
+                    android:drawableLeft="@drawable/mail"
+                    android:id="@+id/textView"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="..ing post request."
+                    android:textSize="15sp"
+                    android:id="@+id/mail"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Call:"
+                    android:textSize="20sp"
+                    android:drawablePadding="10dp"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/contact"
+                    android:padding="10dp"
+                    android:id="@+id/textView3"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="..ing post request."
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/call"
+
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
-                        <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                            <!--android:text=""-->
-                            <!--android:id="@+id/textView8"-->
-                            <!--android:gravity="center_horizontal" />-->
 
 </FrameLayout>
 

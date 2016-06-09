@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -47,12 +48,13 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs;
     public static JSONObject tab_map;
 
-    public static String host = "http://www.messmart.com/";
+    public static String host = "http://192.168.0.111/mess/";
     public static String url = StartActivity.host+"index.php/ajaxactions";
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
     private static final String SESSION_COOKIE = "PHPSESSID";
+    public static Typeface font;
     private static StartActivity _instance;
     private RequestQueue _requestQueue;
     private SharedPreferences _preferences;
@@ -99,6 +101,7 @@ public class StartActivity extends AppCompatActivity {
         _instance = this;
         _preferences = PreferenceManager.getDefaultSharedPreferences(this);  //for saving cookies
         _requestQueue = Volley.newRequestQueue(this);
+        font = Typeface.createFromAsset(this.getAssets(),"YuppySC-Regular.ttf");
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
         setSupportActionBar(toolbar);
