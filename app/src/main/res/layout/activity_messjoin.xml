@@ -31,6 +31,7 @@
             android:background="#d3e9d9"
             android:padding="10dp"
             android:hint="Name"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextName"/>
@@ -38,6 +39,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:hint="Mobile Number"
 
             android:background="#d3e9d9"
@@ -52,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#d3e9d9"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:padding="10dp"
             android:hint="Email Id"
             android:layout_marginTop="5dp"
@@ -62,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="5dp"
             android:background="#d3e9d9"
             android:padding="10dp"
@@ -72,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Choose a Password"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:password="true"
             android:background="#d3e9d9"
             android:padding="10dp"
@@ -83,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Anything else ?"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:minLines="3"
             android:background="#d3e9d9"
             android:padding="10dp"
