@@ -77,6 +77,7 @@ public class messObjectAdapter extends BaseAdapter {
         TextView messDescription = (TextView) convertView.findViewById(R.id.description);
         TextView Prices = (TextView) convertView.findViewById(R.id.price);
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
+        ImageView messLogo = (ImageView) convertView.findViewById(R.id.messmakerlogo);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
         final Button book = (Button) convertView.findViewById(R.id.bookbutton);
@@ -91,9 +92,9 @@ public class messObjectAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (row.getBook() == 0) {
 
-                        alertbuilder.setTitle("Booking");
-                        alertbuilder.setMessage("Mess : " + row.getName() + "\nAddress : " + row.getAddress() + "\nTiming : " + row.getTiming());
-                        alertbuilder.setCancelable(true);
+                    alertbuilder.setTitle("Booking");
+                    alertbuilder.setMessage("Mess : " + row.getName() + "\nAddress : " + row.getAddress() + "\nTiming : " + row.getTiming());
+                    alertbuilder.setCancelable(true);
                     alertbuilder.setNegativeButton("Arrive on mess", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -161,78 +162,78 @@ public class messObjectAdapter extends BaseAdapter {
                             // add it to the RequestQueue
                             StartActivity.get().getRequestQueue().add(postRequest);
                         }
-                        });
-                        alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
-                                String url = StartActivity.host + "index.php/ajaxactions";
+                    });
+                    alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
+                            String url = StartActivity.host + "index.php/ajaxactions";
 
-                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                Log.d("Response", response);
-                                                JSONObject jsonResponse = null;
-                                                try {
-                                                    jsonResponse = new JSONObject(response);
-                                                    Integer ec = jsonResponse.getInt("ec");
-                                                    dialog2.dismiss();
-                                                    if (ec == 1) {
-                                                        Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
-                                                        book.setText("Booked");
-                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
-                                                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
-                                                        Bundle bundle3 = new Bundle();
-                                                        bundle3.putString("days", StartActivity.days.toString());
-                                                        bundle3.putString("days2", StartActivity.days2.toString());
-                                                        fragment.setArguments(bundle3);
-                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
-                                                                .replace(R.id.fragment_not, fragment, fragment.toString())
-                                                                .addToBackStack(fragment.toString())
-                                                                .commit();
-                                                    } else {
-                                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
-                                                    }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d("Response", response);
+                                            JSONObject jsonResponse = null;
+                                            try {
+                                                jsonResponse = new JSONObject(response);
+                                                Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
+                                                if (ec == 1) {
+                                                    Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    book.setText("Booked");
+                                                    StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                    MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                    Bundle bundle3 = new Bundle();
+                                                    bundle3.putString("days", StartActivity.days.toString());
+                                                    bundle3.putString("days2", StartActivity.days2.toString());
+                                                    fragment.setArguments(bundle3);
+                                                    StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                            .addToBackStack(fragment.toString())
+                                                            .commit();
+                                                } else {
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
                                             }
+
                                         }
+                                    },
+                                    new Response.ErrorListener() {
 
-                                ) {
-                                    @Override
-                                    protected Map<String, String> getParams() {
-                                        Log.d("debug", "posting param");
-                                        Map<String, String> params = new HashMap<String, String>();
-
-                                        // the POST parameters:
-                                        params.put("lord", row.getLord());
-                                        params.put("dishid", "" + row.getDishId());
-                                        params.put("mid", row.getId() + "");
-                                        params.put("dishid", row.getDishId() + "");
-                                        params.put("booktype", "t");
-                                        params.put("action", "bookmeal");
-                                        params.put("datetime", row.getDatetime());
-                                        System.out.println(params);
-                                        return params;
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            dialog2.dismiss();
+                                        }
                                     }
-                                };
 
-                                // add it to the RequestQueue
-                                StartActivity.get().getRequestQueue().add(postRequest);
-                            }
-                        });
-                        AlertDialog alertDialog = alertbuilder.create();
-                        alertDialog.show();
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Log.d("debug", "posting param");
+                                    Map<String, String> params = new HashMap<String, String>();
+
+                                    // the POST parameters:
+                                    params.put("lord", row.getLord());
+                                    params.put("dishid", "" + row.getDishId());
+                                    params.put("mid", row.getId() + "");
+                                    params.put("dishid", row.getDishId() + "");
+                                    params.put("booktype", "t");
+                                    params.put("action", "bookmeal");
+                                    params.put("datetime", row.getDatetime());
+                                    System.out.println(params);
+                                    return params;
+                                }
+                            };
+
+                            // add it to the RequestQueue
+                            StartActivity.get().getRequestQueue().add(postRequest);
+                        }
+                    });
+                    AlertDialog alertDialog = alertbuilder.create();
+                    alertDialog.show();
                 } else if (row.getBook() == 1) {
                     alertbuilder.setTitle("Confirmation");
                     alertbuilder.setMessage("Are you sure?");
@@ -316,6 +317,7 @@ public class messObjectAdapter extends BaseAdapter {
         //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
         messTitle.setText(row.getTitle());
         messDescription.setText(row.getDescription());
+        messLogo.setImageResource(R.drawable.google_icon);
         name.setText(row.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
