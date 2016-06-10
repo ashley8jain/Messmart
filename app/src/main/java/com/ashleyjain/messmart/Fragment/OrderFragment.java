@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -43,6 +44,7 @@ public class OrderFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Orders");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_order, container, false);
+
     }
 
     @Override

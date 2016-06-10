@@ -93,7 +93,7 @@ public class orderObjectAdapter extends BaseAdapter {
 
         final OrderObject row = orderList.get(position);
         if(row.getlOIDid()==0){
-            lunchdetail.setVisibility(View.INVISIBLE);
+            lunchdetail.setVisibility(View.GONE);
             lunchempty.setVisibility(View.VISIBLE);
             TextView booknow = (TextView) convertView.findViewById(R.id.booknowl);
             booknow.setOnClickListener(new View.OnClickListener() {
@@ -113,12 +113,12 @@ public class orderObjectAdapter extends BaseAdapter {
             });
         }
         else{
-            lunchempty.setVisibility(View.INVISIBLE);
+            lunchempty.setVisibility(View.GONE);
             lunchdetail.setVisibility(View.VISIBLE);
         }
 
         if(row.getdOIDid()==0){
-            dinnerdetail.setVisibility(View.INVISIBLE);
+            dinnerdetail.setVisibility(View.GONE);
             dinnerempty.setVisibility(View.VISIBLE);
             TextView booknow = (TextView) convertView.findViewById(R.id.booknowd);
             booknow.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +138,7 @@ public class orderObjectAdapter extends BaseAdapter {
             });
         }
         else{
-            dinnerempty.setVisibility(View.INVISIBLE);
+            dinnerempty.setVisibility(View.GONE);
             dinnerdetail.setVisibility(View.VISIBLE);
         }
 
