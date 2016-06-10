@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:padding="20dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,13 +13,27 @@
         android:textStyle="bold"
         android:id="@+id/fulldate"
         android:layout_gravity="center_horizontal" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_sub_view"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="2dp"
+        android:padding="10dp"
+        android:layout_weight="0.5"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:id="@+id/lord"
-        android:text="Lunch"/>
+        android:text="Lunch"
+        android:layout_marginLeft="10dp"
+        />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -25,7 +41,10 @@
         android:layout_height="wrap_content"
         android:weightSum="10"
         android:orientation="horizontal"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:layout_below="@+id/lord"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="10dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -99,14 +118,16 @@
                 android:id="@+id/status"
                 android:text="new text" />
             <Button
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="35dp"
                 android:id="@+id/cancel"
                 android:textColor="#ffffff"
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:layout_margin="10dp"
-                android:background="@drawable/buttonshape"/>
+                android:background="@drawable/buttonshape"
+                />
         </LinearLayout>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
+import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.drawer;
 
@@ -48,7 +49,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs;
     public static JSONObject tab_map;
 
-    public static String host = "http://192.168.0.111/mess/";
+    public static String host = "http://www.messmart.com/";
     public static String url = StartActivity.host+"index.php/ajaxactions";
     public static String sessionID;
 
@@ -72,13 +73,16 @@ public class StartActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        KeyboardDown.keyboardDown();
         switch(item.getItemId()){
             case R.id.home:
                 for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
                     getSupportFragmentManager().popBackStack();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
+
         }
 
     }
@@ -113,6 +117,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.drawer.openDrawer();
+                KeyboardDown.keyboardDown();
             }
         });
 

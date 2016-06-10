@@ -68,7 +68,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    KeyboardDown.keyboardDown();
+                    //KeyboardDown.keyboardDown();
                 }
 
             }
@@ -78,7 +78,6 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 forgotPassword();
-                KeyboardDown.keyboardDown();
             }
 
         });
@@ -92,6 +91,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
                         .replace(R.id.fragment_not, loginActivity, loginActivity.toString())
                         .addToBackStack(loginActivity.toString())
                         .commit();
+                KeyboardDown.keyboardDown();
             }
         });
 

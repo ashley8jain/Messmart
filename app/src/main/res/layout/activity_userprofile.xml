@@ -4,18 +4,15 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#eadbdb">
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/how"
-                    android:gravity="center_horizontal"
-                    >
+                    android:gravity="center_horizontal">
                     <com.ashleyjain.messmart.function.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="300dp"
@@ -30,8 +27,7 @@
                         android:textColor="#039be5"
                         android:text="Edit Profile"
                         android:paddingRight="20dp"
-                        android:gravity="end"
-                        />
+                        android:gravity="end"/>
                     <android.support.v7.widget.CardView
                         android:id="@+id/card_sub_view"
                         card_view:cardCornerRadius="30dp"
@@ -44,11 +40,8 @@
                         android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp">
-
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -57,7 +50,7 @@
                             android:padding="10dp"
                             android:textSize="32sp"
                             android:textStyle="bold"
-                            android:gravity="center_horizontal" />
+                            android:gravity="center_horizontal"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -84,7 +77,6 @@
                                 android:textColor="#039be5"
                                 android:textSize="15sp"/>
                         </LinearLayout>
-
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -102,10 +94,6 @@
                             android:padding="10dp" />
                     </LinearLayout>
                     </android.support.v7.widget.CardView>
-
-
                 </LinearLayout>
-
         </ScrollView>
-
 </RelativeLayout>

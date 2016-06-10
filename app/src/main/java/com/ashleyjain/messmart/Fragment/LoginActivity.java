@@ -105,6 +105,7 @@ public class LoginActivity extends Fragment {
                         .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
                         .addToBackStack(signupfragment.toString())
                         .commit();
+                KeyboardDown.keyboardDown();
             }
         });
         /*The Below code does same thing as above onClickListener*/
@@ -145,6 +146,7 @@ public class LoginActivity extends Fragment {
                         .replace(R.id.fragment_not, messFragment, messFragment.toString())
                         .addToBackStack(messFragment.toString())
                         .commit();
+                KeyboardDown.keyboardDown();
             }
         });
         /*The Below code does same thing as above onClickListener*/
@@ -181,6 +183,7 @@ public class LoginActivity extends Fragment {
                         .replace(R.id.fragment_not, forgotPasswordActivity, forgotPasswordActivity.toString())
                         .addToBackStack(forgotPasswordActivity.toString())
                         .commit();
+                KeyboardDown.keyboardDown();
             }
         });
 

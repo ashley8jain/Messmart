@@ -2,12 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.List.OrderList">
+    tools:context=".Fragment.List.OrderList"
+    android:background="#e7e7e7">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@android:id/list">
+        android:id="@android:id/list"
+        android:scrollbars="none"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="30.0sp">
     </ListView>
 
     <TextView

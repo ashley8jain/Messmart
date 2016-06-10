@@ -48,6 +48,7 @@
             android:text="7503759059"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/sym_action_call"
+            android:drawableTint="@color/primary"
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
         <TextView
@@ -64,9 +65,10 @@
             android:inputType="textPassword"
             android:text="oo"
             android:ems="10"
-            android:hint="OTP or Password"
+            android:hint="@string/otpOrPassword"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:drawableTint="@color/primary"
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
     </LinearLayout>
@@ -77,7 +79,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/buttonshape"
         android:textAppearance="@style/myButtonStyle"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/loginbutton"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/EditTextLayout"
