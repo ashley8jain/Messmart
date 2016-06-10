@@ -77,7 +77,7 @@ public class messObjectAdapter extends BaseAdapter {
         TextView messDescription = (TextView) convertView.findViewById(R.id.description);
         TextView Prices = (TextView) convertView.findViewById(R.id.price);
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
-        ImageView messLogo = (ImageView) convertView.findViewById(R.id.messmakerlogo);
+        //RoundedImageView messLogo = (RoundedImageView) convertView.findViewById(R.id.messmakerlogo);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
         final Button book = (Button) convertView.findViewById(R.id.bookbutton);
@@ -161,44 +161,44 @@ public class messObjectAdapter extends BaseAdapter {
                             // add it to the RequestQueue
                             StartActivity.get().getRequestQueue().add(postRequest);
                         }
-                        });
-                        alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
+                    });
+                    alertbuilder.setPositiveButton("Order Tiffin", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            final ProgressDialog dialog2 = ProgressDialog.show(context, "", "Booking.....", true);
 
-                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                Log.d("Response", response);
-                                                JSONObject jsonResponse = null;
-                                                try {
-                                                    jsonResponse = new JSONObject(response);
-                                                    Integer ec = jsonResponse.getInt("ec");
-                                                    dialog2.dismiss();
-                                                    if (ec == 1) {
-                                                        Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
-                                                        book.setText("Booked");
-                                                        StartActivity.get().getSupportFragmentManager().popBackStack();
-                                                        MessListTabLayout fragment = new MessListTabLayout("", "", false);
-                                                        Bundle bundle3 = new Bundle();
-                                                        bundle3.putString("days", StartActivity.days.toString());
-                                                        bundle3.putString("days2", StartActivity.days2.toString());
-                                                        fragment.setArguments(bundle3);
-                                                        StartActivity.get().getSupportFragmentManager().beginTransaction()
-                                                                .replace(R.id.fragment_not, fragment, fragment.toString())
-                                                                .addToBackStack(fragment.toString())
-                                                                .commit();
-                                                    } else {
-                                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
-                                                    }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
+                            StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d("Response", response);
+                                            JSONObject jsonResponse = null;
+                                            try {
+                                                jsonResponse = new JSONObject(response);
+                                                Integer ec = jsonResponse.getInt("ec");
+                                                dialog2.dismiss();
+                                                if (ec == 1) {
+                                                    Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    book.setText("Booked");
+                                                    StartActivity.get().getSupportFragmentManager().popBackStack();
+                                                    MessListTabLayout fragment = new MessListTabLayout("", "", false);
+                                                    Bundle bundle3 = new Bundle();
+                                                    bundle3.putString("days", StartActivity.days.toString());
+                                                    bundle3.putString("days2", StartActivity.days2.toString());
+                                                    fragment.setArguments(bundle3);
+                                                    StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.fragment_not, fragment, fragment.toString())
+                                                            .addToBackStack(fragment.toString())
+                                                            .commit();
+                                                } else {
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                 }
-
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
                                             }
-                                        },
-                                        new Response.ErrorListener() {
+
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
@@ -314,7 +314,7 @@ public class messObjectAdapter extends BaseAdapter {
         //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
         messTitle.setText(row.getTitle());
         messDescription.setText(row.getDescription());
-        messLogo.setImageResource(R.drawable.google_icon);
+        //messLogo.setImageResource(R.drawable.google_icon);
         name.setText(row.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
