@@ -14,6 +14,11 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.ashleyjain.messmart.R;
+import com.ashleyjain.messmart.StartActivity;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Payment extends AppCompatActivity {
 
@@ -48,6 +53,17 @@ public class Payment extends AppCompatActivity {
         wv.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
+                System.out.println("geturl: " + url);
+                if(url.matches(StartActivity.host+"(.*)")){
+                    final ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+
+                    exec.schedule(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    }, 3, TimeUnit.SECONDS);
+                }
                 return true;
             }
 
