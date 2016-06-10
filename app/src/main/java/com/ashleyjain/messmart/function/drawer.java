@@ -53,6 +53,7 @@ public class drawer {
 
     public void rebuild(){
 
+
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withProfileImagesClickable(false)
@@ -114,6 +115,7 @@ public class drawer {
 
 
                             try {
+
                                 for(int i = 0 ;i < StartActivity.tabs.length();i++){
                                     String cap = null;
                                     cap = (String) StartActivity.tab_map.getJSONArray(StartActivity.tabs.getString(i)).get(0);
