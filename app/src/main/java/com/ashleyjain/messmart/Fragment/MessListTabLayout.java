@@ -41,6 +41,8 @@ public class MessListTabLayout extends Fragment {
     ViewPager viewPager;
     PagerAdapter adapter;
     Boolean load;
+    Spinner spinner;
+    TabLayout tabLayout;
 
     public MessListTabLayout(String datetime,String lord,Boolean load){
         this.load = load;
@@ -57,7 +59,10 @@ public class MessListTabLayout extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("MesSmart");
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,71 +78,6 @@ public class MessListTabLayout extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Menu");
-        View rootView = inflater.inflate(R.layout.fragment_mess_list_tab_layout, container, false);
-        return rootView;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Lunch"));
-        tabLayout.addTab(tabLayout.newTab().setText("Dinner"));
-
-        viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        // Spinner element
-        final Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-
-        // Spinner click listener
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    particularday = day2.getString(position);
-                    adapter= new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),particularday);
-                    viewPager.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        for(int i=0;i<day.length();i++) {
-            try {
-                if(i==0)
-                    categories.add("Today");
-                else
-                    categories.add(day.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
 
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
@@ -200,6 +140,32 @@ public class MessListTabLayout extends Fragment {
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Menu");
+
+
+
+
+        View rootView = inflater.inflate(R.layout.fragment_mess_list_tab_layout, container, false);
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
+        // Spinner element
+        spinner = (Spinner) view.findViewById(R.id.spinner);
+
+        tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Lunch"));
+        tabLayout.addTab(tabLayout.newTab().setText("Dinner"));
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -216,5 +182,50 @@ public class MessListTabLayout extends Fragment {
                 viewPager.setCurrentItem(tab.getPosition());
             }
         });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    particularday = day2.getString(position);
+                    adapter = new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(), particularday);
+                    viewPager.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        for(int i=0;i<day.length();i++) {
+            try {
+                if(i==0)
+                    categories.add("Today");
+                else
+                    categories.add(day.getString(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+
+
+
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:text="You can call our executive at +91 702-377-5732 to Add your wallet manually \n \n or \n \n You can pay online"/>
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d3e9d9"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:hint="Amount"
+        android:inputType="number"
+        android:ems="10"
+        android:textCursorDrawable="@drawable/custom_cursor"/>
+
+</LinearLayout>

@@ -4,6 +4,7 @@ package com.ashleyjain.messmart.Fragment;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.Payment;
 import com.ashleyjain.messmart.function.RoundedImageView;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
@@ -64,6 +66,12 @@ public class UserprofileActivity extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        setInfo();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profile");
         return inflater.inflate(R.layout.activity_userprofile, container, false);
@@ -79,10 +87,11 @@ public class UserprofileActivity extends Fragment {
         inputUsername1 = (TextView)view.findViewById(R.id.userinputname1);
         inputUseraddress1 = (TextView)view.findViewById(R.id.userinputaddress1);
         inputUserwallet1 = (TextView)view.findViewById(R.id.userinputwallet1);
+        TextView showDialogedit = (TextView) view.findViewById(R.id.showdialogedit);
+        TextView tv = (TextView) view.findViewById(R.id.add);
 
         setInfo();
 
-        TextView showDialogedit = (TextView) view.findViewById(R.id.showdialogedit);
         showDialogedit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -159,13 +168,84 @@ public class UserprofileActivity extends Fragment {
                                 };
 
                                 // add it to the RequestQueue
-                                StartActivity.get().
+                                StartActivity.get().getRequestQueue().add(postRequest);
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
+            }
+        });
 
-                                        getRequestQueue()
 
-                                        .
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = (LayoutInflater.from(getActivity())).inflate(R.layout.add_wallet, null);
 
-                                                add(postRequest);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+                alertBuilder.setView(view);
+                final EditText amount = (EditText) view.findViewById(R.id.amount);
+
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("PAY", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+
+                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.d("Response", response);
+                                                //response JSON from url
+                                                try {
+                                                    JSONObject jsonResponse = new JSONObject(response);
+                                                    Integer ec = jsonResponse.getInt("ec");
+                                                    if(ec == 1){
+                                                        Intent intent = new Intent(getActivity(), Payment.class);
+                                                        String data = jsonResponse.getString("data");
+                                                        intent.putExtra("url",data);
+                                                        startActivity(intent);
+                                                    }
+                                                    else{
+                                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                                    }
+                                                    System.out.println("Message: " + ec);
+                                                    dialog2.dismiss();
+                                                } catch (JSONException e) {
+                                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                                    dialog2.dismiss();
+                                                }
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                                dialog2.dismiss();
+                                            }
+                                        }
+
+                                ) {
+                                    @Override
+                                    protected Map<String, String> getParams()   {
+                                        Log.d("debug", "posting param");
+                                        Map<String, String> params = new HashMap<String, String>();
+
+                                        // the POST parameters:
+                                        params.put("addamount",amount.getText().toString());
+                                        params.put("device", "mobile");
+                                        params.put("session_id", StartActivity.sessionID);
+                                        params.put("action", "getpayurl");
+                                        System.out.println(params);
+                                        return params;
+                                    }
+                                };
+
+                                // add it to the RequestQueue
+                                StartActivity.get().getRequestQueue().add(postRequest);
 
 
                             }
@@ -200,8 +280,6 @@ public class UserprofileActivity extends Fragment {
                             Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }
-
-
                     }
                 },
                 new Response.ErrorListener() {

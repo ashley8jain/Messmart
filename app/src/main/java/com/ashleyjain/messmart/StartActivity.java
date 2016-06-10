@@ -50,6 +50,7 @@ public class StartActivity extends AppCompatActivity {
 
     public static String host = "http://192.168.0.111/mess/";
     public static String url = StartActivity.host+"index.php/ajaxactions";
+    public static String sessionID;
 
     private static final String SET_COOKIE_KEY = "set-cookie";
     private static final String COOKIE_KEY = "cookie";
@@ -177,6 +178,7 @@ public class StartActivity extends AppCompatActivity {
     public final void addSessionCookie(Map<String, String> headers) {
         String sessionId = _preferences.getString(SESSION_COOKIE, "");
         if (sessionId.length() > 0) {
+            sessionID = sessionId;
             StringBuilder builder = new StringBuilder();
             builder.append(SESSION_COOKIE);
             builder.append("=");
@@ -208,7 +210,9 @@ public class StartActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d("Response", response);
                         Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
-                        new drawer().rebuild();
+                        Intent re = new Intent(StartActivity.get(),StartActivity.class);
+                        startActivity(re);
+                        StartActivity.get().finish();
                         dialog.dismiss();
                     }
                 },

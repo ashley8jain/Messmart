@@ -30,7 +30,16 @@
         <activity
             android:name=".Fragment.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".function.Payment"
+            android:label="@string/title_activity_payment"
+            android:parentActivityName=".StartActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ashleyjain.messmart.StartActivity" />
+        </activity>
     </application>
 
 </manifest>

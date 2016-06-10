@@ -57,8 +57,8 @@ public class MessList extends ListFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                 new Response.Listener<String>() {
@@ -106,7 +106,7 @@ public class MessList extends ListFragment {
 
                             //dialog.dismiss();
                         } catch (JSONException e) {
-                            Toast.makeText(getActivity(),e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                             //dialog.dismiss();
                         }
                         messObjectList = new ArrayList<MessObject>();
@@ -144,6 +144,14 @@ public class MessList extends ListFragment {
         };
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mess_list, container, false);

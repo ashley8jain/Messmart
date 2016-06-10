@@ -45,7 +45,7 @@
             android:inputType="number"
             android:maxLength="10"
             android:hint="Phone"
-            android:text="7503759054"
+            android:text="7503759059"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/sym_action_call"
             android:textCursorDrawable="@drawable/custom_cursor"/>
@@ -62,7 +62,7 @@
             android:background="#d3e9d9"
             android:padding="10dp"
             android:inputType="textPassword"
-            android:text="pp12"
+            android:text="oo"
             android:ems="10"
             android:hint="OTP or Password"
             android:drawablePadding="10dp"
