@@ -24,6 +24,7 @@ import com.ashleyjain.messmart.Fragment.MessprofileActivity;
 import com.ashleyjain.messmart.Object.MessObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.RoundedImageView;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 
@@ -77,7 +78,7 @@ public class messObjectAdapter extends BaseAdapter {
         TextView messDescription = (TextView) convertView.findViewById(R.id.description);
         TextView Prices = (TextView) convertView.findViewById(R.id.price);
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
-        //RoundedImageView messLogo = (RoundedImageView) convertView.findViewById(R.id.messmakerlogo);
+        RoundedImageView messLogo = (RoundedImageView) convertView.findViewById(R.id.messmakerlogo);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
         final Button book = (Button) convertView.findViewById(R.id.bookbutton);
@@ -321,16 +322,15 @@ public class messObjectAdapter extends BaseAdapter {
             public void onClick(View v) {
                 MessprofileActivity messprofileActivity = new MessprofileActivity(row.getId());
                 StartActivity.get().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_not,messprofileActivity,messprofileActivity.toString())
+                        .replace(R.id.fragment_not, messprofileActivity, messprofileActivity.toString())
                         .addToBackStack(messprofileActivity.toString())
                         .commit();
             }
         });
-        Prices.setText(row.getPrice()+"");
+        Prices.setText(row.getPrice() + "");
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
+        Picasso.with(context).load("https://lh6.ggpht.com/OjfEnXHkpM6xfiBTp8uNCANEoU7Smmz_tOE9YaZHdluLcsLLuA-9yV1Ju6OEajqKQbKY=w300").into(messLogo);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
-
-
         return convertView;
     }
 }
