@@ -28,6 +28,7 @@ import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.function.Payment;
 import com.ashleyjain.messmart.function.RoundedImageView;
 import com.ashleyjain.messmart.function.StringRequestCookies;
+import com.ashleyjain.messmart.function.drawer;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -128,6 +129,7 @@ public class UserprofileActivity extends Fragment {
                                                                 .replace(R.id.fragment_not, userprofileActivity, userprofileActivity.toString())
                                                                 .addToBackStack(userprofileActivity.toString())
                                                                 .commit();
+                                                        new drawer().rebuild();
                                                     } else {
                                                         Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                                     }
@@ -138,7 +140,6 @@ public class UserprofileActivity extends Fragment {
                                                     dialog2.dismiss();
                                                 }
                                             }
-                                            //Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
                                         },
                                         new Response.ErrorListener()
 

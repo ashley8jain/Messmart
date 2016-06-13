@@ -25,7 +25,7 @@ public class OrderList extends ListFragment {
     private String[] datetime,date;
     private int[] lOIDid,lMid,lDishid;
     private int[] dOIDid,dMid,dDishid;
-    private String[] lDish;
+    private String[] lDish,llord,dlord;
     private String[] dDish;;
     private String[] lMess;
     private String[] dMess;
@@ -70,6 +70,8 @@ public class OrderList extends ListFragment {
             dMid=new int[len];
             lDishid=new int[len];
             dDishid=new int[len];
+            llord = new String[len];
+            dlord = new String[len];
             for(int i=0;i<datelist.length();i++){
                 JSONArray unused = datelist.getJSONArray(i);
                 String datetim = unused.getString(0);
@@ -90,6 +92,7 @@ public class OrderList extends ListFragment {
                             lBooktype[i]=orderitem.getString("booktype");
                             lMid[i]=orderitem.getInt("mid");
                             lDishid[i] = orderitem.getInt("dishid");
+                            llord[i] = orderitem.getString("lord");
                         }
                         catch (JSONException e) {
                             lOIDid[i]=0;
@@ -100,6 +103,7 @@ public class OrderList extends ListFragment {
                             lBooktype[i]="-";
                             lMid[i]=0;
                             lDishid[i]=0;
+                            llord[i] = orderitem.getString("lord");
                         }
                     }
                     else{
@@ -112,6 +116,7 @@ public class OrderList extends ListFragment {
                             dBooktype[i]=orderitem.getString("booktype");
                             dMid[i]=orderitem.getInt("mid");
                             dDishid[i] = orderitem.getInt("dishid");
+                            dlord[i] = orderitem.getString("lord");
                         }
                         catch (JSONException e) {
                             //System.out.println(orderitem.getString("dishid"));
@@ -123,6 +128,7 @@ public class OrderList extends ListFragment {
                             dBooktype[i]="-";
                             dMid[i]=0;
                             dDishid[i]=0;
+                            dlord[i] = orderitem.getString("lord");
                         }
                     }
                 }
@@ -145,7 +151,7 @@ public class OrderList extends ListFragment {
 
         orderObjectList = new ArrayList<OrderObject>();
         for(int i = 0;i<date.length;i++){
-            OrderObject items = new OrderObject(datetime[i],date[i],lOIDid[i],dOIDid[i],lDish[i],dDish[i],lMess[i],dMess[i],lPrice[i],dPrice[i],lStatus[i],dStatus[i],lBooktype[i],dBooktype[i],lMid[i],dMid[i],lDishid[i],dDishid[i]);
+            OrderObject items = new OrderObject(datetime[i],date[i],lOIDid[i],dOIDid[i],lDish[i],dDish[i],lMess[i],dMess[i],lPrice[i],dPrice[i],lStatus[i],dStatus[i],lBooktype[i],dBooktype[i],lMid[i],dMid[i],lDishid[i],dDishid[i],llord[i],dlord[i]);
             orderObjectList.add(items);
         }
         System.out.println(orderObjectList.size());

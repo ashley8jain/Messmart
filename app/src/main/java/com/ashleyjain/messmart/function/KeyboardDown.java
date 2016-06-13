@@ -1,7 +1,6 @@
 package com.ashleyjain.messmart.function;
 
 import android.content.Context;
-import android.os.IBinder;
 import android.view.inputmethod.InputMethodManager;
 
 import com.ashleyjain.messmart.StartActivity;

@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,9 @@ import com.ashleyjain.messmart.function.StringRequestCookies;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class createAccount extends Fragment {
@@ -34,6 +38,7 @@ public class createAccount extends Fragment {
     TextView alreadyhave;
     EditText nm,add,chPass;
     Button createAcc;
+    Spinner spinner;
     String phone,otp,name,address,choosePass;
 
     @Override
@@ -64,8 +69,27 @@ public class createAccount extends Fragment {
         nm = (EditText) view.findViewById(R.id.name);
         add = (EditText) view.findViewById(R.id.address);
         chPass = (EditText) view.findViewById(R.id.choosepassword);
-
+        spinner = (Spinner) view.findViewById(R.id.spinner);
         createAcc = (Button) view.findViewById(R.id.createb);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        for(int i=0;i<StartActivity.regions.length();i++) {
+            try {
+                categories.add(StartActivity.regions.getString(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
 
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override

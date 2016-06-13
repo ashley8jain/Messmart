@@ -122,7 +122,7 @@
             android:layout_marginRight="20dp"
             android:layout_alignRight="@+id/messimg"
             android:layout_below="@+id/price"/>
-        <TextView
+        <com.ashleyjain.messmart.function.CustomText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Newnklllllllllllllllllllllllllllllllllllll

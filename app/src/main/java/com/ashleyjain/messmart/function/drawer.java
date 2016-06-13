@@ -60,7 +60,7 @@ public class drawer {
                 .withActivity(StartActivity.get())
                 .withSelectionListEnabled(false)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Guest User").withEmail("Not Signed in")
+                        new ProfileDrawerItem().withName("Guest User")
                 )
                 .withHeaderBackground(R.drawable.slider1)
                 .build();
@@ -72,6 +72,7 @@ public class drawer {
                 .withAccountHeader(headerResult);
 
         Name = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_name);
+        Name.setTextSize(30);
         Email = (TextView) headerResult.getView().findViewById(R.id.material_drawer_account_header_email);
         im = (ImageView) headerResult.getView().findViewById(R.id.material_drawer_account_header_current);
 
@@ -88,6 +89,7 @@ public class drawer {
                             JSONObject dataobject = jsonResponse.getJSONObject("data");
                             StartActivity.errorcode= dataobject.getJSONObject("ec");
                             StartActivity.aboutus = dataobject.getString("aboutus");
+                            StartActivity.regions = dataobject.getJSONArray("regions");
                             System.out.println("about: "+StartActivity.aboutus);
                             StartActivity.contactus = dataobject.getString("contact");
                             JSONObject days7 = dataobject.getJSONObject("7days");
@@ -95,6 +97,7 @@ public class drawer {
                             StartActivity.days2 = days7.getJSONArray("timel");
                             JSONObject drawerj = dataobject.getJSONObject("drawer");
                             StartActivity.loginname = drawerj.getString("loginname");
+                            System.out.println("loginname: " + StartActivity.loginname);
                             StartActivity.loginid = drawerj.getString("loginid");
                             StartActivity.logintype = drawerj.getString("logintype");
 
@@ -266,7 +269,7 @@ public class drawer {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONObject data = jsonResponse.getJSONObject("data");
                             JSONObject uinfo = data.getJSONObject("uinfo");
-                            Email.setText("Wallet: "+uinfo.getString("wallet")+"/-");
+                            //Email.setText("Wallet: "+uinfo.getString("wallet")+"/-");
                             String imageurl = uinfo.getString("profilepic");
                             System.out.println("profileurl: " + imageurl);
                             if(imageurl!=null)

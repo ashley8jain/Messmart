@@ -19,6 +19,24 @@ public class OrderObject {
     private String lDish,dDish;
     private String lMess,dMess;
 
+    public String getLlord() {
+        return llord;
+    }
+
+    public void setLlord(String llord) {
+        this.llord = llord;
+    }
+
+    public String getDlord() {
+        return dlord;
+    }
+
+    public void setDlord(String dlord) {
+        this.dlord = dlord;
+    }
+
+    private String llord,dlord;
+
     public int getlDishid() {
         return lDishid;
     }
@@ -76,7 +94,7 @@ public class OrderObject {
 
     private String dBooktype;
 
-    public OrderObject(String datetime,String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus,String lBooktype,String dBooktype,int lMid,int dMid,int lDishid,int dDishid) {
+    public OrderObject(String datetime,String date,int lOIDid, int dOIDid, String lDish, String dDish, String lMess, String dMess, int lPrice, int dPrice, String lStatus, String dStatus,String lBooktype,String dBooktype,int lMid,int dMid,int lDishid,int dDishid,String llord,String dlord) {
         this.datetime = datetime;
         this.date = date;
         this.lOIDid = lOIDid;
@@ -95,6 +113,8 @@ public class OrderObject {
         this.dMid = dMid;
         this.lDishid = lDishid;
         this.dDishid = dDishid;
+        this.llord = llord;
+        this.dlord = dlord;
     }
 
     public String getDate() {

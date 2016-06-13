@@ -31,15 +31,15 @@ public class ViewpagerFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TranslateAnimation moveToptoBottom = new TranslateAnimation(0,0, -1000, 0);
-        moveToptoBottom.setDuration(1000);
+        moveToptoBottom.setDuration(250);
         moveToptoBottom.setFillAfter(true);
 
         TranslateAnimation moveBottomtoTop = new TranslateAnimation(0,0,1000,0);
-        moveBottomtoTop.setDuration(1000);
+        moveBottomtoTop.setDuration(500);
         moveBottomtoTop.setFillAfter(true);
 
         TranslateAnimation moveLefttoRight = new TranslateAnimation(-900,0, 0, 0);
-        moveLefttoRight.setDuration(2000);
+        moveLefttoRight.setDuration(950);
         moveLefttoRight.setFillAfter(true);
 
         TextView welcome = (TextView) view.findViewById(R.id.welcome);

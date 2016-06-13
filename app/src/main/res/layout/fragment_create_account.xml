@@ -43,6 +43,17 @@
             android:drawableLeft="@drawable/collaborator"
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:popupBackground="@color/primary"
+            android:background="#1effffff"
+            android:prompt="@string/spinner_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center|center_horizontal|clip_horizontal"/>
 
         <EditText
             android:layout_width="match_parent"

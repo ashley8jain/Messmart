@@ -89,7 +89,8 @@ public class orderObjectAdapter extends BaseAdapter {
         TextView dstatus = (TextView) convertView.findViewById(R.id.status2);
         Button lCancel = (Button) convertView.findViewById(R.id.lcancel);
         Button dCancel = (Button) convertView.findViewById(R.id.dcancel);
-
+        TextView llord = (TextView) convertView.findViewById(R.id.lunch);
+        TextView dlord = (TextView) convertView.findViewById(R.id.dinner);
 
         final OrderObject row = orderList.get(position);
         if(row.getlOIDid()==0){
@@ -217,7 +218,7 @@ public class orderObjectAdapter extends BaseAdapter {
                         Map<String, String> params = new HashMap<String, String>();
 
                         // the POST parameters:
-                        params.put("lord","l");
+                        params.put("lord",row.getLlord());
                         params.put("dishid", "" + row.getlDishid());
                         params.put("datetime", row.getDatetime());
                         params.put("action", "cancelmeal");
@@ -279,7 +280,7 @@ public class orderObjectAdapter extends BaseAdapter {
                         Map<String, String> params = new HashMap<String, String>();
 
                         // the POST parameters:
-                        params.put("lord","d");
+                        params.put("lord",row.getDlord());
                         params.put("dishid", "" + row.getdDishid());
                         params.put("datetime", row.getDatetime());
                         params.put("action", "cancelmeal");
@@ -294,10 +295,12 @@ public class orderObjectAdapter extends BaseAdapter {
                 StartActivity.get().getRequestQueue().add(postRequest);
             }
         });
-        lprice.setText(row.getlPrice()+"/-");
+        lprice.setText(row.getlPrice() + "/-");
         dprice.setText(row.getdPrice()+"/-");
         lstatus.setText(row.getlStatus());
         dstatus.setText(row.getdStatus());
+        llord.setText(row.getLlord().equals("l")?"Lunch":"Dinner");
+        dlord.setText(row.getDlord().equals("l")?"Lunch":"Dinner");
 
         return convertView;
     }

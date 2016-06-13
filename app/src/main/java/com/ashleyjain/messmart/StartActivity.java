@@ -27,7 +27,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
-import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.drawer;
 
@@ -46,7 +45,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONObject errorcode;
     public static String loginid;
 
-    public static JSONArray tabs;
+    public static JSONArray tabs,regions;
     public static JSONObject tab_map;
 
     public static String host = "http://192.168.0.111/mess/";
@@ -73,7 +72,7 @@ public class StartActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        KeyboardDown.keyboardDown();
+        //KeyboardDown.keyboardDown();
         switch(item.getItemId()){
             case R.id.home:
                 for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
@@ -89,9 +88,14 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawer.drawer.isDrawerOpen()) {
-            drawer.drawer.closeDrawer();
-        } else {
+        if (isNetworkConnected(context)) {
+            if (drawer.drawer.isDrawerOpen()) {
+                drawer.drawer.closeDrawer();
+            } else {
+                super.onBackPressed();
+            }
+        }
+        else {
             super.onBackPressed();
         }
     }
@@ -106,47 +110,46 @@ public class StartActivity extends AppCompatActivity {
         _instance = this;
         _preferences = PreferenceManager.getDefaultSharedPreferences(this);  //for saving cookies
         _requestQueue = Volley.newRequestQueue(this);
-        font = Typeface.createFromAsset(this.getAssets(),"YuppySC-Regular.ttf");
+        font = Typeface.createFromAsset(this.getAssets(), "YuppySC-Regular.ttf");
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("MesSmart");
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle("MesSmart");
 
-        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.drawer.openDrawer();
-               // KeyboardDown.keyboardDown();
-            }
-        });
 
 
         if (!isNetworkConnected(context)) {
             //when wifi is not connected
             AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
-            alertbuilder.setTitle("No Network Connection");
-            alertbuilder.setCancelable(true);
+            alertbuilder.setTitle("No Network Connection,Try Again later");
+            alertbuilder.setCancelable(false);
             alertbuilder.setPositiveButton("Go to wifi settings", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
+                    finish();
                 }
             });
             AlertDialog alertDialog = alertbuilder.create();
             alertDialog.show();
+
         } else {
+            toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawer.drawer.openDrawer();
+                    // KeyboardDown.keyboardDown();
+                }
+            });
             new drawer().rebuild();
 
-
-            ViewpagerFragment fragment = new ViewpagerFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_not, fragment, fragment.toString())
-                    .commit();
-
-
         }
+        ViewpagerFragment fragment = new ViewpagerFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_not, fragment, fragment.toString())
+                .commit();
 
     }
 
