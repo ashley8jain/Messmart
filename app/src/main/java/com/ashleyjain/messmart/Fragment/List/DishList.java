@@ -25,7 +25,7 @@ public class DishList extends ListFragment {
 
     private int[] messDishId,messId;
     private String[] messTitle,messLord;
-    private String[] messDescription;
+    private String[] messDescription,messProfPic;
     private int[] messPrice,messBook;
     private boolean[] messIsVeg;
     private String[] messPic;
@@ -50,6 +50,7 @@ public class DishList extends ListFragment {
             messIsVeg = new boolean[len];
             messPic = new String[len];
             messName = new String[len];
+            messProfPic = new String[len];
             messAddress = new String[len];
             messTime = new String[len];
             messDatetime = new String[len];
@@ -61,6 +62,7 @@ public class DishList extends ListFragment {
                 messLord[i]=fooditem.getString("lord");
                 messId[i] = fooditem.getInt("mid");
                 messTitle[i] = fooditem.getString("title");
+                messProfPic[i] = fooditem.getString("profilepic_small");
                 messDescription[i] = fooditem.getString("descp");
                 messPrice[i] = fooditem.getInt("price");
                 messIsVeg[i] = fooditem.getString("isveg")=="n"?false:true;
@@ -83,7 +85,7 @@ public class DishList extends ListFragment {
 
         messObjectList = new ArrayList<DishObject>();
         for(int i = 0;i<messId.length;i++){
-            DishObject items = new DishObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messDatetext[i]);
+            DishObject items = new DishObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messDatetext[i],messProfPic[i]);
             messObjectList.add(items);
         }
         System.out.println(messObjectList.size());

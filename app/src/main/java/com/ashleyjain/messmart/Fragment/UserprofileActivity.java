@@ -1,6 +1,6 @@
 package com.ashleyjain.messmart.Fragment;
 
-        import android.app.AlertDialog;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -181,75 +182,129 @@ public class UserprofileActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 View view = (LayoutInflater.from(getActivity())).inflate(R.layout.add_wallet, null);
+                final Button apply = (Button) view.findViewById(R.id.apply);
+                Button pay = (Button) view.findViewById(R.id.pay);
+
+                final EditText timeSlot = (EditText) view.findViewById(R.id.timeslot);
+                apply.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+
+                        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("Response", response);
+                                        //response JSON from url
+                                        try {
+                                            JSONObject jsonResponse = new JSONObject(response);
+                                            Integer ec = jsonResponse.getInt("ec");
+                                            if (ec == 1) {
+                                                apply.setText("applied");
+                                            } else {
+                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                            }
+                                            System.out.println("Message: " + ec);
+                                            dialog2.dismiss();
+                                        } catch (JSONException e) {
+                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                            dialog2.dismiss();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                        dialog2.dismiss();
+                                    }
+                                }
+
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Log.d("debug", "posting param");
+                                Map<String, String> params = new HashMap<String, String>();
+
+                                // the POST parameters:
+                                params.put("preftime", timeSlot.getText().toString());
+                                params.put("action", "cash_collection");
+                                System.out.println(params);
+                                return params;
+                            }
+                        };
+
+                        // add it to the RequestQueue
+                        StartActivity.get().getRequestQueue().add(postRequest);
+                    }
+                });
+
+                final EditText amount = (EditText) view.findViewById(R.id.amount);
+                pay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading.....", true);
+
+                        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("Response", response);
+                                        //response JSON from url
+                                        try {
+                                            JSONObject jsonResponse = new JSONObject(response);
+                                            Integer ec = jsonResponse.getInt("ec");
+                                            if (ec == 1) {
+                                                Intent intent = new Intent(getActivity(), Payment.class);
+                                                String data = jsonResponse.getString("data");
+                                                intent.putExtra("url", data);
+                                                startActivity(intent);
+                                            } else {
+                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                            }
+                                            System.out.println("Message: " + ec);
+                                            dialog2.dismiss();
+                                        } catch (JSONException e) {
+                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                            dialog2.dismiss();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                        dialog2.dismiss();
+                                    }
+                                }
+
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Log.d("debug", "posting param");
+                                Map<String, String> params = new HashMap<String, String>();
+
+                                // the POST parameters:
+                                params.put("addamount", amount.getText().toString());
+                                params.put("device", "mobile");
+                                params.put("session_id", StartActivity.sessionID);
+                                params.put("action", "getpayurl");
+                                System.out.println(params);
+                                return params;
+                            }
+                        };
+
+                        // add it to the RequestQueue
+                        StartActivity.get().getRequestQueue().add(postRequest);
+                    }
+                });
 
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
                 alertBuilder.setView(view);
-                final EditText amount = (EditText) view.findViewById(R.id.amount);
 
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("PAY", new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading.....", true);
-
-                                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                Log.d("Response", response);
-                                                //response JSON from url
-                                                try {
-                                                    JSONObject jsonResponse = new JSONObject(response);
-                                                    Integer ec = jsonResponse.getInt("ec");
-                                                    if(ec == 1){
-                                                        Intent intent = new Intent(getActivity(), Payment.class);
-                                                        String data = jsonResponse.getString("data");
-                                                        intent.putExtra("url",data);
-                                                        startActivity(intent);
-                                                    }
-                                                    else{
-                                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
-                                                    }
-                                                    System.out.println("Message: " + ec);
-                                                    dialog2.dismiss();
-                                                } catch (JSONException e) {
-                                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-                                                    dialog2.dismiss();
-                                                }
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                                dialog2.dismiss();
-                                            }
-                                        }
-
-                                ) {
-                                    @Override
-                                    protected Map<String, String> getParams()   {
-                                        Log.d("debug", "posting param");
-                                        Map<String, String> params = new HashMap<String, String>();
-
-                                        // the POST parameters:
-                                        params.put("addamount",amount.getText().toString());
-                                        params.put("device", "mobile");
-                                        params.put("session_id", StartActivity.sessionID);
-                                        params.put("action", "getpayurl");
-                                        System.out.println(params);
-                                        return params;
-                                    }
-                                };
-
-                                // add it to the RequestQueue
-                                StartActivity.get().getRequestQueue().add(postRequest);
-
-
-                            }
-                        });
                 Dialog dialog = alertBuilder.create();
                 dialog.show();
             }

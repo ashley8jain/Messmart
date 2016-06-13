@@ -29,6 +29,16 @@ public class DishObject {
     private String pic;
     private String name;
 
+    public String getMessprofpic() {
+        return messprofpic;
+    }
+
+    public void setMessprofpic(String messprofpic) {
+        this.messprofpic = messprofpic;
+    }
+
+    private String messprofpic;
+
     public String getDatetext() {
         return datetext;
     }
@@ -77,7 +87,7 @@ public class DishObject {
     private String datetime;
     private int book;
 
-    public DishObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String datetext) {
+    public DishObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String datetext,String messprofpic) {
         this.dishId = dishId;
         this.lord = lord;
         this.id = id;
@@ -92,6 +102,7 @@ public class DishObject {
         this.datetime = datetime;
         this.book = book;
         this.datetext = datetext;
+        this.messprofpic = messprofpic;
     }
 
 

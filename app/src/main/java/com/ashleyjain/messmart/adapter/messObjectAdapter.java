@@ -329,7 +329,7 @@ public class messObjectAdapter extends BaseAdapter {
         });
         Prices.setText(row.getPrice() + "");
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
-        Picasso.with(context).load("https://lh6.ggpht.com/OjfEnXHkpM6xfiBTp8uNCANEoU7Smmz_tOE9YaZHdluLcsLLuA-9yV1Ju6OEajqKQbKY=w300").into(messLogo);
+        Picasso.with(context).load(StartActivity.host+row.getMessprofpic()).into(messLogo);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
         return convertView;
     }

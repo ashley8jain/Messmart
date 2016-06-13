@@ -8,9 +8,53 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="Add Wallet Money"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="15sp"
-        android:text="You can call our executive at +91 702-377-5732 to Add your wallet manually \n \n or \n \n You can pay online"/>
+        android:text="Apply for Cash Collection. Our executive( +91 7023-775-732) will come to you to collect cash and add in your wallet manually"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d3e9d9"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:id="@+id/timeslot"
+        android:hint="Your preferable time slot"
+        android:textCursorDrawable="@drawable/custom_cursor"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="#ffffff"
+        android:id="@+id/apply"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonshape"
+        android:text="apply"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="or"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="You can pay online"/>
 
     <EditText
         android:id="@+id/amount"
@@ -23,5 +67,15 @@
         android:inputType="number"
         android:ems="10"
         android:textCursorDrawable="@drawable/custom_cursor"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="#ffffff"
+        android:id="@+id/pay"
+        android:background="@drawable/buttonshape"
+        android:text="pay"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

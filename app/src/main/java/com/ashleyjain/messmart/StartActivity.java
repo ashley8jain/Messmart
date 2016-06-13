@@ -49,7 +49,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs;
     public static JSONObject tab_map;
 
-    public static String host = "http://www.messmart.com/";
+    public static String host = "http://192.168.0.111/mess/";
     public static String url = StartActivity.host+"index.php/ajaxactions";
     public static String sessionID;
 
@@ -117,7 +117,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.drawer.openDrawer();
-                KeyboardDown.keyboardDown();
+               // KeyboardDown.keyboardDown();
             }
         });
 

@@ -29,6 +29,16 @@ public class MessObject {
     private String pic;
     private String name;
 
+    public String getMessprofpic() {
+        return messprofpic;
+    }
+
+    public void setMessprofpic(String messprofpic) {
+        this.messprofpic = messprofpic;
+    }
+
+    private String messprofpic;
+
     public String getAddress() {
         return address;
     }
@@ -67,7 +77,7 @@ public class MessObject {
     private String datetime;
     private int book;
 
-    public MessObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book) {
+    public MessObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String messprofpic) {
         this.dishId = dishId;
         this.lord = lord;
         this.id = id;
@@ -81,6 +91,7 @@ public class MessObject {
         this.timing = timing;
         this.datetime = datetime;
         this.book = book;
+        this.messprofpic = messprofpic;
     }
 
 

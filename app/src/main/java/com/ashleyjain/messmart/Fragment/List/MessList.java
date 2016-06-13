@@ -37,7 +37,7 @@ public class MessList extends ListFragment {
     private String[] messDescription;
     private int[] messPrice,messBook;
     private boolean[] messIsVeg;
-    private String[] messPic;
+    private String[] messPic,messProfPic;
     private String[] messName,messAddress,messTime,messDatetime;
 
     private List<MessObject> messObjectList;
@@ -80,6 +80,7 @@ public class MessList extends ListFragment {
                             messTitle = new String[len];
                             messDescription = new String[len];
                             messPrice = new int[len];
+                            messProfPic = new String[len];
                             messIsVeg = new boolean[len];
                             messPic = new String[len];
                             messName = new String[len];
@@ -93,6 +94,7 @@ public class MessList extends ListFragment {
                                 messLord[i]=fooditem.getString("lord");
                                 messId[i] = fooditem.getInt("mid");
                                 messTitle[i] = fooditem.getString("title");
+                                messProfPic[i] = fooditem.getString("profilepic_small");
                                 messDescription[i] = fooditem.getString("descp");
                                 messPrice[i] = fooditem.getInt("price");
                                 messIsVeg[i] = fooditem.getString("isveg").equals("n")?false:true;
@@ -111,7 +113,7 @@ public class MessList extends ListFragment {
                         }
                         messObjectList = new ArrayList<MessObject>();
                         for(int i = 0;i<messId.length;i++){
-                            MessObject items = new MessObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i]);
+                            MessObject items = new MessObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messProfPic[i]);
                             messObjectList.add(items);
                         }
                         System.out.println(messObjectList.size());

@@ -22,6 +22,7 @@ import com.ashleyjain.messmart.Fragment.MessprofileActivity;
 import com.ashleyjain.messmart.Object.DishObject;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.function.RoundedImageView;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.squareup.picasso.Picasso;
 
@@ -75,6 +76,7 @@ public class dishObjectAdapter extends BaseAdapter {
         TextView messDescription = (TextView) convertView.findViewById(R.id.description);
         TextView Prices = (TextView) convertView.findViewById(R.id.price);
         TextView name = (TextView) convertView.findViewById(R.id.messmakername);
+        RoundedImageView messLogo = (RoundedImageView) convertView.findViewById(R.id.messmakerlogo);
         ImageView messimg = (ImageView) convertView.findViewById(R.id.messimg);
         ImageView vegimg = (ImageView) convertView.findViewById(R.id.imgveg);
         final Button book = (Button) convertView.findViewById(R.id.bookbutton);
@@ -313,6 +315,7 @@ public class dishObjectAdapter extends BaseAdapter {
         messDescription.setText(row.getDescription());
         Prices.setText("" + row.getPrice() + "/-");
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
+        Picasso.with(context).load(StartActivity.host+row.getMessprofpic()).into(messLogo);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
         TextView when = (TextView) convertView.findViewById(R.id.when);
         when.setText("*Serving as "+(row.getLord().equals("l")?"Lunch":"Dinner")+" on "+row.getDatetext());
