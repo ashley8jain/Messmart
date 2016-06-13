@@ -248,5 +248,4 @@ public class StartActivity extends AppCompatActivity {
         // add it to the RequestQueue
         getRequestQueue().add(postRequest);
     }
-
 }

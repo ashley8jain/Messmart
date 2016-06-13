@@ -89,6 +89,7 @@ public class LoginActivity extends Fragment {
         mobileno.setTypeface(font);
         mobileno.addTextChangedListener(new checkError(mobileno));
 
+
         pass = (EditText) view.findViewById(R.id.confirmotp);
         pass.setTypeface(font);
         pass.addTextChangedListener(new checkError(pass));

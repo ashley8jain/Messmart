@@ -115,11 +115,27 @@ public class Setting extends Fragment {
                     useroldpw.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     usernewpw.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     usernewpwre.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    if (useroldpw.hasFocus()){
+                        useroldpw.setSelection(useroldpw.getText().length());
+                    } else if (usernewpw.hasFocus()){
+                        usernewpw.setSelection(usernewpw.getText().length());
+                    } else if (usernewpwre.hasFocus()){
+                        usernewpwre.setSelection(usernewpwre.getText().length());
+                    } else{
+                    }
                 } else {
                     //Hide password
                     useroldpw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     usernewpw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     usernewpwre.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    if (useroldpw.hasFocus()){
+                        useroldpw.setSelection(useroldpw.getText().length());
+                    } else if (usernewpw.hasFocus()) {
+                        usernewpw.setSelection(usernewpw.getText().length());
+                    } else if (usernewpwre.hasFocus()) {
+                        usernewpwre.setSelection(usernewpwre.getText().length());
+                    } else {
+                    }
                 }
             }
         });
@@ -127,10 +143,9 @@ public class Setting extends Fragment {
         changepw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!usernewpw.getText().toString().equals(usernewpwre.getText().toString())){
-                    Toast.makeText(getActivity(),"Passwords do not match!",Toast.LENGTH_LONG).show();
-                }
-                else {
+                if (!usernewpw.getText().toString().equals(usernewpwre.getText().toString())) {
+                    Toast.makeText(getActivity(), "Passwords do not match!", Toast.LENGTH_LONG).show();
+                } else {
                     final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Changing......", true);
                     StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                             new Response.Listener<String>() {
@@ -142,12 +157,11 @@ public class Setting extends Fragment {
                                     try {
                                         JSONObject jsonResponse = new JSONObject(response);
                                         Integer ec = jsonResponse.getInt("ec");
-                                        if(ec == 1){
-                                            Toast.makeText(getActivity(),"Changed", Toast.LENGTH_LONG).show();
+                                        if (ec == 1) {
+                                            Toast.makeText(getActivity(), "Changed", Toast.LENGTH_LONG).show();
                                             getActivity().getSupportFragmentManager().popBackStack();
-                                        }
-                                        else{
-                                            Toast.makeText(getActivity(), StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
                                         }
                                         System.out.println("Message: " + ec);
                                         dialog.dismiss();
