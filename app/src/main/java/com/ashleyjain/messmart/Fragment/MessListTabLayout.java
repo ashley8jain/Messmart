@@ -99,9 +99,9 @@ public class MessListTabLayout extends Fragment {
 
                                 @Override
                                 public void run() {
-                                    viewPager.setCurrentItem(lord.equals("l") ? 0 : 1);
+                                    viewPager.setCurrentItem(lord.equals("l") ? 1 : 1);
                                 }
-                            }, 100);
+                            },10);
                             for(int i=0;i<day2.length();i++){
                                 if(day2.getString(i).equals(particularday)){
                                     spinner.setSelection(i);
@@ -146,9 +146,6 @@ public class MessListTabLayout extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Menu");
-
-
-
 
         View rootView = inflater.inflate(R.layout.fragment_mess_list_tab_layout, container, false);
         return rootView;

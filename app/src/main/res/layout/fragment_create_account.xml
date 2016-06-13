@@ -9,6 +9,14 @@
     tools:context=".Fragment.createAccount"
     android:id="@+id/fragment_create_account">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +39,6 @@
         android:background="#d3e9d9"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_below="@id/textView22"
         android:paddingBottom="10dp">
 
         <EditText
@@ -83,16 +90,15 @@
         android:textColor="#ffffff"
         android:background="@drawable/buttonshape"
         android:id="@+id/createb"
+        android:layout_gravity="center_horizontal"
         android:layout_below="@+id/EditTextLayout"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/createb"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
@@ -107,6 +113,8 @@
             android:id="@+id/already_conf"
             android:textSize="18sp"/>
     </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
