@@ -9,10 +9,10 @@
             android:id="@+id/userinputname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:layout_marginTop="20dp"
             android:padding="20dp"
-            android:hint="Name"
+            android:hint="@string/name"
             android:text=""
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
@@ -20,11 +20,11 @@
             android:id="@+id/userinputaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:layout_marginTop="20dp"
             android:padding="20dp"
             android:text=""
-            android:hint="Address"
+            android:hint="@string/address"
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
 </LinearLayout>

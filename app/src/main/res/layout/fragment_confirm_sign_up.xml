@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:id="@+id/fragment_confirm_sign_up">
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Student Signup"
+        android:text="@string/studentsignup"
         android:id="@+id/textView21"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView21"
         android:id="@+id/mob"
-        android:background="#d3e9d9"
+        android:background="@color/edittextbackground"
         android:padding="10dp"
-        android:hint="Phone"
+        android:hint="@string/phone"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
@@ -46,11 +46,11 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Re-send"
+        android:text="@string/resend"
         android:textAllCaps="false"
         android:id="@+id/resend"
         android:background="@drawable/buttonshape"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:textSize="15sp"
         android:drawableRight="@android:drawable/sym_call_incoming"
@@ -62,22 +62,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/confirmotppp"
         android:inputType="number"
-        android:background="#d3e9d9"
+        android:background="@color/edittextbackground"
         android:padding="10dp"
         android:maxLength="8"
         android:layout_marginTop="20dp"
-        android:hint="Enter OTP"
+        android:hint="@string/enterotp"
         android:drawablePadding="10dp"
         android:drawableLeft="@android:drawable/ic_lock_lock"
         android:textCursorDrawable="@drawable/custom_cursor"/>
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:textAllCaps="false"
         android:id="@+id/confirm"
         android:background="@drawable/buttonshape"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:textSize="15sp"
         android:layout_below="@+id/confirmotppp"
@@ -93,13 +93,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? "
+        android:text="@string/alreadyhaveaaccount"
         android:id="@+id/alreadyText"
         android:textSize="18sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/already"
         android:textSize="18sp"/>
     </LinearLayout>

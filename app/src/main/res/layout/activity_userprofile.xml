@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#eadbdb">
+    android:background="@color/lightpinkbackground">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -24,8 +24,8 @@
                     <TextView android:id="@+id/showdialogedit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#039be5"
-                        android:text="Edit Profile"
+                        android:textColor="@color/linktextcolor"
+                        android:text="@string/editprofile"
                         android:paddingRight="20dp"
                         android:gravity="end"/>
                     <android.support.v7.widget.CardView
@@ -46,7 +46,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/userinputname1"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:padding="10dp"
                             android:textSize="32sp"
                             android:textStyle="bold"
@@ -59,7 +59,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/userinputwallet1"
-                            android:text="1231"
+                            android:text="@string/cost"
                             android:padding="10dp"
                             android:drawableLeft="@drawable/inrup"
                             android:layout_marginTop="5dp"
@@ -74,7 +74,7 @@
                             android:padding="10dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Address:-"/>
+                            android:text="@string/useraddress"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

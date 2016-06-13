@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/newtext"
         android:textStyle="bold"
         android:id="@+id/fulldate"
         android:layout_gravity="center_horizontal" />
@@ -31,7 +31,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:id="@+id/lord"
-        android:text="Lunch"
+        android:text="@string/lunch"
         android:layout_marginLeft="10dp"
         />
 
@@ -55,31 +55,31 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OID"
+                android:text="@string/oid"
                 android:id="@+id/textView7" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dish"
+                android:text="@string/dish"
                 android:id="@+id/textView9" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mess"
+                android:text="@string/mess"
                 android:id="@+id/textView14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price"
+                android:text="@string/price"
                 android:id="@+id/textView15" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status"
+                android:text="@string/status"
                 android:id="@+id/textView16" />
         </LinearLayout>
         <LinearLayout
@@ -91,38 +91,38 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="@string/newtext"
                 android:id="@+id/oid" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="new text"
+                android:text="@string/newtext"
                 android:id="@+id/dish" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="new text"
+                android:text="@string/newtext"
                 android:id="@+id/mess" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="@string/newtext"
                 android:id="@+id/price" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/status"
-                android:text="new text" />
+                android:text="@string/newtext" />
             <Button
                 android:layout_width="70dp"
                 android:layout_height="35dp"
                 android:id="@+id/cancel"
-                android:textColor="#ffffff"
-                android:text="Cancel"
+                android:textColor="@color/white"
+                android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:layout_margin="10dp"
                 android:background="@drawable/buttonshape"

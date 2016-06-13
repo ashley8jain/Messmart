@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.List.OrderList"
-    android:background="#e7e7e7">
+    android:background="@color/websitebackground">
 
     <ListView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Orders"
+        android:text="@string/noorders"
         android:id="@android:id/empty"
         android:layout_gravity="center" />
 

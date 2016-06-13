@@ -20,59 +20,59 @@
                     android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:padding="10dp"
-                    android:text="Change Password"
+                    android:text="@string/changepassword"
                     android:layout_alignParentTop="true"/>
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:background="#d3e9d9"
+                    android:background="@color/edittextbackground"
                     android:padding="10dp"
                     android:ems="10"
                     android:id="@+id/useroldpw"
-                    android:hint="Old Password"
+                    android:hint="@string/oldpassword"
                     android:textSize="18sp"
                     android:layout_marginTop="37dp"
                     android:textCursorDrawable="@drawable/custom_cursor"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#ffffff"/>
+                    android:background="@color/white"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#d3e9d9"
+                    android:background="@color/edittextbackground"
                     android:padding="10dp"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:id="@+id/usernewpw"
-                    android:hint="New Password"
+                    android:hint="@string/newpassword"
                     android:textSize="18sp"
                     android:textCursorDrawable="@drawable/custom_cursor"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#ffffff"/>
+                    android:background="@color/white"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#d3e9d9"
+                    android:background="@color/edittextbackground"
                     android:padding="10dp"
                     android:id="@+id/usernewpwre"
                     android:inputType="textPassword"
                     android:ems="10"
-                    android:hint="Repeat New Password"
+                    android:hint="@string/repeatnewpassword"
                     android:textSize="18sp"
                     android:textCursorDrawable="@drawable/custom_cursor"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#ffffff"/>
+                    android:background="@color/white"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Show Password"
+                    android:text="@string/showpassword"
                     android:textSize="16sp"
                     android:id="@+id/showHidePassword"
                     android:checked="false"
@@ -83,8 +83,8 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:textColor="#ffffff"
-                    android:text="Change"
+                    android:textColor="@color/white"
+                    android:text="@string/change"
                     android:textSize="20sp"
                     android:textAllCaps="false"
                     android:background="@drawable/bookbutton"

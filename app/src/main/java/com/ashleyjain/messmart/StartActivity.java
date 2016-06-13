@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SlidingDrawer;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -72,7 +73,7 @@ public class StartActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        KeyboardDown.keyboardDown();
+        //KeyboardDown.keyboardDown();
         switch(item.getItemId()){
             case R.id.home:
                 for(int i=0;i<getSupportFragmentManager().getBackStackEntryCount();i++)
@@ -83,6 +84,12 @@ public class StartActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+//        try{
+//            KeyboardDown.keyboardDown();
+//        }
+//        catch (Exception e){
+//            System.out.println("hi");
+//        }
 
     }
 
@@ -116,7 +123,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.drawer.openDrawer();
-                KeyboardDown.keyboardDown();
+                //KeyboardDown.keyboardDown();
             }
         });
 

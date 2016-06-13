@@ -91,6 +91,7 @@ public class MessListTabLayout extends Fragment {
         final TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Lunch"));
         tabLayout.addTab(tabLayout.newTab().setText("Dinner"));
+        tabLayout.setTabTextColors(R.color.buttoncolor, R.color.linktextcolor);
 
         viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

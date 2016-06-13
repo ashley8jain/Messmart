@@ -6,7 +6,7 @@
     android:paddingBottom="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:id="@+id/activity_login">
 
     <ScrollView
@@ -30,7 +30,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="#d3e9d9"
+        android:background="@color/edittextbackground"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
@@ -39,13 +39,13 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:id="@+id/phone"
             android:inputType="number"
             android:maxLength="10"
-            android:hint="Phone"
-            android:text="7503759059"
+            android:hint="@string/phone"
+            android:text="@string/mobileno7503759059"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/sym_action_call"
             android:drawableTint="@color/primary"
@@ -54,16 +54,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="#ffffff"/>
+            android:background="@color/white"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/confirmotp"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:inputType="textPassword"
-            android:text="oo"
+            android:text="@string/loginpassword"
             android:ems="10"
             android:hint="@string/otpOrPassword"
             android:drawablePadding="10dp"
@@ -97,14 +97,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don\'t have an account? "
+        android:text="@string/donthaveanaccount"
         android:id="@+id/signupText"
         android:textSize="18sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SignUp"
+        android:text="@string/signup"
         android:id="@+id/signup"
         android:textSize="18sp"/>
 </LinearLayout>
@@ -119,14 +119,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Are you a mess? "
+        android:text="@string/areumess"
         android:id="@+id/joinusText"
         android:textSize="18sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JoinUs"
+            android:text="@string/joinus"
             android:id="@+id/joinus"
             android:textSize="18sp"/>
         </LinearLayout>
@@ -134,7 +134,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot your password ?"
+        android:text="@string/forgotyourpassword"
         android:id="@+id/forgot"
         android:textSize="18sp"
         android:layout_below="@+id/linearLayoutJoinUs"

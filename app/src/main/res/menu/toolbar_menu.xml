@@ -4,7 +4,7 @@
     <!--notification toolbar button-->
     <item android:id="@+id/home"
         android:icon ="@drawable/home"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="always"
         />
 
