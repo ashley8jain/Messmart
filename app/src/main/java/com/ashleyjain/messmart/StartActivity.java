@@ -44,12 +44,13 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray days,days2;
     public static JSONObject errorcode;
     public static String loginid;
+    public static int v = 1;
 
     public static JSONArray tabs,regions;
     public static JSONObject tab_map;
 
     public static String host = "http://192.168.0.111/mess/";
-    public static String url = StartActivity.host+"index.php/ajaxactions";
+    public static String url = StartActivity.host+"index.php/ajaxactions?v="+v;
     public static String sessionID;
 
     private static final String SET_COOKIE_KEY = "set-cookie";

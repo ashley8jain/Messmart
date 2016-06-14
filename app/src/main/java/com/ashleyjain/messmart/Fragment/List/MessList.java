@@ -32,7 +32,7 @@ public class MessList extends ListFragment {
     String lord,pd;
     TextView emp;
 
-    private int[] messDishId,messId;
+    private int[] messDishId,messId,t_avai,m_avai;
     private String[] messTitle,messLord;
     private String[] messDescription;
     private int[] messPrice,messBook;
@@ -88,6 +88,8 @@ public class MessList extends ListFragment {
                             messTime = new String[len];
                             messDatetime = new String[len];
                             messBook = new int[len];
+                            t_avai = new int[len];
+                            m_avai = new int[len];
                             for(int i=0;i<len;i++){
                                 JSONObject fooditem = foodarray.getJSONObject(i);
                                 messDishId[i]=fooditem.getInt("dishid");
@@ -104,6 +106,8 @@ public class MessList extends ListFragment {
                                 messTime[i] = fooditem.getString("timing");
                                 messDatetime[i]=fooditem.getString("datetime");
                                 messBook[i]=fooditem.getInt("isbooked");
+                                t_avai[i]=fooditem.getInt("t_avai");
+                                m_avai[i]=fooditem.getInt("m_avai");
                             }
 
                             //dialog.dismiss();
@@ -113,7 +117,7 @@ public class MessList extends ListFragment {
                         }
                         messObjectList = new ArrayList<MessObject>();
                         for(int i = 0;i<messId.length;i++){
-                            MessObject items = new MessObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messProfPic[i]);
+                            MessObject items = new MessObject(messDishId[i],messLord[i],messId[i],messTitle[i],messDescription[i],messPrice[i],messIsVeg[i],messPic[i],messName[i],messAddress[i],messTime[i],messDatetime[i],messBook[i],messProfPic[i],t_avai[i],m_avai[i]);
                             messObjectList.add(items);
                         }
                         System.out.println(messObjectList.size());

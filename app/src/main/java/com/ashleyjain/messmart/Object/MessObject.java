@@ -28,6 +28,25 @@ public class MessObject {
     private boolean isVeg;
     private String pic;
     private String name;
+    private int t_avai;
+
+    public int getM_avai() {
+        return m_avai;
+    }
+
+    public void setM_avai(int m_avai) {
+        this.m_avai = m_avai;
+    }
+
+    public int getT_avai() {
+        return t_avai;
+    }
+
+    public void setT_avai(int t_avai) {
+        this.t_avai = t_avai;
+    }
+
+    private int m_avai;
 
     public String getMessprofpic() {
         return messprofpic;
@@ -77,7 +96,7 @@ public class MessObject {
     private String datetime;
     private int book;
 
-    public MessObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String messprofpic) {
+    public MessObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String messprofpic,int t_avai,int m_avai) {
         this.dishId = dishId;
         this.lord = lord;
         this.id = id;
@@ -92,6 +111,8 @@ public class MessObject {
         this.datetime = datetime;
         this.book = book;
         this.messprofpic = messprofpic;
+        this.t_avai = t_avai;
+        this.m_avai = m_avai;
     }
 
 

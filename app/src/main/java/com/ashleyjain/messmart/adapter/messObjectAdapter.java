@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -331,6 +332,23 @@ public class messObjectAdapter extends BaseAdapter {
         Picasso.with(context).load(StartActivity.host+row.getPic()).into(messimg);
         Picasso.with(context).load(StartActivity.host+row.getMessprofpic()).into(messLogo);
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
+
+        //sold out.....
+        LinearLayout soldout = (LinearLayout) convertView.findViewById(R.id.soldout);
+        if(row.getM_avai()>0 || row.getT_avai()>0){
+            soldout.setVisibility(View.INVISIBLE);
+            book.setVisibility(View.VISIBLE);
+        }
+        else{
+            soldout.setVisibility(View.VISIBLE);
+            if(row.getBook()==0)
+                book.setVisibility(View.INVISIBLE);
+            else
+                book.setVisibility(View.VISIBLE );
+
+        }
+
+
         return convertView;
     }
 }
