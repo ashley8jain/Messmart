@@ -1,13 +1,19 @@
 package com.ashleyjain.messmart.Fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +26,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,13 +41,24 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class UserprofileActivity extends Fragment {
+
     RoundedImageView userlogo;
     static TextView inputUsername1,inputUserwallet1,inputUseraddress1;
     String name,address;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Bitmap bitmap;
+    Boolean upload = false;
+    private String KEY_IMAGE = "profilepic";
+    private String KEY_NAME = "name";
+    private String UPLOAD_URL =StartActivity.host+"mohit.php";
+
 
     @Override
     public void onStop() {
@@ -70,7 +88,15 @@ public class UserprofileActivity extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        setInfo();
+        if(!upload){
+            setInfo();
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -310,6 +336,25 @@ public class UserprofileActivity extends Fragment {
                 dialog.show();
             }
         });
+
+        final TextView profpic = (TextView) view.findViewById(R.id.profpic);
+
+        profpic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upload = true;
+                showFileChooser();
+            }
+        });
+
+        final TextView upload = (TextView) view.findViewById(R.id.upload);
+
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImage();
+            }
+        });
     }
 
 
@@ -364,5 +409,81 @@ public class UserprofileActivity extends Fragment {
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
 
+    }
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //Getting the Bitmap from Gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                //Setting the Bitmap to ImageView
+                userlogo.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void uploadImage(){
+        //Showing the progress dialog
+        final ProgressDialog loading = ProgressDialog.show(getActivity(),"Uploading...","Please wait...",false,false);
+        StringRequestCookies stringRequest = new StringRequestCookies(Request.Method.POST, UPLOAD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //Disimissing the progress dialog
+                        loading.dismiss();
+                        //Showing toast message of the response
+                        Toast.makeText(getActivity(), s , Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //Dismissing the progress dialog
+                        loading.dismiss();
+
+                        //Showing toast
+                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //Converting Bitmap to String
+                String image = getStringImage(bitmap);
+
+                //Getting Image Name
+                String name = "pic";
+
+                //Creating parameters
+                Map<String,String> params = new Hashtable<String, String>();
+
+                //Adding parameters
+                params.put(KEY_IMAGE, image);
+                params.put(KEY_NAME, name);
+
+                //returning parameters
+                return params;
+            }
+        };
+
+        // add it to the RequestQueue
+        StartActivity.get().getRequestQueue().add(stringRequest);
+    }
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 }

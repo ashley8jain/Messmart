@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:padding="30dp"
                     android:textSize="20dp"
-                    android:text="The search for your meal ends right here at MesSmart. Use the app to book your meal: Lunch or Dinner. You have several messes to choose from.Begin to filter the mess options as per your convenience and choice. You also have the option to dine in the mess or make it delivered to your doorstep."
+                    android:text="The search for your meal ends right here at MesSmart. You have several messes to choose from.  Begin to filter the mess options as per your convenience and choice. You also have the option to dine in the mess or make it a Takeaway."
                     android:id="@+id/textView2" />
             </LinearLayout>
 
@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:text="We at MesSmart give you access to our services through all media.Your meal is a click away on our website, a touch away from your smartphone and a call away from your mobile."
+                    android:text="We at MesSmart give you access to our services through all media.Your meal is a click away on our website , a touch away from your smartphone and a call away from your mobile. You can now connect with us in all possible ways"
                     android:id="@+id/textView4"
                     android:padding="30dp" />
             </LinearLayout>
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:text='Upon receiving your order, the cook at the mess of your choice prepares the order \"hot and fresh\".'
+                    android:text="Upon receiving your order, the cook at the mess of your choice prepares the order “hot and fresh”.  We assure you the best quality food prepared  in a hygienic kitchen. MesSmart gives the food a touch of you much missed ‘Ghar Ka Khana’. "
                     android:id="@+id/textView6"
                     android:padding="30dp" />
             </LinearLayout>
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:textSize="20dp"
                     android:layout_height="wrap_content"
-                    android:text="Should you choose to dine in, the mess will serve your freshly prepare food at their premises. Should you want to take away, we shall have a freshly packed tiffin delivered at your doorstep before you know it."
+                    android:text="Should you choose to dine in, the mess will serve your freshly prepared food at their premises. Should you want to take away, we shall have a freshly packed tiffin delivered at your doorstep before you know it."
                     android:padding="30dp" />
             </LinearLayout>
 

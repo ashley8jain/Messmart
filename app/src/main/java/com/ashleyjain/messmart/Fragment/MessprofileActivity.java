@@ -2,13 +2,16 @@ package com.ashleyjain.messmart.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +36,7 @@ import java.util.Map;
 public class MessprofileActivity extends Fragment {
     RoundedImageView messlogo;
     TextView mess_name;
-    TextView mess_address;
     TextView mess_aboutme;
-    TextView mess_lunchtime;
-    TextView mess_dinnertime;
     int uid;
     JSONArray menulist;
 
@@ -67,11 +67,8 @@ public class MessprofileActivity extends Fragment {
         messlogo = (RoundedImageView)view.findViewById(R.id.messProfile);
 
         mess_name = (TextView)view.findViewById(R.id.mess_name);
-        mess_address = (TextView)view.findViewById(R.id.mess_address);
         mess_aboutme = (TextView)view.findViewById(R.id.mess_aboutme);
-        mess_lunchtime = (TextView)view.findViewById(R.id.mess_lunchtime);
-        mess_dinnertime = (TextView)view.findViewById(R.id.mess_dinnertime);
-
+        final LinearLayout ll = (LinearLayout) view.findViewById(R.id.right_display);
 
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Loading...", true);
         StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
@@ -94,20 +91,44 @@ public class MessprofileActivity extends Fragment {
                             JSONObject uinfo = data.getJSONObject("uinfo");
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
-                            String address = uinfo.getString("address");
                             String profilepic = StartActivity.host+uinfo.getString("profilepic");
                             JSONArray profile_right_display = data.getJSONArray("profile_right_display");
+                            LinearLayoutCompat.LayoutParams lparams = new LinearLayoutCompat.LayoutParams(
+                                    LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+                            LinearLayoutCompat.LayoutParams lparams2 = new LinearLayoutCompat.LayoutParams(
+                                    LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+
+                            for(int i=0;i<profile_right_display.length();i++){
+                                TextView tv=new TextView(getActivity());
+                                tv.setLayoutParams(lparams);
+                                tv.setText(profile_right_display.getJSONArray(i).getString(0));
+                                tv.setTypeface(Typeface.DEFAULT_BOLD);
+                                tv.setTextSize(16);
+                                tv.setPadding(0,0,0,16);
+                                ll.addView(tv);
+
+                                TextView tv2=new TextView(getActivity());
+                                tv2.setLayoutParams(lparams);
+                                tv2.setText(profile_right_display.getJSONArray(i).getString(1));
+                                tv2.setPadding(0,0,0,5);
+                                ll.addView(tv2);
+
+                                if(i!=profile_right_display.length()-1){
+                                    View view = new View(getActivity());
+                                    view.setMinimumHeight(2);
+                                    view.setLayoutParams(lparams2);
+                                    view.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                                    ll.addView(view);
+                                }
+                            }
+
                             mess_name.setText(name);
-                            mess_address.setText(address);
                             mess_aboutme.setText(aboutus);
                             Picasso.with(getActivity()).load(profilepic).into(messlogo);
-                            String lunchtime = profile_right_display.getJSONArray(1).getString(1);
-                            String dinnertime = profile_right_display.getJSONArray(2).getString(1);
-                            mess_lunchtime.setText(lunchtime);
-                            mess_dinnertime.setText(dinnertime);
+
                             dialog.dismiss();
                         } catch (JSONException e) {
-                            //Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }
 
@@ -138,23 +159,6 @@ public class MessprofileActivity extends Fragment {
 
         // add it to the RequestQueue
         StartActivity.get().getRequestQueue().add(postRequest);
-
-//        TextView dishlist = (TextView) view.findViewById(R.id.dishlist);
-//        dishlist.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                DishList dishlist = new DishList();
-//                Bundle bundle2 = new Bundle();
-//                bundle2.putString("menulist", menulist.toString());
-//                dishlist.setArguments(bundle2);
-//                StartActivity.get().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_not, dishlist, dishlist.toString())
-//                        .addToBackStack(dishlist.toString())
-//                        .commit();
-//            }
-//        });
-
 
     }
 }

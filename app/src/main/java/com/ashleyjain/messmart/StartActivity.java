@@ -123,7 +123,6 @@ public class StartActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("MesSmart");
 
-
         if (!isNetworkConnected(context)) {
             //when wifi is not connected
             AlertDialog.Builder alertbuilder = new AlertDialog.Builder(context);
