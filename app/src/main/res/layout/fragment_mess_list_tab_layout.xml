@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:popupBackground="@color/primary"
-        android:background="#1effffff"
+        android:background="@color/shadowgreen"
         android:prompt="@string/spinner_title"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -21,7 +21,7 @@
         android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/primary"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>

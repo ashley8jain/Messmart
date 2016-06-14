@@ -54,6 +54,8 @@ public class OrderFragment extends Fragment {
         final TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout_order);
         tabLayout.addTab(tabLayout.newTab().setText("UPCOMING"));
         tabLayout.addTab(tabLayout.newTab().setText("PAST"));
+        tabLayout.setTabTextColors(R.color.buttoncolor, R.color.linktextcolor);
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.white));
 
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 

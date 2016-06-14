@@ -162,6 +162,7 @@ public class MessListTabLayout extends Fragment {
         tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Lunch"));
         tabLayout.addTab(tabLayout.newTab().setText("Dinner"));
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

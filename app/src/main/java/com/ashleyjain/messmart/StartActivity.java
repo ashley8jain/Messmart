@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SlidingDrawer;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -84,6 +85,12 @@ public class StartActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+//        try{
+//            KeyboardDown.keyboardDown();
+//        }
+//        catch (Exception e){
+//            System.out.println("hi");
+//        }
 
     }
 
@@ -116,7 +123,6 @@ public class StartActivity extends AppCompatActivity {
 
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("MesSmart");
-
 
 
         if (!isNetworkConnected(context)) {
@@ -249,5 +255,4 @@ public class StartActivity extends AppCompatActivity {
         // add it to the RequestQueue
         getRequestQueue().add(postRequest);
     }
-
 }

@@ -4,5 +4,5 @@
     <size
         android:width="2dip" />
     <solid
-        android:color="#000000" />
+        android:color="@color/cursorcolor" />
 </shape>

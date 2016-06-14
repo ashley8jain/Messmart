@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
+import com.ashleyjain.messmart.adapter.PagerAdapter;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
@@ -167,6 +169,7 @@ public class createAccount extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
+        
 
 //        alreadyhave.setMovementMethod(LinkMovementMethod.getInstance());
 //        alreadyhave.setText(alreadyhave.getText(), TextView.BufferType.SPANNABLE);

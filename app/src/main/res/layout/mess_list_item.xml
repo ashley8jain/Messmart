@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title"
-            android:text="dish name"
+            android:text="@string/dishname"
             android:layout_alignLeft="@+id/messimg"
             android:includeFontPadding="false"
             android:ellipsize="marquee"
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="234"
+            android:text="@string/cost"
             android:textSize="20dp"
             android:id="@+id/price"
             android:drawableLeft="@drawable/ir30"
@@ -98,10 +98,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/messmakername"
-            android:text="mess name"
+            android:text="@string/messname"
             android:layout_below="@+id/title"
             android:layout_alignBaseline="@+id/bookbutton"
-            android:textColor="#039be5"
+            android:textColor="@color/linktextcolor"
             android:textSize="14sp"
             android:textStyle="bold"
             android:paddingTop="20dp"
@@ -128,9 +128,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:background="@drawable/bookbutton"
-            android:text="Book"
+            android:text="@string/book"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:textSize="16sp"
@@ -146,8 +146,7 @@
         <com.ashleyjain.messmart.function.CustomText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Newnklllllllllllllllllllllllllllllllllllll
-            llllllllllllllllllllkllllllllllllll Text"
+            android:text="@string/description"
             android:padding="10dp"
             android:layout_below="@+id/messmakerlogo"
             android:id="@+id/description"/>

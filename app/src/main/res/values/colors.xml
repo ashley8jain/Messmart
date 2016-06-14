@@ -3,5 +3,19 @@
     <color name="colorPrimary">#4da747</color>
     <color name="colorPrimaryDark">#e6137c0f</color>
     <color name="colorAccent">#2d8427</color>
+    <color name="buttoncolor">#26a69a</color>
+    <color name="white">#ffffff</color>
+    <color name="cursorcolor">#000000</color>
+    <color name="lightgreen">#32CD32</color>
+    <color name="greenfont">#307D96</color>
+    <color name="edittextbackground">#d3e9d9</color>
+    <color name="lightpinkbackground">#f1e3e3</color>
+    <color name="linktextcolor">#039be5</color>
+    <color name="websitebackground">#e7e7e7</color>
+    <color name="shadowcolor">#00FF1414</color>
+    <color name="shadowgreen">#1effffff</color>
+    <color name="shadowfrontpagebackground">#80f2f2bf</color>
+    <color name="shadowfrontpagebackground2">#80ffffc0</color>
+    <color name="shadowfrontpagebackground3">#80e1e1b0</color>
 
 </resources>

@@ -4,7 +4,7 @@
     <!--filter toolbar button-->
     <item android:id="@+id/filter"
         android:icon ="@drawable/todo_list"
-        android:title="ToDo"
+        android:title="@string/todo"
         app:showAsAction="always"
         />
 </menu>

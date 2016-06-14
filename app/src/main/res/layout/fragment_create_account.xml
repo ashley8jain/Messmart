@@ -16,13 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create Account"
+        android:text="@string/createaccount"
         android:textStyle="bold"
         android:padding="10dp"
         android:id="@+id/textView22"
@@ -36,7 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="37dp"
-        android:background="#d3e9d9"
+        android:background="@color/edittextbackground"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp">
@@ -45,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/name"
-            android:hint="Name"
+            android:hint="@string/name"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/collaborator"
             android:textCursorDrawable="@drawable/custom_cursor"/>
@@ -66,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/address"
-            android:hint="Address"
+            android:hint="This is the address where ur food will be delivered."
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/marker3"
             android:textCursorDrawable="@drawable/custom_cursor"/>
@@ -75,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/choosepassword"
-            android:hint="Choose Password"
+            android:hint="@string/choosepassword"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/password"
             android:textCursorDrawable="@drawable/custom_cursor"/>
@@ -85,9 +83,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
+        android:text="@string/createaccount"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:background="@drawable/buttonshape"
         android:id="@+id/createb"
         android:layout_gravity="center_horizontal"
@@ -103,13 +101,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account? "
+            android:text="@string/alreadyhaveaaccount"
             android:id="@+id/already_confText"
             android:textSize="18sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:id="@+id/already_conf"
             android:textSize="18sp"/>
     </LinearLayout>

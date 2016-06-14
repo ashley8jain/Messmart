@@ -54,6 +54,8 @@ public class drawer {
     public void rebuild(){
 
 
+
+
         //profile section in drawer layout
         headerResult = new AccountHeaderBuilder()
                 .withProfileImagesClickable(false)
@@ -185,6 +187,7 @@ public class drawer {
 
 
         drawer = builder.build();
+
 
         builder.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override

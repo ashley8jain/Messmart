@@ -36,20 +36,20 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:layout_marginTop="85dp"
-                        android:text="Welcome to mesSmart"
+                        android:text="@string/welcometomessmart"
                         android:id="@+id/welcome"
                         android:gravity="center_horizontal"
                         android:textSize="32sp"/>
                     <com.ashleyjain.messmart.function.CustomText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:layout_margin="5dp"
                         android:id="@+id/place"
-                        android:text="A place, where you can choose what to eat"
+                        android:text="@string/a_place_where_you_choose_what_to_eat"
                         android:gravity="center_horizontal"
                         android:textSize="20sp"/>
                     <Button
@@ -57,11 +57,11 @@
                         android:id="@+id/bookmeal"
                         android:layout_marginTop="30dp"
                         android:background="@drawable/bookbuttonshape"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Book Meal"
                         android:layout_marginBottom="10dp"
+                        android:text="@string/book_meal"
                         android:textAllCaps="false"/>
                 </LinearLayout>
 
@@ -73,8 +73,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:padding="20dp"
                 android:textStyle="bold"
-                android:text="HOW IT WORKS"
-                android:textColor="#ffffff"
+                android:text="@string/how_it_works"
+                android:textColor="@color/white"
                 android:background="@color/primary"
                 android:id="@+id/how"
                 android:gravity="center_horizontal" />
@@ -91,7 +91,7 @@
                 android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#f2f2bf">
+                android:background="@color/shadowfrontpagebackground">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="You Book A Meal"
+                    android:text="@string/you_book_a_meal"
                     android:padding="20dp"
                     android:id="@+id/textView"
                     android:gravity="center_horizontal" />
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="90dp"
                     android:paddingLeft="90dp"
-                    android:text="You visit messmart.com and find the best mess"
+                    android:text="@string/you_visit_messmart_and_find_meal"
                     android:id="@+id/textView2"
                     android:gravity="center_horizontal" />
             </LinearLayout>
@@ -123,7 +123,7 @@
                 android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffc0">
+                android:background="@color/shadowfrontpagebackground2">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Chef Cooks"
+                    android:text="@string/chef_cooks"
                     android:padding="20dp"
                     android:layout_marginTop="20dp"
                     android:id="@+id/textView3"
@@ -144,7 +144,7 @@
                 <com.ashleyjain.messmart.function.CustomText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Our Awesome Chef cooks delicacy from her home kitchen for you"
+                    android:text="@string/our_awesome_chef_cooks_delicacy"
                     android:id="@+id/textView4"
                     android:paddingLeft="90dp"
                     android:paddingRight="90dp"
@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:padding="20dp"
                 android:layout_height="match_parent"
-                android:background="#e1e1b0">
+                android:background="@color/shadowfrontpagebackground3">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Daily Home Delivery"
+                    android:text="@string/daily_home_delivery"
                     android:padding="20dp"
                     android:id="@+id/textView5"
                     android:gravity="center_horizontal" />
@@ -176,7 +176,7 @@
                 <com.ashleyjain.messmart.function.CustomText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="We do lightning daily delivery in the slot you have selected"
+                    android:text="@string/we_do_lightening_home_delivery_in_slot_chosen"
                     android:paddingLeft="90dp"
                     android:paddingRight="90dp"
                     android:id="@+id/textView6"
@@ -187,13 +187,12 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ffffc0">
-
+                    android:background="@color/shadowfrontpagebackground2">
                     <com.ashleyjain.messmart.function.CustomText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Connect with us"
+                        android:text="@string/connect_with_us"
                         android:padding="20dp"
                         android:paddingLeft="90dp"
                         android:paddingRight="90dp"
@@ -206,7 +205,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffc0"
+                    android:background="@color/shadowfrontpagebackground2"
                     android:gravity="center">
 
                     <ImageView

@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".Fragment.LoginActivity"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:id="@+id/activity_messjoin">
 
     <ScrollView
@@ -28,9 +28,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
-            android:hint="Name"
+            android:hint="@string/name"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextName"
@@ -39,9 +39,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile Number"
+            android:hint="@string/mobilenumber"
 
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:inputType="number"
             android:maxLength="10"
@@ -53,9 +53,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
-            android:hint="Email Id"
+            android:hint="@string/emailid"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextEmailid"
@@ -64,9 +64,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"
+            android:hint="@string/address"
             android:layout_marginTop="5dp"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:layout_marginBottom="5dp"
             android:id="@+id/EditTextAddress"
@@ -75,9 +75,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Choose a Password"
+            android:hint="@string/choosepassword"
             android:password="true"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -87,9 +87,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Anything else ?"
+            android:hint="@string/anythingelse"
             android:minLines="3"
-            android:background="#d3e9d9"
+            android:background="@color/edittextbackground"
             android:padding="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -102,10 +102,10 @@
         android:background="@drawable/buttonshape"
         android:layout_height="wrap_content"
         android:id="@+id/ButtonSubmit"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textSize="20sp"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="70dp"/>
 
