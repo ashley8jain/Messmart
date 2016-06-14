@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.ViewpagerFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="275dp"
-        android:scaleType="centerCrop"
-        android:id="@+id/slider"
-        android:src="@drawable/food8"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +16,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="275dp"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/slider"
+                    android:src="@drawable/food8"/>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -60,7 +58,6 @@
                         android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
                         android:text="@string/book_meal"
                         android:textAllCaps="false"/>
                 </LinearLayout>
@@ -97,25 +94,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView2"
-                    android:src="@drawable/hww4_t" />
+                    android:src="@drawable/i4" />
 
                 <com.ashleyjain.messmart.function.CustomText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/you_book_a_meal"
-                    android:padding="20dp"
-                    android:id="@+id/textView"
-                    android:gravity="center_horizontal" />
-
-                <com.ashleyjain.messmart.function.CustomText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="90dp"
-                    android:paddingLeft="90dp"
-                    android:text="@string/you_visit_messmart_and_find_meal"
-                    android:id="@+id/textView2"
-                    android:gravity="center_horizontal" />
+                    android:padding="30dp"
+                    android:textSize="20dp"
+                    android:text="The search for your meal ends right here at MesSmart. Use the app to book your meal: Lunch or Dinner. You have several messes to choose from.Begin to filter the mess options as per your convenience and choice. You also have the option to dine in the mess or make it delivered to your doorstep."
+                    android:id="@+id/textView2" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,26 +116,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/hww3_t" />
+                    android:src="@drawable/i1" />
 
                 <com.ashleyjain.messmart.function.CustomText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/chef_cooks"
-                    android:padding="20dp"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/textView3"
-                    android:gravity="center_horizontal" />
-
-                <com.ashleyjain.messmart.function.CustomText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/our_awesome_chef_cooks_delicacy"
+                    android:textSize="20dp"
+                    android:text="We at MesSmart give you access to our services through all media.Your meal is a click away on our website, a touch away from your smartphone and a call away from your mobile."
                     android:id="@+id/textView4"
-                    android:paddingLeft="90dp"
-                    android:paddingRight="90dp"
-                    android:gravity="center_horizontal"/>
+                    android:padding="30dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -162,25 +138,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView4"
-                    android:src="@drawable/hww1_t" />
+                    android:src="@drawable/i2" />
 
                 <com.ashleyjain.messmart.function.CustomText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/daily_home_delivery"
-                    android:padding="20dp"
-                    android:id="@+id/textView5"
-                    android:gravity="center_horizontal" />
-
-                <com.ashleyjain.messmart.function.CustomText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/we_do_lightening_home_delivery_in_slot_chosen"
-                    android:paddingLeft="90dp"
-                    android:paddingRight="90dp"
+                    android:textSize="20dp"
+                    android:text='Upon receiving your order, the cook at the mess of your choice prepares the order \"hot and fresh\".'
                     android:id="@+id/textView6"
-                    android:gravity="center_horizontal" />
+                    android:padding="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/shadowfrontpagebackground2">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView7"
+                    android:src="@drawable/i3" />
+
+                <com.ashleyjain.messmart.function.CustomText
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content"
+                    android:text="Should you choose to dine in, the mess will serve your freshly prepare food at their premises. Should you want to take away, we shall have a freshly packed tiffin delivered at your doorstep before you know it."
+                    android:padding="30dp" />
             </LinearLayout>
 
                 <LinearLayout
@@ -195,6 +182,7 @@
                         android:text="@string/connect_with_us"
                         android:padding="20dp"
                         android:paddingLeft="90dp"
+                        android:textSize="30sp"
                         android:paddingRight="90dp"
                         android:id="@+id/textView12"
                         android:gravity="center_horizontal" />
@@ -205,7 +193,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/shadowfrontpagebackground2"
+                    android:background="@color/shadowfrontpagebackground"
                     android:gravity="center">
 
                     <ImageView

@@ -1,5 +1,6 @@
 package com.ashleyjain.messmart.Fragment.List;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -43,6 +44,12 @@ public class MessList extends ListFragment {
     private List<MessObject> messObjectList;
     messObjectAdapter adapter;
 
+    public MessList(){
+        this.lord = null;
+        this.pd = null;
+    }
+
+    @SuppressLint("ValidFragment")
     public MessList(String lord,String pd){
         this.lord = lord;
         this.pd = pd;

@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:id="@+id/messimg"
-            android:src="@drawable/food3"
             android:scaleType="fitXY"
             android:layout_alignParentTop="true"/>
 

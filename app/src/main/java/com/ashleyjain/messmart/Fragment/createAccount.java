@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -23,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
-import com.ashleyjain.messmart.adapter.PagerAdapter;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
@@ -85,10 +83,10 @@ public class createAccount extends Fragment {
         }
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.creataccount_spinner, categories);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(R.layout.create_spinner_item);
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);

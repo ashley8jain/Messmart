@@ -22,16 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Fragment.MessjoinActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Fragment.UserprofileActivity" />
-        <activity android:name=".Fragment.MessprofileActivity" />
-        <activity android:name=".Fragment.List.DishList" />
-        <activity
-            android:name=".Fragment.ForgotPasswordActivity"
-            android:label="@string/title_activity_forgot_password"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".function.Payment"
             android:label="@string/title_activity_payment"
             android:parentActivityName=".StartActivity"

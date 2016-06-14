@@ -1,5 +1,6 @@
 package com.ashleyjain.messmart.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,10 +40,10 @@ public class MessprofileActivity extends Fragment {
     int uid;
     JSONArray menulist;
 
+    @SuppressLint("ValidFragment")
     public MessprofileActivity(int uid){
         this.uid = uid;
     }
-
 
     @Override
     public void onStop() {

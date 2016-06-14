@@ -1,5 +1,6 @@
 package com.ashleyjain.messmart.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,11 @@ public class MessListTabLayout extends Fragment {
     Spinner spinner;
     TabLayout tabLayout;
 
+    public MessListTabLayout(){
+        super();
+    }
+
+    @SuppressLint("ValidFragment")
     public MessListTabLayout(String datetime,String lord,Boolean load){
         this.load = load;
         if(load){

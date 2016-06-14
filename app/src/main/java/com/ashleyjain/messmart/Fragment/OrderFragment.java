@@ -10,15 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.adapter.OrderListPagerAdapter;
-import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 
 import org.json.JSONException;
@@ -54,8 +53,7 @@ public class OrderFragment extends Fragment {
         final TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout_order);
         tabLayout.addTab(tabLayout.newTab().setText("UPCOMING"));
         tabLayout.addTab(tabLayout.newTab().setText("PAST"));
-        tabLayout.setTabTextColors(R.color.buttoncolor, R.color.linktextcolor);
-        tabLayout.setBackgroundColor(getResources().getColor(R.color.white));
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 

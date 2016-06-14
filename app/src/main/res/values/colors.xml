@@ -14,8 +14,8 @@
     <color name="websitebackground">#e7e7e7</color>
     <color name="shadowcolor">#00FF1414</color>
     <color name="shadowgreen">#1effffff</color>
-    <color name="shadowfrontpagebackground">#80f2f2bf</color>
-    <color name="shadowfrontpagebackground2">#80ffffc0</color>
-    <color name="shadowfrontpagebackground3">#80e1e1b0</color>
+    <color name="shadowfrontpagebackground">#f2f2bf</color>
+    <color name="shadowfrontpagebackground2">#ffffc0</color>
+    <color name="shadowfrontpagebackground3">#e1e1b0</color>
 
 </resources>
