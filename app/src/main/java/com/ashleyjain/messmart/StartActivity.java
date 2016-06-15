@@ -49,7 +49,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs,regions;
     public static JSONObject tab_map;
 
-    public static String host = "http://192.168.0.111/mess/";
+    public static String host = "http://www.messmart.com/";
     public static String url = StartActivity.host+"index.php/ajaxactions?v="+v;
     public static String sessionID;
 

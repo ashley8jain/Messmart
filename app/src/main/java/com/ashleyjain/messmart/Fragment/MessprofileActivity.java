@@ -92,6 +92,7 @@ public class MessprofileActivity extends Fragment {
                             String name = uinfo.getString("name");
                             String aboutus = uinfo.getString("aboutus");
                             String profilepic = StartActivity.host+uinfo.getString("profilepic");
+
                             JSONArray profile_right_display = data.getJSONArray("profile_right_display");
                             LinearLayoutCompat.LayoutParams lparams = new LinearLayoutCompat.LayoutParams(
                                     LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);

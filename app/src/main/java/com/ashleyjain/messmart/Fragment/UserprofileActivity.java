@@ -7,12 +7,15 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +42,7 @@ import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.drawer;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +55,7 @@ import java.util.Map;
 public class UserprofileActivity extends Fragment {
 
     RoundedImageView userlogo;
-    static TextView inputUsername1,inputUserwallet1,inputUseraddress1;
+    static TextView inputUsername1,inputUserwallet1;
     String name,address;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
@@ -58,6 +63,7 @@ public class UserprofileActivity extends Fragment {
     private String KEY_IMAGE = "profilepic";
     private String KEY_NAME = "name";
     private String UPLOAD_URL =StartActivity.host+"mohit.php";
+    View view;
 
 
     @Override
@@ -88,9 +94,8 @@ public class UserprofileActivity extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(!upload){
-            setInfo();
-        }
+        if(upload)
+            uploadImage();
     }
 
     @Override
@@ -111,12 +116,12 @@ public class UserprofileActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_userprofile);
+        this.view = view;
         userlogo = (RoundedImageView)view.findViewById(R.id.profImg);
         inputUsername1 = (TextView)view.findViewById(R.id.userinputname1);
-        inputUseraddress1 = (TextView)view.findViewById(R.id.userinputaddress1);
         inputUserwallet1 = (TextView)view.findViewById(R.id.userinputwallet1);
-        TextView showDialogedit = (TextView) view.findViewById(R.id.showdialogedit);
-        TextView tv = (TextView) view.findViewById(R.id.add);
+        FloatingActionButton showDialogedit = (FloatingActionButton) view.findViewById(R.id.showdialogedit);
+        FloatingActionButton tv = (FloatingActionButton) view.findViewById(R.id.add);
 
         setInfo();
 
@@ -138,7 +143,7 @@ public class UserprofileActivity extends Fragment {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Loading......", true);
+                                final ProgressDialog dialog2 = ProgressDialog.show(getActivity(), "", "Updating......", true);
                                 StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
                                         new Response.Listener<String>() {
                                             @Override
@@ -337,7 +342,7 @@ public class UserprofileActivity extends Fragment {
             }
         });
 
-        final TextView profpic = (TextView) view.findViewById(R.id.profpic);
+        final FloatingActionButton profpic = (FloatingActionButton) view.findViewById(R.id.profpic);
 
         profpic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -347,14 +352,6 @@ public class UserprofileActivity extends Fragment {
             }
         });
 
-        final TextView upload = (TextView) view.findViewById(R.id.upload);
-
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImage();
-            }
-        });
     }
 
 
@@ -372,9 +369,33 @@ public class UserprofileActivity extends Fragment {
                             name = uinfo.getString("name");
                             address = uinfo.getString("address");
                             inputUsername1.setText(name);
-                            inputUseraddress1.setText(address);
                             inputUserwallet1.setText(uinfo.getString("wallet")+"/-");
                             Picasso.with(getActivity()).load(StartActivity.host + uinfo.getString("profilepic")).into(userlogo);
+
+                            JSONArray profile_right_display = data.getJSONArray("profile_right_display");
+                            LinearLayoutCompat.LayoutParams lparams = new LinearLayoutCompat.LayoutParams(
+                                    LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+                            LinearLayoutCompat.LayoutParams lparams2 = new LinearLayoutCompat.LayoutParams(
+                                    LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+
+                            LinearLayout ll = (LinearLayout) view.findViewById(R.id.aboutprofile);
+                            System.out.println("length "+profile_right_display.length());
+                            for(int i=0;i<profile_right_display.length();i++){
+                                TextView tv=new TextView(getActivity());
+                                tv.setLayoutParams(lparams);
+                                tv.setText(profile_right_display.getJSONArray(i).getString(0));
+                                tv.setTypeface(Typeface.DEFAULT_BOLD);
+                                tv.setTextSize(16);
+                                tv.setPadding(0,0,0,30);
+                                ll.addView(tv);
+
+                                TextView tv2=new TextView(getActivity());
+                                tv2.setLayoutParams(lparams);
+                                tv2.setText(profile_right_display.getJSONArray(i).getString(1));
+                                tv2.setPadding(0,0,0,40);
+                                ll.addView(tv2);
+                            }
+
                             dialog.dismiss();
                         }
                         catch(JSONException je){

@@ -344,7 +344,7 @@ public class messObjectAdapter extends BaseAdapter {
             if(row.getBook()==0)
                 book.setVisibility(View.INVISIBLE);
             else
-                book.setVisibility(View.VISIBLE );
+                book.setVisibility(View.VISIBLE);
 
         }
 

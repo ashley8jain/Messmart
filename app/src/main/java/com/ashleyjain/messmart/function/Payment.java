@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.ashleyjain.messmart.Fragment.UserprofileActivity;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 
@@ -61,6 +62,12 @@ public class Payment extends AppCompatActivity {
                         @Override
                         public void run() {
                             finish();
+                            StartActivity.get().getSupportFragmentManager().popBackStack();
+                            UserprofileActivity userprofileActivity = new UserprofileActivity();
+                            StartActivity.get().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_not, userprofileActivity, userprofileActivity.toString())
+                                    .addToBackStack(userprofileActivity.toString())
+                                    .commit();
                         }
                     }, 3, TimeUnit.SECONDS);
                 }
