@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.drawer;
+import com.pushlink.android.PushLink;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs,regions;
     public static JSONObject tab_map;
 
-    public static String host = "http://www.messmart.com/";
+    public static String host = "http://192.168.0.111/mess/";
     public static String url = StartActivity.host+"index.php/ajaxactions?v="+v;
     public static String sessionID;
 
@@ -63,6 +64,12 @@ public class StartActivity extends AppCompatActivity {
 
     public static StartActivity get() {
         return _instance;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PushLink.setCurrentActivity(this);
     }
 
     @Override
@@ -108,11 +115,17 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        PushLink.start(this,R.drawable.facebook_icon,"m24e3g5nlc3a412j",android_id);
+
         context = this;
         _instance = this;
         _preferences = PreferenceManager.getDefaultSharedPreferences(this);  //for saving cookies

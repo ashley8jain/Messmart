@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -319,6 +320,20 @@ public class dishObjectAdapter extends BaseAdapter {
         vegimg.setImageResource(row.isVeg() ? R.drawable.veg : R.drawable.nonveg);
         TextView when = (TextView) convertView.findViewById(R.id.when);
         when.setText("*Serving as "+(row.getLord().equals("l")?"Lunch":"Dinner")+" on "+row.getDatetext());
+
+        //sold out.....
+        LinearLayout soldout = (LinearLayout) convertView.findViewById(R.id.soldout);
+        if(row.getM_avai()>0 || row.getT_avai()>0){
+            soldout.setVisibility(View.INVISIBLE);
+            book.setVisibility(View.VISIBLE);
+        }
+        else{
+            soldout.setVisibility(View.VISIBLE);
+            if(row.getBook()==0)
+                book.setVisibility(View.INVISIBLE);
+            else
+                book.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }

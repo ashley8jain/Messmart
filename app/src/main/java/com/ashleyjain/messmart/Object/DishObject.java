@@ -22,6 +22,26 @@ public class DishObject {
         this.dishId = dishId;
     }
 
+    private int t_avai;
+
+    public int getM_avai() {
+        return m_avai;
+    }
+
+    public void setM_avai(int m_avai) {
+        this.m_avai = m_avai;
+    }
+
+    public int getT_avai() {
+        return t_avai;
+    }
+
+    public void setT_avai(int t_avai) {
+        this.t_avai = t_avai;
+    }
+
+    private int m_avai;
+
     private String lord,title;
     private String description;
     private int price;
@@ -87,7 +107,7 @@ public class DishObject {
     private String datetime;
     private int book;
 
-    public DishObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String datetext,String messprofpic) {
+    public DishObject(int dishId,String lord,int id, String title, String description, int price, boolean isVeg, String pic,String name,String address,String timing,String datetime,int book,String datetext,String messprofpic,int t_avai,int m_avai) {
         this.dishId = dishId;
         this.lord = lord;
         this.id = id;
@@ -103,6 +123,8 @@ public class DishObject {
         this.book = book;
         this.datetext = datetext;
         this.messprofpic = messprofpic;
+        this.t_avai = t_avai;
+        this.m_avai = m_avai;
     }
 
 
