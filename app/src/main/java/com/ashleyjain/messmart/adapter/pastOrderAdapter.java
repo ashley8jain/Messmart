@@ -110,7 +110,7 @@ public class pastOrderAdapter extends BaseAdapter {
                                     Integer ec = jsonResponse.getInt("ec");
                                     dialog2.dismiss();
                                     if (ec == 1) {
-                                        Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show();
                                         StartActivity.get().getSupportFragmentManager().popBackStack();
                                         OrderFragment ofragment = new OrderFragment();
                                         StartActivity.get().getSupportFragmentManager().beginTransaction()
@@ -118,7 +118,7 @@ public class pastOrderAdapter extends BaseAdapter {
                                                 .addToBackStack(ofragment.toString())
                                                 .commit();
                                     } else {
-                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -129,7 +129,7 @@ public class pastOrderAdapter extends BaseAdapter {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
                                 dialog2.dismiss();
                             }
                         }

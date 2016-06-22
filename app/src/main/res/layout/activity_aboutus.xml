@@ -1,12 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.AboutusActivity">
-
-
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -14,7 +11,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
@@ -123,7 +119,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:textStyle="bold"
                         android:paddingLeft="40dp"
                         android:layout_marginTop="10dp"
@@ -133,12 +128,18 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:paddingLeft="40dp"
                         android:id="@+id/desc2"
                         android:paddingRight="40dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="20dp"
                         android:gravity="center_horizontal"/>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="50dp"
+                        android:background="@android:color/darker_gray"
+                        android:layout_margin="10dp"/>
             </LinearLayout>
 
         </ScrollView>

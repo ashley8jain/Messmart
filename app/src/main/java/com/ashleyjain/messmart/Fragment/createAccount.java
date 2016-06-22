@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,7 @@ public class createAccount extends Fragment {
     Button createAcc;
     Spinner spinner;
     String phone,otp,name,address,choosePass;
+    int region;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class createAccount extends Fragment {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        categories.add("Select region");
         for(int i=0;i<StartActivity.regions.length();i++) {
             try {
                 categories.add(StartActivity.regions.getString(i));
@@ -81,6 +84,18 @@ public class createAccount extends Fragment {
                 e.printStackTrace();
             }
         }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region = position;
+                System.out.println(position+" :region");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.creataccount_spinner, categories);
@@ -97,64 +112,72 @@ public class createAccount extends Fragment {
                 name = nm.getText().toString();
                 address = add.getText().toString();
                 choosePass = chPass.getText().toString();
+                if(region==0){
+                    Toast.makeText(StartActivity.get(), "Please select Region", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Signing up.....", true);
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d("Response", response);
+                                    //response JSON from url
+                                    try {
+                                        JSONObject jsonResponse = new JSONObject(response);
+                                        Integer ec = jsonResponse.getInt("ec");
+                                        if (ec == 1) {
+                                            Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_SHORT).show();
+                                            Intent re = new Intent(getContext(),StartActivity.class);
+                                            startActivity(re);
+                                            getActivity().finish();
+                                        }
+                                        else{
+                                            Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_SHORT).show();
+                                        }
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
 
-                final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Signing up.....", true);
-                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("Response", response);
-                                //response JSON from url
-                                try {
-                                    JSONObject jsonResponse = new JSONObject(response);
-                                    Integer ec = jsonResponse.getInt("ec");
-                                    if (ec == 1) {
-                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
-                                        Intent re = new Intent(getContext(),StartActivity.class);
-                                        startActivity(re);
-                                        getActivity().finish();
-                                    }
-                                    else{
-                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
-                                    }
-                                    dialog.dismiss();
-                                } catch (JSONException e) {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
                             }
-                        },
-                        new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                            }
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Log.d("debug", "posting param");
+                            Map<String, String> params = new HashMap<String, String>();
+
+                            // the POST parameters:
+                            params.put("phone", phone);
+                            params.put("otp",otp);
+                            params.put("action", "signup");
+                            params.put("name", name);
+                            params.put("region",region+"");
+                            params.put("address", address);
+                            params.put("password", choosePass);
+
+                            System.out.println(params);
+                            return params;
                         }
+                    };
 
-                ) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Log.d("debug", "posting param");
-                        Map<String, String> params = new HashMap<String, String>();
+                    // add it to the RequestQueue
+                    StartActivity.get().getRequestQueue().add(postRequest);
+                    KeyboardDown.keyboardDown();
+                }
 
-                        // the POST parameters:
-                        params.put("phone", phone);
-                        params.put("otp",otp);
-                        params.put("action", "signup");
-                        params.put("name", name);
-                        params.put("address", address);
-                        params.put("password", choosePass);
 
-                        System.out.println(params);
-                        return params;
-                    }
-                };
 
-                // add it to the RequestQueue
-                StartActivity.get().getRequestQueue().add(postRequest);
-                KeyboardDown.keyboardDown();
             }
         });
 

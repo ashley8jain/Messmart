@@ -119,7 +119,7 @@ public class MessList extends ListFragment {
 
                             //dialog.dismiss();
                         } catch (JSONException e) {
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                             //dialog.dismiss();
                         }
                         messObjectList = new ArrayList<MessObject>();
@@ -136,7 +136,7 @@ public class MessList extends ListFragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         //dialog.dismiss();
                     }
                 }

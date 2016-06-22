@@ -22,10 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
-import com.ashleyjain.messmart.function.drawer;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
-import com.ashleyjain.messmart.function.checkError;
+import com.ashleyjain.messmart.function.drawer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,12 +86,10 @@ public class LoginActivity extends Fragment {
         });
         mobileno = (EditText) view.findViewById(R.id.phone);
         mobileno.setTypeface(font);
-        mobileno.addTextChangedListener(new checkError(mobileno));
 
 
         pass = (EditText) view.findViewById(R.id.confirmotp);
         pass.setTypeface(font);
-        pass.addTextChangedListener(new checkError(pass));
 
         login = (Button) view.findViewById(R.id.loginbutton);
 
@@ -191,65 +188,78 @@ public class LoginActivity extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Logging in.....", true);
-                final String mbnb = mobileno.getText().toString();
-                final String pwd = pass.getText().toString();
 
-                StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("Response", response);
-                                //response JSON from url
-                                try {
-                                    JSONObject jsonResponse = new JSONObject(response);
-                                    Integer ec = jsonResponse.getInt("ec");
-                                    if(ec == 1){
-                                        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_LONG).show();
+                if(!(mobileno.getText().length()==0||pass.getText().length()==0||!mobileno.getText().toString().matches("\\d{10}"))) {
+
+                    final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Logging in.....", true);
+                    final String mbnb = mobileno.getText().toString();
+                    final String pwd = pass.getText().toString();
+                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d("Response", response);
+                                    //response JSON from url
+                                    try {
+                                        JSONObject jsonResponse = new JSONObject(response);
+                                        Integer ec = jsonResponse.getInt("ec");
+                                        if (ec == 1) {
+                                            Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
 //                                        Intent re = new Intent(getContext(),StartActivity.class);
 //                                        startActivity(re);
 //                                        getActivity().finish();
-                                        new drawer().rebuild();
-                                        StartActivity.get().getSupportFragmentManager().popBackStackImmediate();
+                                            new drawer().rebuild();
+                                            StartActivity.get().getSupportFragmentManager().popBackStackImmediate();
+                                        } else {
+                                            Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
+                                        }
+                                        System.out.println("Message: " + ec);
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
                                     }
-                                    else{
-                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
-                                    }
-                                    System.out.println("Message: " + ec);
-                                dialog.dismiss();
-                                } catch (JSONException e) {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                }
+                            },
+                            new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
                             }
-                        },
-                        new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                            }
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Log.d("debug", "posting param");
+                            Map<String, String> params = new HashMap<String, String>();
+
+                            // the POST parameters:
+                            params.put("loginphone", mbnb);
+                            params.put("loginpass", pwd);
+                            params.put("action", "login");
+                            System.out.println(params);
+                            return params;
                         }
+                    };
 
-                ) {
-                    @Override
-                protected Map<String, String> getParams()   {
-                        Log.d("debug", "posting param");
-                        Map<String, String> params = new HashMap<String, String>();
-
-                        // the POST parameters:
-                        params.put("loginphone", mbnb);
-                        params.put("loginpass", pwd);
-                        params.put("action", "login");
-                        System.out.println(params);
-                        return params;
+                    // add it to the RequestQueue
+                    StartActivity.get().getRequestQueue().add(postRequest);
+                    KeyboardDown.keyboardDown();
+                }
+                else{
+                    if(!mobileno.getText().toString().matches("\\d{10}")){
+                        mobileno.setError("Invalid mobile number!");
                     }
-                };
-
-                // add it to the RequestQueue
-                StartActivity.get().getRequestQueue().add(postRequest);
-                KeyboardDown.keyboardDown();
+                    if(mobileno.getText().length()==0){
+                        mobileno.setError("This field can't be empty!");
+                    }
+                    if(pass.getText().length()==0){
+                        pass.setError("This field can't be empty!");
+                    }
+                }
             }
         });
     }

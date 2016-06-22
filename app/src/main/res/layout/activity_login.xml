@@ -45,7 +45,6 @@
             android:inputType="number"
             android:maxLength="10"
             android:hint="@string/phone"
-            android:text="7503759059"
             android:drawablePadding="10dp"
             android:drawableLeft="@android:drawable/sym_action_call"
             android:drawableTint="@color/primary"
@@ -63,11 +62,10 @@
             android:background="@color/edittextbackground"
             android:padding="10dp"
             android:inputType="textPassword"
-            android:text="oo"
             android:ems="10"
             android:hint="@string/otpOrPassword"
-            android:drawablePadding="10dp"
-            android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/key"
             android:textCursorDrawable="@drawable/custom_cursor"/>
 
     </LinearLayout>

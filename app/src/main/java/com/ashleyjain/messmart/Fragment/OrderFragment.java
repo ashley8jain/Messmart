@@ -75,7 +75,7 @@ public class OrderFragment extends Fragment {
                             final OrderListPagerAdapter adapter = new OrderListPagerAdapter(getChildFragmentManager(), tabLayout.getTabCount(),upcominglist,pastlist);
                             viewPager.setAdapter(adapter);
                         } catch (JSONException e) {
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
 
@@ -85,7 +85,7 @@ public class OrderFragment extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }

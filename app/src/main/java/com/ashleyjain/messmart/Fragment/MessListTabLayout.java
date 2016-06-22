@@ -115,7 +115,7 @@ public class MessListTabLayout extends Fragment {
                             }
                             //dialog.dismiss();
                         } catch (JSONException e) {
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                             //dialog.dismiss();
                         }
 
@@ -125,7 +125,7 @@ public class MessListTabLayout extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         //dialog.dismiss();
                     }
                 }

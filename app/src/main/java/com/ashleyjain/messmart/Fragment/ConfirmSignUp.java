@@ -79,15 +79,15 @@ public class ConfirmSignUp extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
-                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(),StartActivity.errorcode.getString(""+ec), Toast.LENGTH_SHORT).show();
                                     }
                                     System.out.println("Message: " + ec);
                                     dialog.dismiss();
                                 } catch (JSONException e) {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
                             }
@@ -96,7 +96,7 @@ public class ConfirmSignUp extends Fragment {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         }
@@ -140,7 +140,7 @@ public class ConfirmSignUp extends Fragment {
                                     JSONObject jsonResponse = new JSONObject(response);
                                     Integer ec = jsonResponse.getInt("ec");
                                     if(ec == 1){
-                                        Toast.makeText(getActivity(), "Enter Account Details!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Enter Account Details!", Toast.LENGTH_SHORT).show();
                                         createAccount fragment = new createAccount();
                                         Bundle bundle = new Bundle();
                                         bundle.putString("PHONE",phone);
@@ -151,10 +151,13 @@ public class ConfirmSignUp extends Fragment {
                                                 .addToBackStack(fragment.toString())
                                                 .commit();
                                     }
+                                    else {
+                                        Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
+                                    }
                                     System.out.println("Message: " + ec);
                                     dialog.dismiss();
                                 } catch (JSONException e) {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
                             }
@@ -163,7 +166,7 @@ public class ConfirmSignUp extends Fragment {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         }

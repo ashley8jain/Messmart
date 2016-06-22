@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,7 +30,6 @@ import com.android.volley.toolbox.Volley;
 import com.ashleyjain.messmart.Fragment.ViewpagerFragment;
 import com.ashleyjain.messmart.function.StringRequestCookies;
 import com.ashleyjain.messmart.function.drawer;
-import com.pushlink.android.PushLink;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
     public static JSONArray tabs,regions;
     public static JSONObject tab_map;
 
-    public static String host = "http://192.168.0.111/mess/";
+    public static String host = "http://www.messmart.com/";
     public static String url = StartActivity.host+"index.php/ajaxactions?v="+v;
     public static String sessionID;
 
@@ -69,7 +69,6 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        PushLink.setCurrentActivity(this);
     }
 
     @Override
@@ -121,10 +120,6 @@ public class StartActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        PushLink.start(this,R.drawable.facebook_icon,"m24e3g5nlc3a412j",android_id);
 
         context = this;
         _instance = this;
@@ -235,7 +230,7 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("Response", response);
-                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_SHORT).show();
                         Intent re = new Intent(StartActivity.get(),StartActivity.class);
                         startActivity(re);
                         StartActivity.get().finish();
@@ -245,7 +240,7 @@ public class StartActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }
@@ -262,7 +257,7 @@ public class StartActivity extends AppCompatActivity {
                 return params;
             }
         };
-
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(3600000,1,1));
         // add it to the RequestQueue
         getRequestQueue().add(postRequest);
     }

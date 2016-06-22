@@ -113,7 +113,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                 Integer ec = jsonResponse.getInt("ec");
                                                 //dialog2.dismiss();
                                                 if (ec == 1) {
-                                                    Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, "Booked", Toast.LENGTH_SHORT).show();
                                                     StartActivity.get().getSupportFragmentManager().popBackStack();
                                                     MessListTabLayout fragment = new MessListTabLayout("", "", false);
                                                     Bundle bundle3 = new Bundle();
@@ -125,7 +125,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                             .addToBackStack(fragment.toString())
                                                             .commit();
                                                 } else {
-                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -136,7 +136,7 @@ public class messObjectAdapter extends BaseAdapter {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
                                             //dialog2.dismiss();
                                         }
                                     }
@@ -179,7 +179,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                 Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
                                                 if (ec == 1) {
-                                                    Toast.makeText(context, "Booked", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, "Booked", Toast.LENGTH_SHORT).show();
                                                     book.setText("Booked");
                                                     StartActivity.get().getSupportFragmentManager().popBackStack();
                                                     MessListTabLayout fragment = new MessListTabLayout("", "", false);
@@ -192,7 +192,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                             .addToBackStack(fragment.toString())
                                                             .commit();
                                                 } else {
-                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -204,7 +204,7 @@ public class messObjectAdapter extends BaseAdapter {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
                                             dialog2.dismiss();
                                         }
                                     }
@@ -253,7 +253,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                 Integer ec = jsonResponse.getInt("ec");
                                                 dialog2.dismiss();
                                                 if (ec == 1) {
-                                                    Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show();
                                                     book.setText("Cancelled");
                                                     StartActivity.get().getSupportFragmentManager().popBackStack();
                                                     MessListTabLayout fragment = new MessListTabLayout("", "", false);
@@ -266,7 +266,7 @@ public class messObjectAdapter extends BaseAdapter {
                                                             .addToBackStack(fragment.toString())
                                                             .commit();
                                                 } else {
-                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(context, StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -277,7 +277,7 @@ public class messObjectAdapter extends BaseAdapter {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
                                             dialog2.dismiss();
                                         }
                                     }
@@ -313,7 +313,7 @@ public class messObjectAdapter extends BaseAdapter {
         });
 
 
-        //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_LONG).show();
+        //Toast.makeText(context,row.isVeg()?"true":"false",Toast.LENGTH_SHORT).show();
         messTitle.setText(row.getTitle());
         messDescription.setText(row.getDescription());
         //messLogo.setImageResource(R.drawable.google_icon);

@@ -108,11 +108,11 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             int ec = jsonObject.getInt("ec");
                             error_code = ec;
-                            //Toast.makeText(getActivity(),ec+"" , Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(),ec+"" , Toast.LENGTH_SHORT).show();
 
                         }
                         catch(JSONException je){
-                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -122,7 +122,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         //dialog.dismiss();
                     }
                 }
@@ -155,20 +155,20 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
                         try{
                             if(error_code == 1){
                                 forgot_password_button.setText("SENT");
-                                Toast.makeText(getActivity(),"Message has been sent!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(),"Message has been sent!",Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 JSONObject jsonObject = new JSONObject(response);
                                 JSONObject data = jsonObject.getJSONObject("data");
                                 JSONObject ec1 = data.getJSONObject("ec");
                                 String message = ec1.getString(error_code+"");
-                                Toast.makeText(getActivity(),message , Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(),message , Toast.LENGTH_SHORT).show();
                             }
 
 
                         }
                         catch(JSONException je){
-                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -178,7 +178,7 @@ public class ForgotPasswordActivity extends android.support.v4.app.Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         //dialog.dismiss();
                     }
                 }

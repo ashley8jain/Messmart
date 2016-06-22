@@ -227,11 +227,11 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                                                             alertDialog.show();
                                                         }
                                                         else{
-                                                            Toast.makeText(getActivity(),StartActivity.errorcode.getString(ec_val_str), Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(getActivity(),StartActivity.errorcode.getString(ec_val_str), Toast.LENGTH_SHORT).show();
                                                         }
 
                                                     } catch (JSONException e) {
-                                                        Toast.makeText(getActivity(),"Error :"+e.getMessage(),Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getActivity(),"Error :"+e.getMessage(),Toast.LENGTH_SHORT).show();
 
                                                     }
 
@@ -240,7 +240,7 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                                             }, new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                         }
                                     }) {
                                         @Override
@@ -260,7 +260,7 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                             }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }) {
                         @Override
@@ -287,17 +287,17 @@ public class MessjoinActivity extends android.support.v4.app.Fragment {
                     if (name.getText().length() == 0) {
                         name.setError("This field can't be empty!");
                     }
-                    if (mobile.getText().length() == 0) {
-                        mobile.setError("This field can't be empty!");
-                    }
                     if (!mobile.getText().toString().matches("\\d{10}")) {
                         mobile.setError("Invalid mobile number!");
                     }
-                    if (emailid.getText().length() == 0) {
-                        emailid.setError("This field can't be empty!");
+                    if (mobile.getText().length() == 0) {
+                        mobile.setError("This field can't be empty!");
                     }
                     if(!emailid.getText().toString().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$")){
                         emailid.setError("Invalid email-id!");
+                    }
+                    if (emailid.getText().length() == 0) {
+                        emailid.setError("This field can't be empty!");
                     }
                     if (address.getText().length() == 0) {
                         address.setError("This field can't be empty!");

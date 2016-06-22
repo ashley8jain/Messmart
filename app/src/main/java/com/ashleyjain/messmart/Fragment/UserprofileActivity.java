@@ -162,12 +162,12 @@ public class UserprofileActivity extends Fragment {
                                                                 .commit();
                                                         new drawer().rebuild();
                                                     } else {
-                                                        Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                                     }
                                                     System.out.println("Message: " + ec);
                                                     dialog2.dismiss();
                                                 } catch (JSONException e) {
-                                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                                     dialog2.dismiss();
                                                 }
                                             }
@@ -178,7 +178,7 @@ public class UserprofileActivity extends Fragment {
 
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                                 dialog2.dismiss();
                                             }
                                         }
@@ -235,12 +235,12 @@ public class UserprofileActivity extends Fragment {
                                             if (ec == 1) {
                                                 apply.setText("applied");
                                             } else {
-                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                             }
                                             System.out.println("Message: " + ec);
                                             dialog2.dismiss();
                                         } catch (JSONException e) {
-                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                             dialog2.dismiss();
                                         }
                                     }
@@ -249,7 +249,7 @@ public class UserprofileActivity extends Fragment {
 
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                         dialog2.dismiss();
                                     }
                                 }
@@ -294,12 +294,12 @@ public class UserprofileActivity extends Fragment {
                                                 intent.putExtra("url", data);
                                                 startActivity(intent);
                                             } else {
-                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
                                             }
                                             System.out.println("Message: " + ec);
                                             dialog2.dismiss();
                                         } catch (JSONException e) {
-                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                             dialog2.dismiss();
                                         }
                                     }
@@ -308,7 +308,7 @@ public class UserprofileActivity extends Fragment {
 
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                         dialog2.dismiss();
                                     }
                                 }
@@ -399,7 +399,7 @@ public class UserprofileActivity extends Fragment {
                             dialog.dismiss();
                         }
                         catch(JSONException je){
-                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),je.toString(),Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     }
@@ -408,7 +408,7 @@ public class UserprofileActivity extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }
@@ -464,7 +464,7 @@ public class UserprofileActivity extends Fragment {
                         //Disimissing the progress dialog
                         loading.dismiss();
                         //Showing toast message of the response
-                        Toast.makeText(getActivity(), s , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), s , Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
@@ -474,7 +474,7 @@ public class UserprofileActivity extends Fragment {
                         loading.dismiss();
 
                         //Showing toast
-                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

@@ -118,18 +118,6 @@ public class drawer {
                             hm.put("Settings", R.drawable.setting);
                             hm.put(StartActivity.loginname, R.drawable.profile);
 
-
-                            try {
-
-                                for(int i = 0 ;i < StartActivity.tabs.length();i++){
-                                    String cap = null;
-                                    cap = (String) StartActivity.tab_map.getJSONArray(StartActivity.tabs.getString(i)).get(0);
-                                    builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int)hm.get(cap)));
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
                             if( !StartActivity.logintype.equals("null")&& !StartActivity.logintype.equals("u")){
                                 AlertDialog.Builder alertbuilder = new AlertDialog.Builder(StartActivity.get());
                                 alertbuilder.setTitle("You are not user!!");
@@ -151,9 +139,21 @@ public class drawer {
                                 AlertDialog alertDialog = alertbuilder.create();
                                 alertDialog.show();
                             }
+                            else{
+                                try {
+
+                                    for(int i = 0 ;i < StartActivity.tabs.length();i++){
+                                        String cap = null;
+                                        cap = (String) StartActivity.tab_map.getJSONArray(StartActivity.tabs.getString(i)).get(0);
+                                        builder.addDrawerItems(new PrimaryDrawerItem().withName(cap).withIcon((int)hm.get(cap)));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             dialog.dismiss();
                         } catch (JSONException e) {
-                            Toast.makeText(StartActivity.get(), e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(StartActivity.get(), e.toString(), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
 
@@ -163,7 +163,7 @@ public class drawer {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(StartActivity.get(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(StartActivity.get(), error.toString(), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }
@@ -286,7 +286,7 @@ public class drawer {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(StartActivity.get(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(StartActivity.get(), error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

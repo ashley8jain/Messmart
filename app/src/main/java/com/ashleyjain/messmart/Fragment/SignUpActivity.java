@@ -27,7 +27,6 @@ import com.ashleyjain.messmart.R;
 import com.ashleyjain.messmart.StartActivity;
 import com.ashleyjain.messmart.function.KeyboardDown;
 import com.ashleyjain.messmart.function.StringRequestCookies;
-import com.ashleyjain.messmart.function.checkError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,19 +88,7 @@ public class SignUpActivity extends Fragment {
 
         newmobile = (EditText) view.findViewById(R.id.newmob);
         newmobile.setTypeface(font);
-        newmobile.addTextChangedListener(new checkError(newmobile));
 
-        /*newmobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    InputMethodManager inputManager = (InputMethodManager)StartActivity.get().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    Toast.makeText(getActivity(),"unfocused",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });*/
 
         sendotp = (Button) view.findViewById(R.id.sendotp);
         sendotp.setTypeface(font);
@@ -109,68 +96,77 @@ public class SignUpActivity extends Fragment {
         sendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String phone = newmobile.getText().toString();
-                if (phone.length() == 10) {
-                    final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
-                    StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Log.d("Response", response);
-                                    //response JSON from url
-                                    try {
-                                        JSONObject jsonResponse = new JSONObject(response);
-                                        Integer ec = jsonResponse.getInt("ec");
-                                        if (ec == 1) {
-                                            Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_LONG).show();
-                                            ConfirmSignUp signupfragment = new ConfirmSignUp();
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("PHONE", phone);
-                                            signupfragment.setArguments(bundle);
-                                            getActivity().getSupportFragmentManager().beginTransaction()
-                                                    .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
-                                                    .addToBackStack(signupfragment.toString())
-                                                    .commit();
+                if(!(newmobile.getText().length()==0||!newmobile.getText().toString().matches("\\d{10}"))) {
+                    final String phone = newmobile.getText().toString();
+                    if (phone.length() == 10) {
+                        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Sending.....", true);
+                        StringRequestCookies postRequest = new StringRequestCookies(Request.Method.POST, StartActivity.url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("Response", response);
+                                        //response JSON from url
+                                        try {
+                                            JSONObject jsonResponse = new JSONObject(response);
+                                            Integer ec = jsonResponse.getInt("ec");
+                                            if (ec == 1) {
+                                                Toast.makeText(getActivity(), "Sent!", Toast.LENGTH_SHORT).show();
+                                                ConfirmSignUp signupfragment = new ConfirmSignUp();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("PHONE", phone);
+                                                signupfragment.setArguments(bundle);
+                                                getActivity().getSupportFragmentManager().beginTransaction()
+                                                        .replace(R.id.fragment_not, signupfragment, signupfragment.toString())
+                                                        .addToBackStack(signupfragment.toString())
+                                                        .commit();
 
-                                        } else {
-                                            Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), StartActivity.errorcode.getString("" + ec), Toast.LENGTH_SHORT).show();
+                                            }
+                                            dialog.dismiss();
+                                        } catch (JSONException e) {
+                                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
                                         }
-                                        dialog.dismiss();
-                                    } catch (JSONException e) {
-                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    }
+                                },
+                                new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                                         dialog.dismiss();
                                     }
                                 }
-                            },
-                            new Response.ErrorListener() {
 
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                                    dialog.dismiss();
-                                }
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Log.d("debug", "posting param");
+                                Map<String, String> params = new HashMap<String, String>();
+
+                                // the POST parameters:
+                                params.put("phone", phone);
+                                params.put("action", "sendotp");
+                                System.out.println(params);
+                                return params;
                             }
+                        };
 
-                    ) {
-                        @Override
-                        protected Map<String, String> getParams() {
-                            Log.d("debug", "posting param");
-                            Map<String, String> params = new HashMap<String, String>();
-
-                            // the POST parameters:
-                            params.put("phone", phone);
-                            params.put("action", "sendotp");
-                            System.out.println(params);
-                            return params;
-                        }
-                    };
-
-                    // add it to the RequestQueue
-                    StartActivity.get().getRequestQueue().add(postRequest);
-                    KeyboardDown.keyboardDown();
+                        // add it to the RequestQueue
+                        StartActivity.get().getRequestQueue().add(postRequest);
+                        KeyboardDown.keyboardDown();
+                    } else {
+                        Toast.makeText(getActivity(), "Please Enter Correct Phone Number!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    Toast.makeText(getActivity(), "Please Enter Correct Phone Number!", Toast.LENGTH_SHORT).show();
+                else{
+                    if(!newmobile.getText().toString().matches("\\d{10}")){
+                        newmobile.setError("Invalid mobile number!");
+                    }
+                    if(newmobile.getText().length()==0){
+                        newmobile.setError("This field can't be empty!");
+                    }
                 }
             }
         });
